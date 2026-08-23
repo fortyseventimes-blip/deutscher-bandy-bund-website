@@ -1,0 +1,58 @@
+{
+  "common": {
+    "skipToContent": "Zum Inhalt springen",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "search": "Suche",
+    "language": "Sprache",
+    "german": "Deutsch",
+    "english": "English",
+    "loadMore": "Weitere anzeigen",
+    "backToHome": "Zur Startseite"
+  },
+  "nav": {
+    "home": "Startseite",
+    "fixtures": "Spielplan",
+    "teams": "Teams",
+    "squad": "Kader",
+    "news": "News",
+    "tournaments": "Turniere",
+    "federation": "Verband",
+    "gallery": "Galerie",
+    "contact": "Kontakt",
+    "press": "Presse",
+    "membership": "Mitgliedschaft",
+    "newsletterCta": "Newsletter abonnieren"
+  },
+  "footer": {
+    "tagline": "Deutscher Bandy-Bund e. V. — der nationale Verband für Bandy und Rinkbandy in Deutschland.",
+    "sport": "Sport",
+    "federation": "Verband",
+    "service": "Service",
+    "legal": "Rechtliches",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "accessibility": "Barrierefreiheit",
+    "cookieSettings": "Cookie-Einstellungen",
+    "newsletter": "Newsletter",
+    "copyright": "Deutscher Bandy-Bund e. V.",
+    "brandLine": "Deutscher Bandy-Bund — Startseite"
+  },
+  "home": {
+    "kicker": "Deutscher Bandy-Bund",
+    "title": "Bandy in Deutschland",
+    "lead": "Nationalmannschaften, Spielplan, Ergebnisse und Neuigkeiten des Deutschen Bandy-Bundes — an einem Ort.",
+    "foundationNote": "Diese Seite ist das technische Fundament der neuen Website. Inhalte und Module folgen in den nächsten Ausbaustufen."
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Seite nicht gefunden",
+    "lead": "Die angeforderte Seite existiert nicht oder wurde verschoben.",
+    "cta": "Zur Startseite"
+  },
+  "error": {
+    "title": "Etwas ist schiefgelaufen",
+    "lead": "Es ist ein technischer Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+    "retry": "Erneut versuchen"
+  }
+}

@@ -1,0 +1,138 @@
+@import 'tailwindcss';
+@import './tokens.css';
+
+/*
+ * Map the design tokens onto Tailwind v4 theme variables so utilities
+ * (bg-surface, text-muted, rounded-card, font-heading …) stay in lock-step
+ * with the tokens and remain theme-reactive (the utilities resolve to the
+ * runtime CSS vars, which the light theme overrides).
+ */
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-card: var(--surface-card);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent-ice: var(--accent-ice);
+  --color-red: var(--red);
+  --color-red-light: var(--red-light);
+  --color-yellow: var(--yellow);
+  --color-green: var(--green);
+
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+
+  --radius-tag: var(--radius-tag);
+  --radius-button: var(--radius-button);
+  --radius-card: var(--radius-card);
+  --radius-pill: var(--radius-pill);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+
+  body {
+    background: var(--canvas);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Every number is tabular. */
+  :where(td, th, time, .tabular, [data-tabular]) {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Headings use Barlow Condensed, always uppercase (handoff typography). */
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    font-weight: 700;
+  }
+
+  /* Body copy wraps prettily and is capped for readability. */
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Focus ring: yellow, 2px, offset — visible on keyboard focus only. */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: var(--focus-offset);
+    border-radius: 2px;
+  }
+
+  /* Custom scrollbars (webkit) — 6px thumb in --line. */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border-radius: var(--radius-pill);
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Respect reduced motion everywhere. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Centered content column capped at 1280px inside the page gutters. */
+  .container-page {
+    width: 100%;
+    max-width: var(--content-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Prose column cap for long-form body copy. */
+  .prose-measure {
+    max-width: 66ch;
+  }
+
+  /* Skip link — visually hidden until focused, then pinned top-left. */
+  .skip-link {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 100;
+    transform: translateY(-200%);
+    background: var(--surface-card);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-button);
+    padding: 12px 16px;
+    font-weight: 600;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#07090B;color:#F4F7F9;font-family:Inter,system-ui,sans-serif;}
+a{color:#FF4D4D;text-decoration:none;}
+a:hover{color:#FFCC00;}
+::-webkit-scrollbar{height:6px;width:6px}
+::-webkit-scrollbar-thumb{background:#2A323A;border-radius:999px}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<section style="display:flex;flex-direction:column;gap:28px;padding:48px 56px 96px;background:#07090B">
+  <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;line-height:32px;text-transform:uppercase;letter-spacing:-.01em">Komponentenblatt</div>
+    <div style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Fundament <a href="#5a">5a</a> · Aktionen &amp; Status <a href="#5b">5b</a> · Formulare &amp; Feedback <a href="#5c">5c</a> · Listen &amp; Karten <a href="#5d">5d</a> · Navigation &amp; Overlays <a href="#5e">5e</a></div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:40px">
+
+    <!-- ===================== 5a FUNDAMENT ===================== -->
+    <div id="5a" style="display:flex;flex-direction:column;gap:10px;width:1180px;flex:none">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">5a</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Farben, Typografie, Abstände, Bildslots</span>
+      </div>
+
+      <div style="background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;padding:40px;display:flex;flex-direction:column;gap:44px">
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Farbpalette</span>
+          <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:16px">
+            <sc-for list="{{ palette }}" as="c" hint-placeholder-count="12">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="height:72px;border-radius:8px;border:1px solid #2A323A;background:{{ c.hex }}"></div>
+                <span style="font:600 13px/18px Inter,sans-serif">{{ c.name }}</span>
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD;font-variant-numeric:tabular-nums">{{ c.hex }}</span>
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">{{ c.use }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:start">
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Typografie</span>
+            <div style="display:flex;flex-direction:column;gap:6px;padding-bottom:16px;border-bottom:1px solid #2A323A">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:56px;line-height:60px;text-transform:uppercase;letter-spacing:-.01em">Bandy in Deutschland</span>
+              <sc-if value="{{ showSpecs }}" hint-placeholder-val="{{ true }}">
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">H1 · Barlow Condensed 700 · 56/60 · Mobile 32/36</span>
+              </sc-if>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;padding-bottom:16px;border-bottom:1px solid #2A323A">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:40px;line-height:44px;text-transform:uppercase;letter-spacing:-.01em">Abschnittsüberschrift</span>
+              <sc-if value="{{ showSpecs }}">
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">H2 · Barlow Condensed 700 · 40/44 · Mobile 26/30</span>
+              </sc-if>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;padding-bottom:16px;border-bottom:1px solid #2A323A">
+              <span style="font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#FFCC00">Kicker über der Überschrift</span>
+              <sc-if value="{{ showSpecs }}">
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">Kicker · Inter 600 · 13/16 · letter-spacing .08em · immer Gelb</span>
+              </sc-if>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;padding-bottom:16px;border-bottom:1px solid #2A323A">
+              <span style="font:400 18px/30px Inter,sans-serif;max-width:66ch;text-wrap:pretty">Fließtext für Berichte und Erklärtexte. Maximal 66 Zeichen pro Zeile, damit lange deutsche Komposita nicht in die Zeilenmitte reißen.</span>
+              <sc-if value="{{ showSpecs }}">
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">Body L · Inter 400 · 18/30 · Mobile 17/27</span>
+              </sc-if>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <span style="font:500 15px/24px Inter,sans-serif;color:#98A3AD">Metazeile: Datum, Ort, Wettbewerb — Inter 500, 15/24, Grau.</span>
+              <span style="font:500 15px/24px Inter,sans-serif;font-variant-numeric:tabular-nums">Tabellenzahlen: 16.01.2027 · 14:00 · 2:2 · 1.240</span>
+              <sc-if value="{{ showSpecs }}">
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">Alle Zahlen mit font-variant-numeric: tabular-nums</span>
+              </sc-if>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Abstände &amp; Radien</span>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ spacing }}" as="s" hint-placeholder-count="6">
+                <div style="display:flex;align-items:center;gap:14px">
+                  <span style="font:500 12px/16px Inter,sans-serif;color:#98A3AD;width:52px;font-variant-numeric:tabular-nums">{{ s.px }}</span>
+                  <span style="height:10px;border-radius:2px;background:#DD0000;width:{{ s.px }}"></span>
+                  <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">{{ s.use }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-end;padding-top:8px">
+              <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+                <div style="width:64px;height:44px;background:#1D232A;border:1px solid #2A323A;border-radius:4px"></div>
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">4 · Tag</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+                <div style="width:64px;height:44px;background:#1D232A;border:1px solid #2A323A;border-radius:8px"></div>
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">8 · Button</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+                <div style="width:64px;height:44px;background:#1D232A;border:1px solid #2A323A;border-radius:12px"></div>
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">12 · Karte</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+                <div style="width:64px;height:44px;background:#1D232A;border:1px solid #2A323A;border-radius:999px"></div>
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">999 · Chip</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Bildslots &amp; Platzhalter</span>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="height:200px;border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+                <image-slot id="kb-slot-16-9" shape="rect" fit="cover" placeholder="16:9 Newsbild" style="height:100%"></image-slot>
+              </div>
+              <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">Newsbild · 16:9</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="height:200px;border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+                <image-slot id="kb-slot-portrait" shape="rect" fit="cover" placeholder="Freigestelltes Portrait" style="height:100%"></image-slot>
+              </div>
+              <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">Spielerportrait · 3:4, freigestellt</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="height:200px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:radial-gradient(70% 55% at 50% 40%, rgba(201,228,240,.18), rgba(201,228,240,0) 72%);border:1px solid #2A323A">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:120px;line-height:120px;color:rgba(201,228,240,.24);font-variant-numeric:tabular-nums">22</span>
+              </div>
+              <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">Ersatz ohne Foto · Rückennummer</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="height:200px;border:1px dashed #2A323A;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;text-align:center">
+                <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#C9E4F0">Inhalt gesperrt</span>
+                <span style="font:400 13px/18px Inter,sans-serif;color:#98A3AD">Consent-Platzhalter für Karte, Video, Social-Embed</span>
+              </div>
+              <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">Consent-Platzhalter · gestrichelt</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 5b AKTIONEN & STATUS ===================== -->
+    <div id="5b" style="display:flex;flex-direction:column;gap:10px;width:1180px;flex:none">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">5b</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Buttons, Chips, Badges, Pagination, Breadcrumbs</span>
+      </div>
+
+      <div style="background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;padding:40px;display:flex;flex-direction:column;gap:40px">
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Buttons · Zustände von links: Ruhe, Hover, Fokus, Deaktiviert</span>
+          <div style="display:grid;grid-template-columns:repeat(4,max-content);gap:16px 20px;align-items:center">
+            <span style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Tickets sichern</span>
+            <span style="background:#FF4D4D;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Tickets sichern</span>
+            <span style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px;outline:2px solid #FFCC00;outline-offset:3px">Tickets sichern</span>
+            <span style="background:#1D232A;color:#98A3AD;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Ausverkauft</span>
+
+            <span style="border:1px solid #98A3AD;color:#F4F7F9;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Zum Spielplan</span>
+            <span style="border:1px solid #F4F7F9;background:#1D232A;color:#F4F7F9;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Zum Spielplan</span>
+            <span style="border:1px solid #98A3AD;color:#F4F7F9;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px;outline:2px solid #FFCC00;outline-offset:3px">Zum Spielplan</span>
+            <span style="border:1px solid #2A323A;color:#98A3AD;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Zum Spielplan</span>
+
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#FF4D4D">Alle Spiele →</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#FFCC00;text-decoration:underline;text-underline-offset:4px">Alle Spiele →</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#FF4D4D;outline:2px solid #FFCC00;outline-offset:4px">Alle Spiele →</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#2A323A">Alle Spiele →</span>
+          </div>
+          <sc-if value="{{ showSpecs }}">
+            <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">Trefferfläche mindestens 44×44 · Fokusring 2px #FFCC00, Offset 3px · Primär nur einmal pro Bildschirm</span>
+          </sc-if>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Filter-Chips</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <span style="border-radius:999px;background:#F4F7F9;color:#0B0D0F;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 20px">Aktiv</span>
+            <span style="border-radius:999px;background:#1D232A;border:1px solid #2A323A;color:#F4F7F9;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px">Sekundär aktiv · 15</span>
+            <span style="border-radius:999px;border:1px solid #2A323A;color:#98A3AD;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px">Ruhe</span>
+            <span style="border-radius:999px;border:1px solid #98A3AD;color:#F4F7F9;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px">Hover</span>
+            <span style="border-radius:999px;background:#1D232A;border:1px solid #FFCC00;color:#FFCC00;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px">Ohne Treffer · 0 ✕</span>
+            <span style="border-radius:999px;border:1px dashed #2A323A;color:#2A323A;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px">Nicht wählbar</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Badges &amp; Statusmarken</span>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+            <span style="display:flex;align-items:center;gap:7px;border-radius:999px;background:#DD0000;color:#FFFFFF;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;padding:6px 11px"><span style="width:6px;height:6px;border-radius:999px;background:#FFFFFF"></span>Live · 38.</span>
+            <span style="border-radius:999px;border:1px solid #2A323A;background:#1D232A;color:#C9E4F0;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:6px 10px">WM-Quali</span>
+            <span style="border-radius:999px;background:#DD0000;color:#FFFFFF;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:6px 10px;font-variant-numeric:tabular-nums">Nr. 10</span>
+            <span style="border-radius:999px;border:1px solid #2A323A;background:#1D232A;color:#FFCC00;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:6px 10px">Kapitän</span>
+            <span style="border-radius:4px;background:#2FBF71;color:#0B0D0F;font:600 10px/13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:4px 7px">Tor 62'</span>
+            <span style="border-radius:4px;background:#C9E4F0;color:#0B0D0F;font:600 10px/13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:4px 7px">Vorlage</span>
+            <span style="border-radius:4px;background:#FFCC00;color:#0B0D0F;font:600 10px/13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:4px 7px">Strafe 5'</span>
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#2FBF71">Sieg</span>
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#98A3AD">Unentschieden</span>
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#FF4D4D">Niederlage</span>
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#FFCC00">Verlegt</span>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Pagination</span>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+              <span style="min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #2A323A;border-radius:8px;color:#2A323A;font:500 16px Inter,sans-serif">‹</span>
+              <span style="min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#F4F7F9;border-radius:8px;color:#0B0D0F;font:600 15px Inter,sans-serif;font-variant-numeric:tabular-nums">1</span>
+              <span style="min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #2A323A;border-radius:8px;color:#F4F7F9;font:500 15px Inter,sans-serif;font-variant-numeric:tabular-nums">2</span>
+              <span style="min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #2A323A;border-radius:8px;color:#F4F7F9;font:500 15px Inter,sans-serif;font-variant-numeric:tabular-nums">3</span>
+              <span style="min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#98A3AD;font:500 15px Inter,sans-serif">…</span>
+              <span style="min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #2A323A;border-radius:8px;color:#F4F7F9;font:500 15px Inter,sans-serif;font-variant-numeric:tabular-nums">12</span>
+              <span style="min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #98A3AD;border-radius:8px;color:#F4F7F9;font:500 16px Inter,sans-serif">›</span>
+            </div>
+            <span style="font:400 13px/18px Inter,sans-serif;color:#98A3AD">Alternativ auf Mobile: „Weitere 9 anzeigen" als Sekundärbutton über die volle Breite.</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Breadcrumbs</span>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:500 13px/18px Inter,sans-serif;color:#98A3AD">
+              <span>Start</span><span style="color:#DD0000">·</span><span>Mannschaften</span><span style="color:#DD0000">·</span><span>Herren</span><span style="color:#DD0000">·</span><span style="color:#F4F7F9">Elias Leonhard Rieder</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font:500 12px/16px Inter,sans-serif;color:#98A3AD">
+              <span>…</span><span style="color:#DD0000">·</span><span>Herren</span><span style="color:#DD0000">·</span><span style="color:#F4F7F9">Rieder</span>
+            </div>
+            <span style="font:400 13px/18px Inter,sans-serif;color:#98A3AD">Ab drei Ebenen auf Mobile die Mitte zu „…" kürzen, letzte Ebene bleibt immer sichtbar.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 5c FORMULARE & FEEDBACK ===================== -->
+    <div id="5c" style="display:flex;flex-direction:column;gap:10px;width:1180px;flex:none">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">5c</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Formularfelder, Newsletter-Zustände, Hinweise</span>
+      </div>
+
+      <div style="background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px">
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Felder</span>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 13px/18px Inter,sans-serif;color:#98A3AD">E-Mail-Adresse</span>
+            <div style="background:#14181C;border:1px solid #2A323A;border-radius:8px;padding:14px 16px;font:400 16px/22px Inter,sans-serif;color:#98A3AD">name@verein.de</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 13px/18px Inter,sans-serif;color:#F4F7F9">E-Mail-Adresse · Fokus</span>
+            <div style="background:#14181C;border:1px solid #C9E4F0;border-radius:8px;padding:14px 16px;font:400 16px/22px Inter,sans-serif;color:#F4F7F9;outline:2px solid #FFCC00;outline-offset:2px">anna.becker@</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 13px/18px Inter,sans-serif;color:#FF4D4D">E-Mail-Adresse · Fehler</span>
+            <div style="background:#14181C;border:1px solid #FF4D4D;border-radius:8px;padding:14px 16px;font:400 16px/22px Inter,sans-serif;color:#F4F7F9">anna.becker@</div>
+            <span style="font:500 13px/18px Inter,sans-serif;color:#FF4D4D">Bitte eine vollständige Adresse eingeben, zum Beispiel name@verein.de.</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 13px/18px Inter,sans-serif;color:#98A3AD">Anliegen · Auswahl</span>
+            <div style="background:#14181C;border:1px solid #2A323A;border-radius:8px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;font:400 16px/22px Inter,sans-serif">
+              <span>Probetraining</span><span style="color:#98A3AD">▾</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 13px/18px Inter,sans-serif;color:#98A3AD">Nachricht</span>
+            <div style="background:#14181C;border:1px solid #2A323A;border-radius:8px;padding:14px 16px;font:400 16px/26px Inter,sans-serif;color:#98A3AD;min-height:96px">Wann und wo kann ich zum Probetraining kommen?</div>
+            <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD;text-align:right">0 / 1200 Zeichen</span>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:22px;height:22px;border:1px solid #2A323A;border-radius:4px;background:#14181C;flex:none"></span>
+            <span style="font:400 15px/22px Inter,sans-serif;color:#98A3AD">Ich habe die <a href="#5c">Datenschutzerklärung</a> gelesen.</span>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="width:22px;height:22px;border-radius:4px;background:#DD0000;flex:none;display:flex;align-items:center;justify-content:center;color:#FFFFFF;font:600 14px Inter,sans-serif">✓</span>
+            <span style="font:400 15px/22px Inter,sans-serif">Ich möchte den Newsletter erhalten (jederzeit kündbar).</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Newsletter · vier Zustände</span>
+          <sc-for list="{{ newsletterStates }}" as="n" hint-placeholder-count="4">
+            <div style="background:#14181C;border:1px solid #2A323A;border-left:3px solid;border-left-color:{{ n.accent }};border-radius:0 12px 12px 0;padding:24px;display:flex;flex-direction:column;gap:12px">
+              <span style="font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:{{ n.accent }}">{{ n.state }}</span>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;line-height:28px;text-transform:uppercase">{{ n.title }}</span>
+              <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD;text-wrap:pretty">{{ n.body }}</span>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                <span style="flex:1;min-width:180px;background:#0B0D0F;border:1px solid #2A323A;border-radius:8px;padding:12px 14px;font:400 15px/22px Inter,sans-serif;color:{{ n.inputColor }}">{{ n.inputText }}</span>
+                <span style="background:{{ n.btnBg }};color:{{ n.btnFg }};font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:13px 18px;border-radius:8px;white-space:nowrap">{{ n.cta }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 5d LISTEN & KARTEN ===================== -->
+    <div id="5d" style="display:flex;flex-direction:column;gap:10px;width:1180px;flex:none">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">5d</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Newskarte, Accordion, RichText, Dokumentliste, Tabellenzeile</span>
+      </div>
+
+      <div style="background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;padding:40px;display:flex;flex-direction:column;gap:40px">
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+          <div style="background:#14181C;border:1px solid #2A323A;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:180px;background:#1D232A">
+              <image-slot id="kb-news-1" shape="rect" fit="cover" placeholder="Newsbild 16:9" style="height:100%"></image-slot>
+            </div>
+            <div style="padding:20px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                <span style="border-radius:999px;border:1px solid #2A323A;background:#1D232A;color:#C9E4F0;font:600 10px/13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:5px 9px">Nationalmannschaft</span>
+                <span style="font:500 12px/16px Inter,sans-serif;color:#98A3AD;font-variant-numeric:tabular-nums">11.01.2027</span>
+              </div>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;line-height:26px;text-transform:uppercase;text-wrap:pretty">Späte Tore retten Punkt in Ede</span>
+              <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD;text-wrap:pretty">Zwei Treffer in den letzten 30 Minuten sichern das 2:2 gegen die Niederlande.</span>
+            </div>
+          </div>
+          <div style="background:#14181C;border:1px solid #2A323A;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:10px">
+            <span style="font:600 10px/13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#FFCC00">Ohne Bild</span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;line-height:26px;text-transform:uppercase;text-wrap:pretty">Verband meldet zwei Teams für die WM-Qualifikation</span>
+            <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD;text-wrap:pretty">Herren und Damen starten im Januar in Frankfurt. Die Auslosung erfolgt im Dezember.</span>
+            <span style="font:500 12px/16px Inter,sans-serif;color:#98A3AD;font-variant-numeric:tabular-nums;margin-top:auto">02.01.2027 · Verband</span>
+          </div>
+          <div style="background:#14181C;border:1px solid #2A323A;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Dokumentliste</span>
+            <sc-for list="{{ documents }}" as="d" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid #2A323A">
+                <span style="width:36px;height:36px;border-radius:6px;background:#1D232A;border:1px solid #2A323A;display:flex;align-items:center;justify-content:center;font:600 10px/13px Inter,sans-serif;color:#C9E4F0;flex:none">{{ d.type }}</span>
+                <span style="display:flex;flex-direction:column;min-width:0">
+                  <span style="font:500 15px/20px Inter,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ d.name }}</span>
+                  <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD;font-variant-numeric:tabular-nums">{{ d.meta }}</span>
+                </span>
+                <span style="margin-left:auto;color:#98A3AD;font:400 16px Inter,sans-serif">↓</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Accordion</span>
+            <div style="border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+              <div style="padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#1D232A;border-bottom:1px solid #2A323A">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;line-height:22px;text-transform:uppercase">Was ist Bandy überhaupt?</span>
+                <span style="color:#FFCC00;font:500 18px Inter,sans-serif">−</span>
+              </div>
+              <div style="padding:18px 20px;border-bottom:1px solid #2A323A;background:#14181C">
+                <span style="font:400 16px/26px Inter,sans-serif;color:#98A3AD;text-wrap:pretty">Bandy wird mit elf Spielerinnen pro Team auf einem Feld von Fußballgröße gespielt — mit Schlittschuhen, Schlägern und einem Ball. Zwei Halbzeiten von 45 Minuten.</span>
+              </div>
+              <div style="padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #2A323A">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;line-height:22px;text-transform:uppercase;color:#F4F7F9">Wo kann ich in Deutschland spielen?</span>
+                <span style="color:#98A3AD;font:500 18px Inter,sans-serif">+</span>
+              </div>
+              <div style="padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;line-height:22px;text-transform:uppercase;color:#F4F7F9">Brauche ich eigene Ausrüstung?</span>
+                <span style="color:#98A3AD;font:500 18px Inter,sans-serif">+</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">RichText-Stile</span>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:28px;line-height:32px;text-transform:uppercase">Zwischentitel im Artikel</span>
+              <span style="font:400 18px/30px Inter,sans-serif;text-wrap:pretty">Fließtext mit <a href="#5d">Inline-Link</a>, <span style="font-weight:600">halbfetter Hervorhebung</span> und <span style="font-style:italic">Kursivem</span>.</span>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;gap:12px"><span style="color:#DD0000;font:600 16px/28px Inter,sans-serif">—</span><span style="font:400 17px/28px Inter,sans-serif;color:#98A3AD">Aufzählung mit Gedankenstrich statt Punkt</span></div>
+                <div style="display:flex;gap:12px"><span style="color:#DD0000;font:600 16px/28px Inter,sans-serif">—</span><span style="font:400 17px/28px Inter,sans-serif;color:#98A3AD">Zweiter Punkt, gleiche Einrückung</span></div>
+              </div>
+              <div style="border-left:3px solid #DD0000;padding:4px 0 4px 20px">
+                <span style="font:400 18px/30px Inter,sans-serif">Zitat oder Kernaussage, linke Kante in Rot.</span>
+              </div>
+              <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD">Bildunterschrift · Foto: DBB / Jan Kowalski</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Tabellen- und Listenzeilen</span>
+          <div style="border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+            <sc-for list="{{ rowStates }}" as="r" hint-placeholder-count="4">
+              <div style="display:grid;grid-template-columns:120px 1fr 200px 24px;align-items:center;gap:20px;padding:16px 20px 16px 17px;border-bottom:1px solid #2A323A;border-left:3px solid;border-left-color:{{ r.accent }};background:{{ r.bg }}">
+                <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#98A3AD">{{ r.label }}</span>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;line-height:24px;text-transform:uppercase;color:{{ r.titleColor }}">{{ r.title }}</span>
+                <span style="font:500 13px/18px Inter,sans-serif;color:{{ r.metaColor }};justify-self:start">{{ r.meta }}</span>
+                <span style="color:#98A3AD;font:400 18px Inter,sans-serif;justify-self:end">›</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 5e NAVIGATION & OVERLAYS ===================== -->
+    <div id="5e" style="display:flex;flex-direction:column;gap:10px;width:1180px;flex:none">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">5e</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Drawer-Nav, Suchoverlay, Cookie-Sheet, 404</span>
+      </div>
+
+      <div style="background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;padding:40px;display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start">
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Drawer-Nav · Mobile</span>
+          <div style="width:340px;background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+            <div style="height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 16px;background:#14181C;border-bottom:1px solid #2A323A">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:19px;text-transform:uppercase;letter-spacing:.02em">Menü</span>
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#F4F7F9;font:400 20px Inter,sans-serif">✕</span>
+            </div>
+            <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="6">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;border-bottom:1px solid #2A323A;background:{{ n.bg }}">
+                <span style="font:600 16px/22px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:{{ n.color }}">{{ n.label }}</span>
+                <span style="color:#98A3AD;font:400 16px Inter,sans-serif">{{ n.chev }}</span>
+              </div>
+            </sc-for>
+            <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+              <div style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px;border-radius:8px;text-align:center">Newsletter</div>
+              <div style="display:flex;border:1px solid #2A323A;border-radius:999px;overflow:hidden;align-self:flex-start">
+                <span style="font:600 13px/16px Inter,sans-serif;letter-spacing:.06em;padding:10px 16px;background:#1D232A;color:#F4F7F9">DE</span>
+                <span style="font:600 13px/16px Inter,sans-serif;letter-spacing:.06em;padding:10px 16px;color:#98A3AD">EN</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Suchoverlay</span>
+          <div style="width:420px;background:rgba(7,9,11,.96);border:1px solid #2A323A;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;align-items:center;gap:12px;border-bottom:2px solid #DD0000;padding-bottom:12px">
+              <span style="color:#98A3AD;font:500 18px Inter,sans-serif">⌕</span>
+              <span style="font:400 22px/28px Inter,sans-serif;flex:1">Rieder</span>
+              <span style="color:#98A3AD;font:400 18px Inter,sans-serif">✕</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <span style="font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#98A3AD">3 Treffer</span>
+              <sc-for list="{{ searchHits }}" as="h" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:14px;padding:12px;background:#14181C;border:1px solid #2A323A;border-radius:8px">
+                  <span style="border-radius:999px;border:1px solid #2A323A;background:#1D232A;color:#C9E4F0;font:600 10px/13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:5px 9px;flex:none">{{ h.kind }}</span>
+                  <span style="display:flex;flex-direction:column;min-width:0">
+                    <span style="font:500 15px/20px Inter,sans-serif">{{ h.title }}</span>
+                    <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">{{ h.meta }}</span>
+                  </span>
+                  <span style="margin-left:auto;color:#98A3AD;font:400 16px Inter,sans-serif">›</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;padding-top:4px;border-top:1px solid #2A323A">
+              <span style="font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#98A3AD">Ohne Treffer</span>
+              <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD">Zu „Bandyschläger kaufen" gibt es keinen Treffer. Vorschläge: Ausrüstung, Vereine, Regeln.</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Cookie-Sheet · Mobile</span>
+          <div style="width:340px;background:#14181C;border:1px solid #2A323A;border-top:3px solid #DD0000;border-radius:0 0 12px 12px;padding:20px;display:flex;flex-direction:column;gap:14px">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;line-height:24px;text-transform:uppercase">Cookies auf bandy-bund.de</span>
+            <span style="font:400 14px/22px Inter,sans-serif;color:#98A3AD;text-wrap:pretty">Notwendige Cookies sind immer aktiv. Für Karten, Videos und Statistik brauchen wir Ihre Zustimmung.</span>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px;border-radius:8px;text-align:center">Alle akzeptieren</div>
+              <div style="border:1px solid #98A3AD;color:#F4F7F9;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px;border-radius:8px;text-align:center">Nur notwendige</div>
+              <div style="font:600 13px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#FF4D4D;padding:8px;text-align:center">Einstellungen</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">404</span>
+          <div style="width:420px;background:#14181C;border:1px solid #2A323A;border-radius:12px;padding:40px 32px;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:88px;color:rgba(201,228,240,.24);font-variant-numeric:tabular-nums">404</span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:32px;line-height:36px;text-transform:uppercase">Diese Seite liegt nicht auf dem Eis</span>
+            <span style="font:400 16px/26px Inter,sans-serif;color:#98A3AD;text-wrap:pretty">Vielleicht wurde sie verschoben. Der Spielplan und die Kader sind über das Menü erreichbar.</span>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <div style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 20px;border-radius:8px">Zur Startseite</div>
+              <div style="border:1px solid #98A3AD;color:#F4F7F9;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 20px;border-radius:8px">Suche öffnen</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showSpecs&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Blattoptionen&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showSpecs: this.props.showSpecs ?? true,
+      palette: [
+        { name: "Canvas", hex: "#07090B", use: "Seitenhintergrund" },
+        { name: "Surface", hex: "#0B0D0F", use: "Sektion, Liste" },
+        { name: "Surface hoch", hex: "#14181C", use: "Header, Panel" },
+        { name: "Karte", hex: "#1D232A", use: "Karte, Chip aktiv" },
+        { name: "Linie", hex: "#2A323A", use: "Rahmen, Trenner" },
+        { name: "Grau", hex: "#98A3AD", use: "Sekundärtext" },
+        { name: "Eis", hex: "#C9E4F0", use: "Label, Akzent kühl" },
+        { name: "Weiß", hex: "#F4F7F9", use: "Primärtext" },
+        { name: "Rot", hex: "#DD0000", use: "Primäraktion, Live" },
+        { name: "Rot hell", hex: "#FF4D4D", use: "Links, Niederlage" },
+        { name: "Gelb", hex: "#FFCC00", use: "Kicker, Kapitän, Fokus" },
+        { name: "Grün", hex: "#2FBF71", use: "Sieg, Tor" }
+      ],
+      spacing: [
+        { px: "8px", use: "Chip-Innenabstand, Icon-Lücke" },
+        { px: "16px", use: "Mobile Seitenrand, Kartenraster" },
+        { px: "24px", use: "Karten-Innenabstand, Grid-Gap" },
+        { px: "40px", use: "Blockabstand innerhalb Sektion" },
+        { px: "64px", use: "Sektionsabstand Desktop" },
+        { px: "80px", use: "Desktop Seitenrand" }
+      ],
+      newsletterStates: [
+        { state: "Ruhe", accent: "#C9E4F0", title: "Alle Spiele im Postfach", body: "Ein Mail pro Monat, dazu Erinnerungen vor Heimspielen.",
+          inputText: "name@verein.de", inputColor: "#98A3AD", cta: "Anmelden", btnBg: "#DD0000", btnFg: "#FFFFFF" },
+        { state: "Wird gesendet", accent: "#98A3AD", title: "Anmeldung läuft", body: "Wir prüfen die Adresse — das dauert einen Moment.",
+          inputText: "anna.becker@verein.de", inputColor: "#F4F7F9", cta: "Sendet …", btnBg: "#1D232A", btnFg: "#98A3AD" },
+        { state: "Erfolg", accent: "#2FBF71", title: "Fast fertig", body: "Wir haben eine Bestätigungsmail an anna.becker@verein.de geschickt. Bitte den Link darin öffnen (Double-Opt-in).",
+          inputText: "anna.becker@verein.de", inputColor: "#98A3AD", cta: "Erneut senden", btnBg: "#1D232A", btnFg: "#F4F7F9" },
+        { state: "Fehler", accent: "#FF4D4D", title: "Das hat nicht geklappt", body: "Diese Adresse ist bereits angemeldet. Falls keine Mails ankommen: Spam-Ordner prüfen oder neu bestätigen.",
+          inputText: "anna.becker@verein.de", inputColor: "#F4F7F9", cta: "Neu bestätigen", btnBg: "#DD0000", btnFg: "#FFFFFF" }
+      ],
+      documents: [
+        { type: "PDF", name: "Spielordnung 2026/27", meta: "PDF · 1,2 MB · 24 Seiten" },
+        { type: "PDF", name: "Satzung des Verbands", meta: "PDF · 480 KB · 12 Seiten" },
+        { type: "XLSX", name: "Meldeformular Turnier", meta: "XLSX · 96 KB" }
+      ],
+      rowStates: [
+        { label: "Ruhe", accent: "#2A323A", bg: "transparent", title: "Deutschland — Estland", meta: "So 20.12.2026 · 12:00", titleColor: "#F4F7F9", metaColor: "#98A3AD" },
+        { label: "Hover", accent: "#98A3AD", bg: "#1D232A", title: "Deutschland — Ungarn", meta: "Sa 05.12.2026 · 16:00", titleColor: "#F4F7F9", metaColor: "#F4F7F9" },
+        { label: "Hervorgehoben", accent: "#DD0000", bg: "rgba(221,0,0,.10)", title: "Deutschland — Polen", meta: "Live · 38. Minute", titleColor: "#F4F7F9", metaColor: "#FF4D4D" },
+        { label: "Inaktiv", accent: "#FFCC00", bg: "transparent", title: "Deutschland — Tschechien", meta: "Verlegt auf 07.02.2027", titleColor: "#98A3AD", metaColor: "#FFCC00" }
+      ],
+      navItems: [
+        { label: "Aktuelles", color: "#F4F7F9", chev: "›", bg: "transparent" },
+        { label: "Mannschaften", color: "#FFCC00", chev: "−", bg: "#1D232A" },
+        { label: "Herren-Nationalmannschaft", color: "#98A3AD", chev: "›", bg: "#1D232A" },
+        { label: "Damen-Nationalmannschaft", color: "#98A3AD", chev: "›", bg: "#1D232A" },
+        { label: "Spielplan und Ergebnisse", color: "#F4F7F9", chev: "›", bg: "transparent" },
+        { label: "Turniere", color: "#F4F7F9", chev: "›", bg: "transparent" },
+        { label: "Verband", color: "#F4F7F9", chev: "›", bg: "transparent" },
+        { label: "Kontakt", color: "#F4F7F9", chev: "›", bg: "transparent" }
+      ],
+      searchHits: [
+        { kind: "Spieler", title: "Elias Leonhard Rieder", meta: "Herren · Nr. 10 · Sturm" },
+        { kind: "Spiel", title: "Deutschland — Niederlande 2:2", meta: "10.01.2027 · Länderspiel" },
+        { kind: "News", title: "Rieder wird Kapitän", meta: "04.01.2027" }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#07090B;color:#F4F7F9;font-family:Inter,system-ui,sans-serif;}
+a{color:#FF4D4D;text-decoration:none;}
+a:hover{color:#FFCC00;}
+::-webkit-scrollbar{height:6px;width:6px}
+::-webkit-scrollbar-thumb{background:#2A323A;border-radius:999px}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<section style="display:flex;flex-direction:column;gap:28px;padding:48px 56px 96px;background:#07090B">
+  <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;line-height:32px;text-transform:uppercase;letter-spacing:-.01em">Varianten</div>
+    <div style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Light-Theme <a href="#7a">7a</a> · Englische Header <a href="#7b">7b</a> · Turnier-Detail ohne Tabelle <a href="#7c">7c</a></div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:40px">
+
+    <!-- ===================== 7a LIGHT THEME ===================== -->
+    <div id="7a" style="display:flex;flex-direction:column;gap:10px;width:1440px;flex:none">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">7a</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Light-Theme · gleiche Struktur, invertierte Flächen · Rot und Gelb bleiben Signalfarben</span>
+      </div>
+
+      <div style="width:1440px;background:#FFFFFF;border:1px solid #D3DCE3;border-radius:12px;overflow:hidden">
+
+        <div style="height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 80px;background:#FFFFFF;border-bottom:1px solid #D3DCE3">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:36px;height:36px;border-radius:999px;background:#0B0D0F;border:2px solid #0B0D0F;display:flex;align-items:center;justify-content:center;position:relative">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;color:#FFCC00">DBB</span>
+              <span style="position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:999px;background:#DD0000"></span>
+            </div>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;line-height:22px;text-transform:uppercase;letter-spacing:.02em;color:#0B0D0F">Bandy-Bund</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:28px">
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#5A6670">Aktuelles</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#5A6670">Mannschaften</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#0B0D0F;padding-bottom:2px;border-bottom:2px solid #DD0000">Spielplan</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#5A6670">Turniere</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#5A6670">Verband</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#5A6670">Kontakt</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:44px;height:44px;border-radius:8px;border:1px solid #D3DCE3;display:flex;align-items:center;justify-content:center;font:500 14px Inter,sans-serif;color:#5A6670">⌕</div>
+            <div style="display:flex;border:1px solid #D3DCE3;border-radius:999px;overflow:hidden">
+              <span style="font:600 13px/16px Inter,sans-serif;letter-spacing:.06em;padding:8px 12px;background:#0B0D0F;color:#FFFFFF">DE</span>
+              <span style="font:600 13px/16px Inter,sans-serif;letter-spacing:.06em;padding:8px 12px;color:#5A6670">EN</span>
+            </div>
+            <div style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px;border-radius:8px">Newsletter</div>
+          </div>
+        </div>
+
+        <div style="padding:56px 80px 40px;background:#EDF2F5;border-bottom:1px solid #D3DCE3">
+          <div style="max-width:1280px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap">
+            <div style="display:flex;flex-direction:column;gap:18px">
+              <div style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#5A6670">
+                <span>Start</span><span style="color:#DD0000">·</span><span style="color:#0B0D0F">Spielplan &amp; Ergebnisse</span>
+              </div>
+              <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:56px;line-height:60px;text-transform:uppercase;letter-spacing:-.01em;margin:0;color:#0B0D0F">Spielplan &amp; Ergebnisse</h1>
+              <span style="font:400 18px/30px Inter,sans-serif;color:#5A6670">Saison 2026/27 · Herren-Nationalmannschaft · 9 Begegnungen</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;background:#FFFFFF;border:1px solid #D3DCE3;border-left:3px solid #DD0000;border-radius:0 12px 12px 0;padding:20px 24px;min-width:300px">
+              <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#8A6A00">Nächstes Spiel</span>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:28px;line-height:30px;text-transform:uppercase;color:#0B0D0F">Deutschland — Finnland</span>
+              <span style="font:500 15px/22px Inter,sans-serif;color:#5A6670;font-variant-numeric:tabular-nums">Sa 16.01.2027 · 14:00 · Eisstadion Frankfurt</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:28px 80px;background:#FFFFFF;border-bottom:1px solid #D3DCE3">
+          <div style="max-width:1280px;margin:0 auto;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="border-radius:999px;background:#0B0D0F;color:#FFFFFF;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 20px">Herren</span>
+            <span style="border-radius:999px;border:1px solid #D3DCE3;color:#5A6670;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 20px">Damen</span>
+            <span style="border-radius:999px;border:1px solid #D3DCE3;color:#5A6670;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 20px">Nachwuchs</span>
+            <span style="width:1px;height:24px;background:#D3DCE3;align-self:center;margin:0 4px"></span>
+            <span style="border-radius:999px;background:#EDF2F5;border:1px solid #D3DCE3;color:#0B0D0F;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px">Alle Wettbewerbe</span>
+            <span style="border-radius:999px;border:1px solid #D3DCE3;color:#5A6670;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px">WM-Quali</span>
+            <span style="border-radius:999px;background:#FFF6D6;border:1px solid #E0B400;color:#8A6A00;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px">Ohne Treffer · 0 ✕</span>
+          </div>
+        </div>
+
+        <div style="background:#FFFFFF;padding:0 80px 40px">
+          <div style="max-width:1280px;margin:0 auto">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:24px 0 12px;border-bottom:1px solid #D3DCE3">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;line-height:28px;text-transform:uppercase;letter-spacing:.02em;color:#0B0D0F">Januar 2027</span>
+              <span style="font:500 13px/18px Inter,sans-serif;color:#5A6670">5 Begegnungen</span>
+            </div>
+            <sc-for list="{{ lightFixtures }}" as="f" hint-placeholder-count="5">
+              <div style="display:grid;grid-template-columns:96px 150px 1fr 170px 200px 24px;align-items:center;gap:24px;padding:20px 24px 20px 21px;border-bottom:1px solid #D3DCE3;border-left:3px solid;border-left-color:{{ f.accent }};background:{{ f.bg }}">
+                <div style="display:flex;flex-direction:column">
+                  <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#5A6670">{{ f.day }}</span>
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;line-height:26px;font-variant-numeric:tabular-nums;color:#0B0D0F">{{ f.date }}</span>
+                </div>
+                <span style="border-radius:999px;border:1px solid #D3DCE3;background:#EDF2F5;color:#1F5F7D;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:6px 10px;justify-self:start;white-space:nowrap">{{ f.comp }}</span>
+                <div style="display:flex;align-items:center;gap:16px;min-width:0">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;line-height:30px;text-transform:uppercase;color:{{ f.teamColor }}">{{ f.home }}</span>
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;line-height:30px;font-variant-numeric:tabular-nums;color:{{ f.scoreColor }};min-width:64px">{{ f.score }}</span>
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;line-height:30px;text-transform:uppercase;color:{{ f.teamColor }}">{{ f.away }}</span>
+                </div>
+                <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:{{ f.tagColor }};justify-self:start">{{ f.tag }}</span>
+                <span style="font:400 15px/22px Inter,sans-serif;color:#5A6670;justify-self:start;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ f.venue }}</span>
+                <span style="color:#5A6670;font:400 18px Inter,sans-serif;justify-self:end">›</span>
+              </div>
+            </sc-for>
+            <div style="display:flex;gap:20px;flex-wrap:wrap;padding-top:24px">
+              <span style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#5A6670"><span style="width:10px;height:10px;border-radius:2px;background:#1E8F52"></span>Sieg</span>
+              <span style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#5A6670"><span style="width:10px;height:10px;border-radius:2px;background:#8A96A0"></span>Unentschieden</span>
+              <span style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#5A6670"><span style="width:10px;height:10px;border-radius:2px;background:#C42B2B"></span>Niederlage</span>
+              <span style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#5A6670"><span style="width:10px;height:10px;border-radius:2px;background:#1F5F7D"></span>Angesetzt</span>
+              <span style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#5A6670"><span style="width:10px;height:10px;border-radius:2px;background:#E0B400"></span>Verlegt</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:48px 80px;background:#EDF2F5;border-top:1px solid #D3DCE3">
+          <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:start">
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <span style="font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#8A6A00">Farbzuordnung im Light-Theme</span>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+                <sc-for list="{{ lightPalette }}" as="c" hint-placeholder-count="9">
+                  <div style="display:flex;flex-direction:column;gap:6px">
+                    <div style="height:56px;border-radius:8px;border:1px solid #D3DCE3;background:{{ c.hex }}"></div>
+                    <span style="font:600 13px/18px Inter,sans-serif;color:#0B0D0F">{{ c.name }}</span>
+                    <span style="font:400 12px/16px Inter,sans-serif;color:#5A6670;font-variant-numeric:tabular-nums">{{ c.hex }} · {{ c.use }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="background:#FFFFFF;border:1px solid #D3DCE3;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:14px">
+              <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#5A6670">Regeln</span>
+              <span style="font:400 15px/24px Inter,sans-serif;color:#0B0D0F;text-wrap:pretty">Gelb wird auf Weiß nie als Textfarbe verwendet — Kicker und Auszeichnungen laufen auf #8A6A00, Gelb bleibt Fläche.</span>
+              <span style="font:400 15px/24px Inter,sans-serif;color:#5A6670;text-wrap:pretty">Sieg-, Niederlage- und Eisfarben werden abgedunkelt, damit sie auf Weiß 4,5:1 erreichen. Rot #DD0000 bleibt unverändert.</span>
+              <span style="font:400 15px/24px Inter,sans-serif;color:#5A6670;text-wrap:pretty">Freigestellte Portraits brauchen im Light-Theme eine hellgraue Grundfläche statt des Radialverlaufs.</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:28px 80px;background:#0B0D0F;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+          <span style="font:400 13px/18px Inter,sans-serif;color:#98A3AD">© 2027 Deutscher Bandy-Bund e.V. · Fußzeile bleibt dunkel</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 16px">
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Impressum</span>
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Datenschutz</span>
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Barrierefreiheitserklärung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 7b ENGLISCHE HEADER ===================== -->
+    <div id="7b" style="display:flex;flex-direction:column;gap:10px;width:1440px;flex:none">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">7b</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Englische Navigation · längere Labels, gleiche Kopfhöhe</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="width:1440px;background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+          <div style="height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 48px;background:rgba(20,24,28,.92);border-bottom:1px solid #2A323A">
+            <div style="display:flex;align-items:center;gap:12px;flex:none">
+              <div style="width:36px;height:36px;border-radius:999px;background:#14181C;border:2px solid #C9E4F0;display:flex;align-items:center;justify-content:center;position:relative">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;color:#FFCC00">DBB</span>
+                <span style="position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:999px;background:#DD0000"></span>
+              </div>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;line-height:22px;text-transform:uppercase;letter-spacing:.02em">German Bandy Federation</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:20px">
+              <span style="font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD;white-space:nowrap">News</span>
+              <span style="font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD;white-space:nowrap">National Teams</span>
+              <span style="font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#F4F7F9;padding-bottom:2px;border-bottom:2px solid #DD0000;white-space:nowrap">Fixtures &amp; Results</span>
+              <span style="font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD;white-space:nowrap">Tournaments</span>
+              <span style="font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD;white-space:nowrap">About Us</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;flex:none">
+              <div style="width:44px;height:44px;border-radius:8px;border:1px solid #2A323A;display:flex;align-items:center;justify-content:center;font:500 14px Inter,sans-serif;color:#98A3AD">⌕</div>
+              <div style="display:flex;border:1px solid #2A323A;border-radius:999px;overflow:hidden">
+                <span style="font:600 13px/16px Inter,sans-serif;letter-spacing:.06em;padding:8px 12px;color:#98A3AD">DE</span>
+                <span style="font:600 13px/16px Inter,sans-serif;letter-spacing:.06em;padding:8px 12px;background:#1D232A;color:#F4F7F9">EN</span>
+              </div>
+              <div style="background:#DD0000;color:#FFFFFF;font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 16px;border-radius:8px;white-space:nowrap">Subscribe</div>
+            </div>
+          </div>
+
+          <div style="padding:48px;background:#14181C;border-bottom:1px solid #2A323A;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#98A3AD">
+              <span>Home</span><span style="color:#DD0000">·</span><span style="color:#F4F7F9">Fixtures &amp; Results</span>
+            </div>
+            <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:52px;line-height:56px;text-transform:uppercase;letter-spacing:-.01em;margin:0">Fixtures &amp; Results</h1>
+            <span style="font:400 18px/30px Inter,sans-serif;color:#98A3AD">Season 2026/27 · Men's national team · Times shown in CET</span>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;padding-top:8px">
+              <span style="border-radius:999px;background:#F4F7F9;color:#0B0D0F;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 20px">Men</span>
+              <span style="border-radius:999px;border:1px solid #2A323A;color:#98A3AD;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 20px">Women</span>
+              <span style="border-radius:999px;border:1px solid #2A323A;color:#98A3AD;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 20px">World Championship Qualifier</span>
+              <span style="border-radius:999px;border:1px solid #2A323A;color:#98A3AD;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 20px">Friendlies</span>
+            </div>
+          </div>
+
+          <sc-for list="{{ enFixtures }}" as="f" hint-placeholder-count="3">
+            <div style="display:grid;grid-template-columns:110px 190px 1fr 180px 24px;align-items:center;gap:24px;padding:20px 48px 20px 45px;border-bottom:1px solid #2A323A;border-left:3px solid;border-left-color:{{ f.accent }};background:{{ f.bg }}">
+              <div style="display:flex;flex-direction:column">
+                <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#98A3AD">{{ f.day }}</span>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;line-height:24px;font-variant-numeric:tabular-nums">{{ f.date }}</span>
+              </div>
+              <span style="border-radius:999px;border:1px solid #2A323A;background:#1D232A;color:#C9E4F0;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:6px 10px;justify-self:start;text-align:center">{{ f.comp }}</span>
+              <div style="display:flex;align-items:center;gap:14px;min-width:0">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;line-height:28px;text-transform:uppercase">{{ f.home }}</span>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;line-height:28px;font-variant-numeric:tabular-nums;color:{{ f.scoreColor }};min-width:56px">{{ f.score }}</span>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;line-height:28px;text-transform:uppercase">{{ f.away }}</span>
+              </div>
+              <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:{{ f.tagColor }};justify-self:start">{{ f.tag }}</span>
+              <span style="color:#98A3AD;font:400 18px Inter,sans-serif;justify-self:end">›</span>
+            </div>
+          </sc-for>
+          <div style="padding:24px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+            <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD;max-width:70ch">Longer English labels shorten the nav gap from 28 to 20 px and the wordmark drops to 20 px. Below 1280 px the nav collapses into the drawer earlier than in German.</span>
+            <span style="border:1px solid #98A3AD;color:#F4F7F9;font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:13px 20px;border-radius:8px;white-space:nowrap">Load earlier matches</span>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Mobile · English drawer</span>
+            <div style="width:340px;background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+              <div style="height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 16px;background:#14181C;border-bottom:1px solid #2A323A">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:19px;text-transform:uppercase;letter-spacing:.02em">Menu</span>
+                <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#F4F7F9;font:400 20px Inter,sans-serif">✕</span>
+              </div>
+              <sc-for list="{{ enNav }}" as="n" hint-placeholder-count="6">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;border-bottom:1px solid #2A323A;background:{{ n.bg }}">
+                  <span style="font:600 16px/22px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:{{ n.color }};text-wrap:pretty">{{ n.label }}</span>
+                  <span style="color:#98A3AD;font:400 16px Inter,sans-serif">{{ n.chev }}</span>
+                </div>
+              </sc-for>
+              <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+                <div style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px;border-radius:8px;text-align:center">Subscribe</div>
+                <div style="display:flex;border:1px solid #2A323A;border-radius:999px;overflow:hidden;align-self:flex-start">
+                  <span style="font:600 13px/16px Inter,sans-serif;letter-spacing:.06em;padding:10px 16px;color:#98A3AD">DE</span>
+                  <span style="font:600 13px/16px Inter,sans-serif;letter-spacing:.06em;padding:10px 16px;background:#1D232A;color:#F4F7F9">EN</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px;width:560px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Übersetzungsnotizen</span>
+            <div style="background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+              <sc-for list="{{ glossary }}" as="g" hint-placeholder-count="6">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:14px 20px;border-bottom:1px solid #2A323A">
+                  <span style="font:500 15px/22px Inter,sans-serif;color:#98A3AD">{{ g.de }}</span>
+                  <span style="font:500 15px/22px Inter,sans-serif">{{ g.en }}</span>
+                </div>
+              </sc-for>
+              <div style="padding:16px 20px;background:#14181C">
+                <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD">Eigennamen bleiben deutsch: Eisstadion Frankfurt, Bandy Club Frankfurt. Datumsformat wechselt auf 16 Jan 2027, Uhrzeit auf 2:00 pm CET.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 7c TURNIER OHNE TABELLE ===================== -->
+    <div id="7c" style="display:flex;flex-direction:column;gap:10px;width:1440px;flex:none">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">7c</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Turnier-Detail ohne Tabelle · Tagesplan statt Punktesystem</span>
+      </div>
+
+      <div style="width:1440px;background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+        <div style="height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 80px;background:rgba(20,24,28,.92);border-bottom:1px solid #2A323A">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:36px;height:36px;border-radius:999px;background:#14181C;border:2px solid #C9E4F0;display:flex;align-items:center;justify-content:center;position:relative">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;color:#FFCC00">DBB</span>
+              <span style="position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:999px;background:#DD0000"></span>
+            </div>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;line-height:22px;text-transform:uppercase;letter-spacing:.02em">Bandy-Bund</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:28px">
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD">Aktuelles</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD">Mannschaften</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD">Spielplan</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#F4F7F9;padding-bottom:2px;border-bottom:2px solid #DD0000">Turniere</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD">Verband</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD">Kontakt</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:44px;height:44px;border-radius:8px;border:1px solid #2A323A;display:flex;align-items:center;justify-content:center;font:500 14px Inter,sans-serif;color:#98A3AD">⌕</div>
+            <div style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px;border-radius:8px">Tickets</div>
+          </div>
+        </div>
+
+        <div style="position:relative;border-bottom:1px solid #2A323A;overflow:hidden">
+          <div style="position:absolute;inset:0"><image-slot id="tournament-hero" shape="rect" fit="cover" placeholder="Turnierbild: Eisfeld aus der Höhe" style="height:100%"></image-slot></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(11,13,15,.95),rgba(11,13,15,.55) 60%,rgba(11,13,15,.2))"></div>
+          <div style="position:relative;max-width:1280px;margin:0 auto;padding:72px 80px;display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#98A3AD">
+              <span>Start</span><span style="color:#DD0000">·</span><span>Turniere</span><span style="color:#DD0000">·</span><span style="color:#F4F7F9">Frankfurt Winter Cup 2027</span>
+            </div>
+            <span style="font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#FFCC00">Freundschaftsturnier · Einladungsformat</span>
+            <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:64px;line-height:66px;text-transform:uppercase;letter-spacing:-.02em;margin:0;max-width:22ch">Frankfurt Winter Cup 2027</h1>
+            <div style="display:flex;gap:12px 28px;flex-wrap:wrap;align-items:center">
+              <span style="font:400 18px/28px Inter,sans-serif;font-variant-numeric:tabular-nums">16.–17. Januar 2027</span>
+              <span style="width:1px;height:20px;background:#2A323A"></span>
+              <span style="font:400 18px/28px Inter,sans-serif;color:#98A3AD">Eisstadion Frankfurt</span>
+              <span style="width:1px;height:20px;background:#2A323A"></span>
+              <span style="font:400 18px/28px Inter,sans-serif;color:#98A3AD">4 Mannschaften · 6 Spiele</span>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;padding-top:8px">
+              <span style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Tagesticket 14 €</span>
+              <span style="border:1px solid #98A3AD;color:#F4F7F9;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Turnierplan als PDF</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:56px 80px;background:#0B0D0F">
+          <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:start">
+            <div style="display:flex;flex-direction:column;gap:32px">
+              <sc-for list="{{ tournamentDays }}" as="d" hint-placeholder-count="2">
+                <div style="display:flex;flex-direction:column;gap:16px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid #2A323A">
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;line-height:30px;text-transform:uppercase;letter-spacing:.02em">{{ d.label }}</span>
+                    <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">{{ d.meta }}</span>
+                  </div>
+                  <sc-for list="{{ d.games }}" as="g" hint-placeholder-count="3">
+                    <div style="display:grid;grid-template-columns:80px 1fr 150px 150px;align-items:center;gap:20px;padding:16px 20px 16px 17px;background:{{ g.bg }};border-left:3px solid;border-left-color:{{ g.accent }};border-radius:0 8px 8px 0">
+                      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;line-height:24px;font-variant-numeric:tabular-nums">{{ g.time }}</span>
+                      <div style="display:flex;align-items:center;gap:14px;min-width:0">
+                        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;line-height:28px;text-transform:uppercase;color:{{ g.homeColor }}">{{ g.home }}</span>
+                        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;line-height:28px;font-variant-numeric:tabular-nums;color:{{ g.scoreColor }};min-width:56px">{{ g.score }}</span>
+                        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;line-height:28px;text-transform:uppercase;color:{{ g.awayColor }}">{{ g.away }}</span>
+                      </div>
+                      <span style="border-radius:999px;border:1px solid #2A323A;background:#1D232A;color:#C9E4F0;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:6px 10px;justify-self:start;white-space:nowrap">{{ g.round }}</span>
+                      <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:{{ g.tagColor }};justify-self:start">{{ g.tag }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-for>
+
+              <div style="display:flex;flex-direction:column;gap:16px">
+                <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:36px;line-height:40px;text-transform:uppercase;letter-spacing:-.01em;margin:0">Format</h2>
+                <p style="font:400 18px/30px Inter,sans-serif;margin:0;max-width:66ch;text-wrap:pretty">Vier Mannschaften, zwei Halbfinals, ein Spiel um Platz drei und ein Finale. Es gibt keine Tabelle: Wer verliert, spielt am Sonntag um Platz drei.</p>
+                <div style="display:flex;gap:12px;flex-wrap:wrap">
+                  <span style="background:#1D232A;border:1px solid #2A323A;border-radius:8px;padding:14px 18px;font:500 15px/22px Inter,sans-serif;color:#98A3AD">2 × 30 Minuten</span>
+                  <span style="background:#1D232A;border:1px solid #2A323A;border-radius:8px;padding:14px 18px;font:500 15px/22px Inter,sans-serif;color:#98A3AD">Bei Gleichstand: Penaltyschießen</span>
+                  <span style="background:#1D232A;border:1px solid #2A323A;border-radius:8px;padding:14px 18px;font:500 15px/22px Inter,sans-serif;color:#98A3AD">Kader bis 18 Spieler</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:24px">
+              <div style="background:#14181C;border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+                <div style="padding:18px 24px;border-bottom:1px solid #2A323A">
+                  <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#98A3AD">Teilnehmer</span>
+                </div>
+                <sc-for list="{{ teams }}" as="t" hint-placeholder-count="4">
+                  <div style="display:flex;align-items:center;gap:14px;padding:16px 24px;border-bottom:1px solid #2A323A;background:{{ t.bg }}">
+                    <div style="width:40px;height:40px;border-radius:999px;background:#0B0D0F;border:2px solid;border-color:{{ t.accent }};display:flex;align-items:center;justify-content:center;flex:none">
+                      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;color:{{ t.accent }}">{{ t.code }}</span>
+                    </div>
+                    <span style="display:flex;flex-direction:column;min-width:0">
+                      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;line-height:22px;text-transform:uppercase;color:{{ t.nameColor }}">{{ t.name }}</span>
+                      <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">{{ t.meta }}</span>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="background:#14181C;border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+                <div style="padding:18px 24px;border-bottom:1px solid #2A323A">
+                  <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#98A3AD">Vor Ort</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 24px;border-bottom:1px solid #2A323A">
+                  <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD">Einlass</span><span style="font:500 15px/24px Inter,sans-serif;font-variant-numeric:tabular-nums">60 Min. vor Anpfiff</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 24px;border-bottom:1px solid #2A323A;background:#1D232A">
+                  <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD">Tagesticket</span><span style="font:500 15px/24px Inter,sans-serif">14 € · Kinder frei</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 24px;border-bottom:1px solid #2A323A">
+                  <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD">Anfahrt</span><span style="font:500 15px/24px Inter,sans-serif;text-align:right">U7 Eissporthalle</span>
+                </div>
+                <div style="padding:20px 24px;display:flex;flex-direction:column;gap:12px">
+                  <div style="height:110px;border:1px dashed #2A323A;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:12px">
+                    <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#C9E4F0">Karte deaktiviert</span>
+                    <span style="font:400 13px/18px Inter,sans-serif;color:#98A3AD">Lädt Kacheln von OpenStreetMap</span>
+                  </div>
+                  <div style="border:1px solid #98A3AD;color:#F4F7F9;font:600 13px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px;border-radius:8px;text-align:center">Karte laden</div>
+                </div>
+              </div>
+
+              <div style="background:#1D232A;border:1px solid #2A323A;border-left:3px solid #FFCC00;border-radius:0 12px 12px 0;padding:20px 24px;display:flex;flex-direction:column;gap:10px">
+                <span style="font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#FFCC00">Hinweis</span>
+                <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD;text-wrap:pretty">Bei Tauwetter kann der Turnierplan kurzfristig geändert werden. Aktuelle Ansetzungen immer hier und im Newsletter.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:28px 80px;background:#14181C;border-top:1px solid #2A323A;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+          <span style="font:400 13px/18px Inter,sans-serif;color:#98A3AD">© 2027 Deutscher Bandy-Bund e.V.</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 16px">
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Impressum</span>
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Datenschutz</span>
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Barrierefreiheitserklärung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;enDateFormat&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;16 Jan 2027&quot;,&quot;Jan 16, 2027&quot;],&quot;default&quot;:&quot;16 Jan 2027&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Englische Fassung&quot;},&quot;finalsDecided&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Turnier&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const lWin = "#1E8F52", lDraw = "#8A96A0", lPlan = "#1F5F7D", lMoved = "#E0B400";
+    const usDates = (this.props.enDateFormat ?? "16 Jan 2027") === "Jan 16, 2027";
+    const decided = this.props.finalsDecided ?? false;
+    const enDate = (d, m, y) => usDates ? (m + " " + d + ", " + y) : (d + " " + m + " " + y);
+    const sunday = decided
+      ? [
+          { time: "12:00", home: "Estland", away: "Ungarn", score: "–:–", scoreColor: "#98A3AD",
+            homeColor: "#F4F7F9", awayColor: "#F4F7F9", round: "Platz 3", tag: "Angesetzt", tagColor: "#C9E4F0",
+            accent: "#C9E4F0", bg: "transparent" },
+          { time: "15:00", home: "Deutschland", away: "Finnland", score: "–:–", scoreColor: "#98A3AD",
+            homeColor: "#FFCC00", awayColor: "#F4F7F9", round: "Finale", tag: "Angesetzt", tagColor: "#FFCC00",
+            accent: "#FFCC00", bg: "#1D232A" }
+        ]
+      : [
+          { time: "12:00", home: "Verlierer HF1", away: "Verlierer HF2", score: "–:–", scoreColor: "#98A3AD",
+            homeColor: "#98A3AD", awayColor: "#98A3AD", round: "Platz 3", tag: "Teilnehmer offen", tagColor: "#98A3AD",
+            accent: "#2A323A", bg: "transparent" },
+          { time: "15:00", home: "Sieger HF1", away: "Sieger HF2", score: "–:–", scoreColor: "#98A3AD",
+            homeColor: "#98A3AD", awayColor: "#98A3AD", round: "Finale", tag: "Teilnehmer offen", tagColor: "#FFCC00",
+            accent: "#FFCC00", bg: "#1D232A" }
+        ];
+    return {
+      lightFixtures: [
+        { day: "Sa", date: "16.01.27", comp: "WM-Quali", home: "Deutschland", away: "Finnland", score: "–:–",
+          scoreColor: "#5A6670", teamColor: "#0B0D0F", accent: lPlan, bg: "#F5F9FB", tag: "14:00 · Angesetzt",
+          tagColor: lPlan, venue: "Eisstadion Frankfurt" },
+        { day: "Di", date: "12.01.27", comp: "Testspiel", home: "Deutschland", away: "Polen", score: "1:0",
+          scoreColor: "#0B0D0F", teamColor: "#0B0D0F", accent: "#DD0000", bg: "#FDECEC", tag: "Live · 38.",
+          tagColor: "#C42B2B", venue: "Eisstadion Frankfurt" },
+        { day: "So", date: "10.01.27", comp: "Länderspiel", home: "Deutschland", away: "Niederlande", score: "2:2",
+          scoreColor: "#0B0D0F", teamColor: "#0B0D0F", accent: lDraw, bg: "#FFFFFF", tag: "Unentschieden",
+          tagColor: "#5A6670", venue: "Ede, Niederlande" },
+        { day: "Sa", date: "09.01.27", comp: "Testspiel", home: "Deutschland", away: "Norwegen", score: "3:1",
+          scoreColor: "#0B0D0F", teamColor: "#0B0D0F", accent: lWin, bg: "#FFFFFF", tag: "Sieg",
+          tagColor: lWin, venue: "Trondheim, Norwegen" },
+        { day: "Sa", date: "14.11.26", comp: "Testspiel", home: "Deutschland", away: "Tschechien", score: "verlegt",
+          scoreColor: "#8A6A00", teamColor: "#5A6670", accent: lMoved, bg: "#FFFDF5", tag: "Verlegt auf 07.02.27",
+          tagColor: "#8A6A00", venue: "Berlin" }
+      ],
+      lightPalette: [
+        { name: "Seite", hex: "#FFFFFF", use: "Grundfläche" },
+        { name: "Fläche hoch", hex: "#EDF2F5", use: "Hero, Fußbereich" },
+        { name: "Linie", hex: "#D3DCE3", use: "Rahmen" },
+        { name: "Text", hex: "#0B0D0F", use: "Primärtext" },
+        { name: "Text grau", hex: "#5A6670", use: "Meta, sekundär" },
+        { name: "Rot", hex: "#DD0000", use: "Aktion, Live" },
+        { name: "Gelb-Text", hex: "#8A6A00", use: "Kicker auf Weiß" },
+        { name: "Eis dunkel", hex: "#1F5F7D", use: "Wettbewerbs-Chip" },
+        { name: "Grün dunkel", hex: "#1E8F52", use: "Sieg" }
+      ],
+      enFixtures: [
+        { day: "Sat", date: enDate(16, "Jan", 2027), comp: "World Champ. Qualifier", home: "Germany", away: "Finland",
+          score: "–:–", scoreColor: "#98A3AD", accent: "#C9E4F0", bg: "#1D232A", tag: "2:00 pm · Scheduled", tagColor: "#C9E4F0" },
+        { day: "Sun", date: enDate(10, "Jan", 2027), comp: "Friendly", home: "Germany", away: "Netherlands",
+          score: "2:2", scoreColor: "#F4F7F9", accent: "#98A3AD", bg: "transparent", tag: "Draw", tagColor: "#98A3AD" },
+        { day: "Sat", date: enDate(5, "Dec", 2026), comp: "Cup", home: "Germany", away: "Hungary",
+          score: "6:2", scoreColor: "#F4F7F9", accent: "#2FBF71", bg: "#1D232A", tag: "Win", tagColor: "#2FBF71" }
+      ],
+      enNav: [
+        { label: "News", color: "#F4F7F9", chev: "›", bg: "transparent" },
+        { label: "National Teams", color: "#FFCC00", chev: "−", bg: "#1D232A" },
+        { label: "Men's National Team", color: "#98A3AD", chev: "›", bg: "#1D232A" },
+        { label: "Women's National Team", color: "#98A3AD", chev: "›", bg: "#1D232A" },
+        { label: "Fixtures and Results", color: "#F4F7F9", chev: "›", bg: "transparent" },
+        { label: "Tournaments", color: "#F4F7F9", chev: "›", bg: "transparent" },
+        { label: "About Us", color: "#F4F7F9", chev: "›", bg: "transparent" },
+        { label: "Contact", color: "#F4F7F9", chev: "›", bg: "transparent" }
+      ],
+      glossary: [
+        { de: "Spielplan & Ergebnisse", en: "Fixtures & Results" },
+        { de: "Kader", en: "Squad" },
+        { de: "Länderspiel", en: "International friendly" },
+        { de: "WM-Qualifikation", en: "World Championship qualifier" },
+        { de: "Rückennummer", en: "Shirt number" },
+        { de: "Strafzeit", en: "Penalty time" },
+        { de: "Verlegt / abgesagt", en: "Postponed / cancelled" }
+      ],
+      tournamentDays: [
+        { label: "Samstag, 16. Januar", meta: "Halbfinals · Einlass 13:00", games: [
+          { time: "14:00", home: "Deutschland", away: "Finnland", score: "–:–", scoreColor: "#98A3AD",
+            homeColor: "#FFCC00", awayColor: "#F4F7F9", round: "Halbfinale 1", tag: "Angesetzt", tagColor: "#C9E4F0",
+            accent: "#C9E4F0", bg: "#1D232A" },
+          { time: "17:30", home: "Estland", away: "Ungarn", score: "–:–", scoreColor: "#98A3AD",
+            homeColor: "#F4F7F9", awayColor: "#F4F7F9", round: "Halbfinale 2", tag: "Angesetzt", tagColor: "#C9E4F0",
+            accent: "#C9E4F0", bg: "transparent" }
+        ] },
+        { label: "Sonntag, 17. Januar", meta: "Platzierungsspiele", games: sunday }
+      ],
+      teams: [
+        { code: "GER", name: "Deutschland", meta: "Gastgeber · FIB-Rang 11", accent: "#FFCC00", nameColor: "#FFCC00", bg: "rgba(221,0,0,.10)" },
+        { code: "FIN", name: "Finnland", meta: "FIB-Rang 2", accent: "#C9E4F0", nameColor: "#F4F7F9", bg: "transparent" },
+        { code: "EST", name: "Estland", meta: "FIB-Rang 8", accent: "#C9E4F0", nameColor: "#F4F7F9", bg: "transparent" },
+        { code: "HUN", name: "Ungarn", meta: "FIB-Rang 14", accent: "#C9E4F0", nameColor: "#F4F7F9", bg: "transparent" }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

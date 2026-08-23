@@ -1,0 +1,655 @@
+<title>Bandy-Bund Relaunch Blueprint</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#EEF2F5; --surface:#FFFFFF; --raised:#F7FAFB; --border:#D8E0E6;
+  --ink:#0C1013; --muted:#5B6771;
+  --red:#C50014; --red-fill:#DD0000; --gold:#FFCC00; --gold-text:#8A6A00; --ice:#4E8FAF;
+  --shadow:0 1px 0 rgba(12,16,19,.04);
+  --display:"Barlow Condensed","Arial Narrow",Helvetica,sans-serif;
+  --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B0E11; --surface:#151A1F; --raised:#1D242B; --border:#29323A;
+    --ink:#EDF2F5; --muted:#93A0AA;
+    --red:#FF5A5A; --red-fill:#DD0000; --gold:#FFCC00; --gold-text:#FFCC00; --ice:#A8D4E8;
+    --shadow:0 1px 0 rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B0E11; --surface:#151A1F; --raised:#1D242B; --border:#29323A;
+  --ink:#EDF2F5; --muted:#93A0AA;
+  --red:#FF5A5A; --red-fill:#DD0000; --gold:#FFCC00; --gold-text:#FFCC00; --ice:#A8D4E8;
+  --shadow:0 1px 0 rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--body); font-size:16px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--red); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--red) 35%,transparent);}
+a:hover{border-bottom-color:var(--red);}
+:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+
+.shell{display:grid; grid-template-columns:1fr; max-width:1320px; margin:0 auto; padding:0 20px 96px;}
+@media(min-width:1080px){
+  .shell{grid-template-columns:214px minmax(0,1fr); gap:56px; padding:0 40px 128px;}
+}
+
+/* ---------- rail ---------- */
+.rail{display:none;}
+@media(min-width:1080px){
+  .rail{display:block; position:sticky; top:0; align-self:start; height:100vh; overflow-y:auto; padding:56px 0 40px;}
+}
+.rail-label{font-family:var(--body); font-size:11px; font-weight:600; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--muted); margin:0 0 14px;}
+.rail ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px;}
+.rail a{display:block; padding:5px 0 5px 12px; border:0; border-left:2px solid var(--border);
+  color:var(--muted); font-size:13.5px; line-height:1.35; text-decoration:none;}
+.rail a:hover{color:var(--ink); border-left-color:var(--muted);}
+.rail a.on{color:var(--ink); border-left-color:var(--red-fill); font-weight:600;}
+
+/* ---------- masthead ---------- */
+.mast{padding:56px 0 0; border-bottom:1px solid var(--border);}
+.crest{display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+.crest .ball{width:11px;height:11px;border-radius:999px;background:var(--red-fill);flex:none;}
+.crest span{font-family:var(--body); font-size:11.5px; font-weight:600; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--muted);}
+h1{font-family:var(--display); font-weight:800; text-transform:uppercase;
+  font-size:clamp(38px,8.5vw,78px); line-height:.94; letter-spacing:-.01em;
+  margin:0 0 18px; text-wrap:balance;}
+h1 em{font-style:normal; color:var(--red);}
+.standfirst{font-size:18px; line-height:1.55; color:var(--muted); max-width:62ch; margin:0 0 30px;}
+.stamp{display:flex; flex-wrap:wrap; gap:8px; padding-bottom:30px;}
+.stamp b{font:500 12px/1 var(--mono); letter-spacing:.02em; color:var(--muted);
+  background:var(--surface); border:1px solid var(--border); border-radius:999px; padding:7px 12px;}
+.stamp b i{font-style:normal;color:var(--ink);}
+
+/* ---------- scoreboard ---------- */
+.board{display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+  background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin:36px 0 8px;}
+@media(min-width:660px){.board{grid-template-columns:repeat(6,1fr);}}
+.board div{background:var(--surface); padding:18px 14px; text-align:center;}
+.board .n{font-family:var(--display); font-weight:800; font-size:40px; line-height:1;
+  font-variant-numeric:tabular-nums; display:block; color:var(--ink);}
+.board .k{font-size:10.5px; font-weight:600; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--muted); display:block; margin-top:7px;}
+
+/* ---------- sections ---------- */
+section{padding-top:64px; scroll-margin-top:24px;}
+.eyebrow{font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gold-text); margin:0 0 6px;}
+h2{font-family:var(--display); font-weight:700; text-transform:uppercase;
+  font-size:clamp(27px,4.4vw,40px); line-height:1.04; letter-spacing:0;
+  margin:0 0 4px; text-wrap:balance;}
+.h2rule{height:3px; width:52px; background:var(--red-fill); border-radius:2px; margin:14px 0 24px;}
+h3{font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.02em;
+  font-size:19px; line-height:1.2; margin:34px 0 12px; color:var(--ink);}
+p{margin:0 0 16px; max-width:68ch;}
+.lede{font-size:17.5px; color:var(--muted); max-width:64ch;}
+ul,ol{margin:0 0 16px; padding-left:20px; max-width:68ch;}
+li{margin-bottom:7px;}
+strong{font-weight:600;}
+code{font:500 13px/1.4 var(--mono); background:var(--raised); border:1px solid var(--border);
+  border-radius:5px; padding:1px 5px; color:var(--ink);}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto; border:1px solid var(--border); border-radius:12px; background:var(--surface); margin:0 0 20px;}
+table{border-collapse:collapse; width:100%; min-width:520px; font-size:14.5px;}
+th,td{text-align:left; padding:11px 15px; border-bottom:1px solid var(--border); vertical-align:top;}
+thead th{font-size:10.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted); background:var(--raised); white-space:nowrap;}
+tbody tr:last-child td{border-bottom:0;}
+td code{font-size:12.5px;}
+.num{font-variant-numeric:tabular-nums; white-space:nowrap;}
+.yes{color:var(--ice); font-weight:600;} .no{color:var(--muted);}
+
+/* ---------- cards ---------- */
+.grid{display:grid; gap:14px; grid-template-columns:1fr; margin-bottom:20px;}
+@media(min-width:620px){.g2{grid-template-columns:repeat(2,1fr);} .g3{grid-template-columns:repeat(3,1fr);}}
+.card{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; box-shadow:var(--shadow);}
+.card h4{font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.02em;
+  font-size:16px; margin:0 0 7px;}
+.card p{font-size:14.5px; color:var(--muted); margin:0;}
+.card code{font-size:12px;}
+
+/* module pills */
+.pills{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 18px;}
+.pills b{font:500 12.5px/1 var(--mono); background:var(--surface); border:1px solid var(--border);
+  border-radius:6px; padding:7px 9px; color:var(--ink);}
+.pills b.hot{border-color:var(--red-fill); color:var(--red);}
+
+/* ---------- slices ---------- */
+.slice{display:grid; grid-template-columns:auto 1fr; gap:18px; padding:20px 0; border-top:1px solid var(--border);}
+.slice:last-of-type{border-bottom:1px solid var(--border);}
+.slice .no2{font-family:var(--display); font-weight:800; font-size:42px; line-height:.9;
+  color:var(--border); font-variant-numeric:tabular-nums;}
+.slice h4{font-family:var(--display); font-weight:700; text-transform:uppercase; font-size:19px; margin:0 0 3px;}
+.slice .when{font:500 12px/1 var(--mono); color:var(--gold-text); letter-spacing:.04em; display:block; margin-bottom:9px;}
+.slice p{font-size:14.5px; color:var(--muted); margin:0;}
+
+/* ---------- diagram ---------- */
+.flow{background:var(--surface); border:1px solid var(--border); border-radius:12px;
+  padding:20px; overflow-x:auto; margin-bottom:20px;}
+.flow pre{margin:0; font:500 12.5px/1.72 var(--mono); color:var(--ink); white-space:pre;}
+
+/* callout */
+.note{border-left:3px solid var(--red-fill); background:var(--surface); border-radius:0 10px 10px 0;
+  padding:15px 18px; margin:0 0 20px;}
+.note p{margin:0; font-size:14.5px;}
+.note p+p{margin-top:9px;}
+.note .tag{font-size:10.5px; font-weight:600; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--red); display:block; margin-bottom:5px;}
+
+/* files */
+.files{display:grid; gap:10px; grid-template-columns:1fr;}
+@media(min-width:620px){.files{grid-template-columns:repeat(2,1fr);}}
+.file{display:flex; gap:12px; align-items:flex-start; background:var(--surface);
+  border:1px solid var(--border); border-radius:10px; padding:14px 16px;}
+.file .dot{width:9px;height:9px;border-radius:2px;background:var(--gold);margin-top:6px;flex:none;}
+.file b{display:block; font:500 13px/1.4 var(--mono); color:var(--ink); margin-bottom:3px; word-break:break-all;}
+.file span{font-size:13.5px; color:var(--muted);}
+
+footer{margin-top:72px; padding-top:22px; border-top:1px solid var(--border);
+  font-size:13px; color:var(--muted); display:flex; flex-wrap:wrap; gap:8px 18px;}
+</style>
+
+<div class="shell">
+
+<nav class="rail" aria-label="Abschnitte">
+  <p class="rail-label">Blueprint</p>
+  <ol>
+    <li><a href="#auftrag">Auftrag</a></li>
+    <li><a href="#struktur">Site-Struktur</a></li>
+    <li><a href="#modell">Datenmodell</a></li>
+    <li><a href="#module">Modulbibliothek</a></li>
+    <li><a href="#start">Startseite</a></li>
+    <li><a href="#admin">Admin-Panel</a></li>
+    <li><a href="#rollen">Rollenmodell</a></li>
+    <li><a href="#ki">KI-Assistent</a></li>
+    <li><a href="#stack">Tech-Stack</a></li>
+    <li><a href="#git">Git &amp; CI/CD</a></li>
+    <li><a href="#seo">SEO &amp; KI-Sichtbarkeit</a></li>
+    <li><a href="#recht">Recht</a></li>
+    <li><a href="#plan">Lieferplan</a></li>
+    <li><a href="#offen">Offene Punkte</a></li>
+    <li><a href="#dateien">Dateien</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<header class="mast">
+  <div class="crest"><span class="ball" aria-hidden="true"></span><span>Deutscher Bandy-Bund e.V.</span></div>
+  <h1>Relaunch<br>Blueprint<em>.</em></h1>
+  <p class="standfirst">Vollständige Produktspezifikation für bandy-bund.de — Struktur, Datenmodell, Modulbibliothek, Redaktionssystem, Rollen, Stack und Lieferweg. Als OpenSpec-Repository ausgeliefert, damit Menschen und Coding-Agents dieselbe Quelle lesen.</p>
+  <div class="stamp">
+    <b>Payload 3 <i>+</i> Next.js 16</b>
+    <b>DE <i>/</i> EN</b>
+    <b>Mobile-first</b>
+    <b>Föderation <i>·</i> mehrere Auswahlen</b>
+    <b>Claude: <i>nur Text</i></b>
+  </div>
+</header>
+
+<div class="board" role="list" aria-label="Kennzahlen">
+  <div role="listitem"><span class="n">15</span><span class="k">Capabilities</span></div>
+  <div role="listitem"><span class="n">20</span><span class="k">Collections</span></div>
+  <div role="listitem"><span class="n">33</span><span class="k">Module</span></div>
+  <div role="listitem"><span class="n">7</span><span class="k">Admin-Rollen</span></div>
+  <div role="listitem"><span class="n">6</span><span class="k">KI-Aktionen</span></div>
+  <div role="listitem"><span class="n">9</span><span class="k">Wochen</span></div>
+</div>
+
+<!-- 1 -->
+<section id="auftrag">
+  <p class="eyebrow">01 — Auftrag</p>
+  <h2>Wofür die Seite existiert</h2>
+  <div class="h2rule"></div>
+  <p class="lede">Fünf Aufgaben, in dieser Reihenfolge. Alles, was keiner davon dient, ist Scope-Creep und wird als OpenSpec-Change verhandelt, nicht nebenbei eingebaut.</p>
+  <div class="grid g2">
+    <div class="card"><h4>1 · Verband darstellen</h4><p>Herren- und Damenauswahl heute, Nachwuchs später. Das Datenmodell ist von Anfang an mannschaftsbezogen.</p></div>
+    <div class="card"><h4>2 · Spieler darstellen</h4><p>Eine dauerhafte, teilbare Adresse pro Athletin und Athlet. Ehemalige behalten ihre Seite.</p></div>
+    <div class="card"><h4>3 · Spiele &amp; Turniere</h4><p>Der lebende Kalender: was kommt, was war. Höchste Trafficlast der gesamten Seite.</p></div>
+    <div class="card"><h4>4 · News &amp; Blog</h4><p>Redaktion durch Ehrenamtliche — ohne Entwickler, ohne Deployment, ohne Angst.</p></div>
+    <div class="card"><h4>5 · Rechtstexte</h4><p>Impressum, Datenschutz, Barrierefreiheit — im Admin gepflegt wie jede andere Seite.</p></div>
+    <div class="card"><h4>Primäres Ziel</h4><p><strong>Newsletter-Anmeldung.</strong> Der einzige eigene Kanal, den der Verband unabhängig von Plattformen besitzt.</p></div>
+  </div>
+  <h3>Ausdrücklich nicht Teil von v1</h3>
+  <p>Shop, Ticketing, Zahlungen · öffentliche Benutzerkonten · Live-Ticker · automatischer Ergebnisimport von Drittanbietern · KI-generierte Bilder · native Apps.</p>
+</section>
+
+<!-- 2 -->
+<section id="struktur">
+  <p class="eyebrow">02 — Informationsarchitektur</p>
+  <h2>Site-Struktur</h2>
+  <div class="h2rule"></div>
+  <p>Deutsch ohne Präfix, Englisch unter <code>/en/</code>. Slugs sind lokalisierte Felder — die URL liest sich in beiden Sprachen natürlich, statt deutsche Wörter in englischen Pfaden zu tragen.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Deutsch</th><th>Englisch</th><th>Typ</th><th>Gepflegt in</th></tr></thead>
+    <tbody>
+      <tr><td><code>/</code></td><td><code>/en</code></td><td>Startseite</td><td>Seiten (modular)</td></tr>
+      <tr><td><code>/news</code> · <code>/news/{slug}</code></td><td><code>/en/news/{slug}</code></td><td>Beiträge</td><td>Beiträge</td></tr>
+      <tr><td><code>/news/kategorie/{slug}</code></td><td><code>/en/news/category/{slug}</code></td><td>Archiv</td><td>automatisch</td></tr>
+      <tr><td><code>/teams</code> · <code>/teams/{slug}</code></td><td><code>/en/teams/{slug}</code></td><td>Mannschaft + Kader</td><td>Mannschaften</td></tr>
+      <tr><td><code>/spieler/{slug}</code></td><td><code>/en/players/{slug}</code></td><td>Spielerprofil</td><td>Spieler</td></tr>
+      <tr><td><code>/spiele</code></td><td><code>/en/games</code></td><td>Spielplan + Ergebnisse</td><td>Spiele</td></tr>
+      <tr><td><code>/spiele/{datum}-{heim}-{gast}</code></td><td><code>/en/games/…</code></td><td>Spieldetail</td><td>Spiele</td></tr>
+      <tr><td><code>/turniere</code> · <code>/turniere/{slug}</code></td><td><code>/en/tournaments/{slug}</code></td><td>Turnier</td><td>Turniere</td></tr>
+      <tr><td><code>/verband</code> · <code>/mitgliedschaft</code></td><td><code>/en/federation</code> · <code>/en/membership</code></td><td>Statisch, modular</td><td>Seiten</td></tr>
+      <tr><td><code>/galerie</code> · <code>/kontakt</code> · <code>/suche</code></td><td><code>/en/gallery</code> · <code>/en/contact</code> · <code>/en/search</code></td><td>Utility</td><td>Seiten / System</td></tr>
+      <tr><td><code>/impressum</code> · <code>/datenschutz</code> · <code>/barrierefreiheit</code></td><td><code>/en/imprint</code> · <code>/en/privacy</code> · <code>/en/accessibility</code></td><td>Rechtstexte</td><td>Seiten</td></tr>
+      <tr><td colspan="2"><code>/sitemap.xml</code> · <code>/robots.txt</code> · <code>/llms.txt</code> · <code>/feed.xml</code> · <code>/spiele.ics</code> · <code>/api/public/*.json</code></td><td>Maschinenlesbar</td><td>generiert</td></tr>
+      <tr><td colspan="2"><code>/404</code> · <code>/500</code></td><td>Fehlerseiten</td><td>Seiten / statisch</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note">
+    <p class="tag">Warum das zählt</p>
+    <p>Die alte Seite hinterlässt eingehende Links. Eine gepflegte Weiterleitungstabelle mit 301-Status ist Teil von Slice 4 — ohne sie verliert der Verband beim Umschalten jede bestehende Sichtbarkeit.</p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="modell">
+  <p class="eyebrow">03 — Entitäten</p>
+  <h2>Datenmodell</h2>
+  <div class="h2rule"></div>
+  <p>Zwanzig Collections, vier Globals. Die drei Entscheidungen, die später teuer zu ändern wären, sind hier festgelegt.</p>
+
+  <div class="flow">
+<pre>  Saisons ─┐
+           ├─&lt; Mitgliedschaften &gt;── Spieler ─&lt; Aufgebots-Eintrag &gt;── Spiele
+  Teams ───┘                                                            │
+     │                                                                  ├── Spielstätten
+     └─&lt; Spiele (Heim/Gast polymorph) &gt;── Gegner                        ├── Turniere
+                                                                        └── Galerien
+
+  Seiten ─&lt; Blöcke &gt;        Beiträge ─&lt; Blöcke &gt;        Medien · Dokumente · Partner
+  Benutzer · Rollen         KI-Protokoll · Audit-Log · Weiterleitungen · Abonnenten
+  Globals: Website-Einstellungen · Header · Footer · SEO-Standards</pre>
+  </div>
+
+  <div class="grid g3">
+    <div class="card"><h4>Rückennummer lebt am Spiel</h4><p>Nicht am Spieler. Nummern wechseln zwischen Saisons und werden nach Abgängen neu vergeben. Eindeutigkeit gilt nur innerhalb eines Aufgebots — sonst blockiert die Datenbank später eine völlig normale Kaderänderung.</p></div>
+    <div class="card"><h4>Heim und Gast sind polymorph</h4><p>Jede Seite ist entweder eine eigene Auswahl oder ein Gegner-Datensatz. Kein „unser Team"-Flag, das bei Turnieren auf neutralem Boden zusammenbricht.</p></div>
+    <div class="card"><h4>Turnierspiel ist gesetzt, nicht abgeleitet</h4><p><code>isTournamentGame</code> ist eine redaktionelle Entscheidung. Gesetzt ohne Turnier → Validierungsfehler beim Veröffentlichen.</p></div>
+    <div class="card"><h4>Aufgebot ist optional</h4><p>Ein Spiel ohne Aufgebot ist gültig. Wird es gepflegt, erscheint es auf der Spielseite <em>und</em> in der Einsatzliste jedes gelisteten Spielers.</p></div>
+    <div class="card"><h4>Mitgliedschaft ist saisonbezogen</h4><p>Spieler hängen über Mitgliedschaften an Mannschaften, nicht über ein einzelnes Feld. Ehemalige behalten Seite und Historie.</p></div>
+    <div class="card"><h4>Bildrechte sind Pflichtfelder</h4><p>Alternativtext, Fotograf, Nutzungsrecht. Fehlt eines, blockiert das System die Veröffentlichung. Billigste Versicherung im ganzen Projekt.</p></div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="module">
+  <p class="eyebrow">04 — Bausteine</p>
+  <h2>Modulbibliothek</h2>
+  <div class="h2rule"></div>
+  <p>33 Module. Jedes Modul überlebt es, allein, ganz oben oder ganz unten platziert zu werden — kein Modul darf annehmen, was darüber oder darunter steht. Datengetriebene Module holen sich ihren Inhalt selbst; die Redaktion stellt nur Filter und Anzahl ein.</p>
+
+  <h3>Spiel &amp; Wettbewerb</h3>
+  <div class="pills">
+    <b class="hot">MatchdayHero</b><b>NextMatches</b><b>LastResults</b><b class="hot">ResultsTicker</b><b>FixtureList</b><b>StandingsTable</b><b>TournamentTeaser</b><b>MatchRoster</b><b>MatchReport</b>
+  </div>
+  <h3>Kader &amp; Personen</h3>
+  <div class="pills">
+    <b class="hot">PlayerGrid</b><b>PlayerCarousel</b><b>PlayerSpotlight</b><b>StaffGrid</b>
+  </div>
+  <h3>Redaktion</h3>
+  <div class="pills">
+    <b>NewsTeaser</b><b>RichText</b><b>MediaWithText</b><b>Quote</b><b>Accordion</b><b>Stats</b><b>Timeline</b><b>Gallery</b><b>VideoEmbed</b><b>DocumentList</b><b>TableBlock</b><b>LogoWall</b>
+  </div>
+  <h3>Rahmen &amp; Konversion</h3>
+  <div class="pills">
+    <b>HeroFeature</b><b>HeroCompact</b><b class="hot">NewsletterSignup</b><b>CTABanner</b><b>ContactForm</b><b>MapBlock</b><b>SocialLinks</b><b>Divider</b>
+  </div>
+
+  <p>Jedes Modul teilt dieselbe Einstellungsgruppe: Anker-ID, Hintergrundvariante, vertikaler Abstand, Eyebrow, Überschrift und Überschriftenebene, Sprachsichtbarkeit. <strong>Regel:</strong> ein neues Modul braucht einen OpenSpec-Change; eine Variante eines bestehenden Moduls braucht nur eine Einstellung.</p>
+</section>
+
+<!-- 5 -->
+<section id="start">
+  <p class="eyebrow">05 — Komposition</p>
+  <h2>Startseite</h2>
+  <div class="h2rule"></div>
+  <p>Die Startseite ist keine Sonderseite, sondern eine <code>Seite</code> mit einer Standardreihenfolge. Die Redaktion darf sie jederzeit umbauen — deshalb muss jeder Abschnitt für sich funktionieren.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th class="num">#</th><th>Modul</th><th>Aufgabe</th><th>Leerzustand</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td><code>MatchdayHero</code></td><td>Nächstes Spiel, Countdown, Ort, „Zum Spiel" + „In Kalender"</td><td>Ohne Termin → Bild-Hero mit Fallback-Headline</td></tr>
+      <tr><td class="num">2</td><td><code>ResultsTicker</code></td><td>Letzte fünf Ergebnisse, horizontal, Sieg/Unentschieden/Niederlage farbig <em>und</em> beschriftet</td><td>Ausblenden</td></tr>
+      <tr><td class="num">3</td><td><code>NewsTeaser</code></td><td>Drei Beiträge, Lead-Card auf Mobil</td><td>Ausblenden</td></tr>
+      <tr><td class="num">4</td><td><code>PlayerCarousel</code></td><td>„Unser Kader", Wischen auf Mobil, Link zu <code>/teams</code></td><td>Ausblenden</td></tr>
+      <tr><td class="num">5</td><td><code>TournamentTeaser</code></td><td>Laufendes oder nächstes Turnier</td><td>Letztes Turnier mit Platzierung</td></tr>
+      <tr><td class="num">6</td><td><code>Stats</code></td><td>Der Verband in vier Zahlen</td><td>—</td></tr>
+      <tr><td class="num">7</td><td><code>NewsletterSignup</code></td><td><strong>Primäre CTA.</strong> Vollbreites rotes Band</td><td>—</td></tr>
+      <tr><td class="num">8</td><td><code>LogoWall</code></td><td>Partner, bewusst unterhalb der Konversion</td><td>Ausblenden</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note">
+    <p class="tag">Der Fall, den man immer vergisst</p>
+    <p>Bandy ist eine Wintersportart. Zwischen März und Dezember steht meist kein Spiel an. Der Off-Season-Zustand des Heros ist monatelang die Startseite — er wird mitentworfen, nicht nachgereicht.</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="admin">
+  <p class="eyebrow">06 — Redaktionssystem</p>
+  <h2>Admin-Panel</h2>
+  <div class="h2rule"></div>
+  <p>Payload-Panel, Oberfläche auf Deutsch, pro Benutzer auf Englisch umschaltbar. Fünf Navigationsgruppen, damit ein Sportwart nie durch Marketing-Collections scrollt.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Gruppe</th><th>Inhalt</th><th>Wer arbeitet hier</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Inhalte</strong></td><td>Seiten · Beiträge · Galerien · Medien · Dokumente</td><td>Redakteur, Autor, Medienwart</td></tr>
+      <tr><td><strong>Sport</strong></td><td>Mannschaften · Spieler · Staff · Spiele · Turniere · Gegner · Spielstätten · Saisons</td><td>Sportwart</td></tr>
+      <tr><td><strong>Marketing</strong></td><td>Newsletter-Abonnenten · Formulare · Einsendungen · Partner</td><td>Redakteur</td></tr>
+      <tr><td><strong>Website</strong></td><td>Navigation · Footer · Einstellungen · Weiterleitungen · SEO-Standards</td><td>Administrator</td></tr>
+      <tr><td><strong>System</strong></td><td>Benutzer · Protokoll · KI-Nutzung</td><td>Administrator</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>Was die Redaktion tatsächlich bekommt</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Entwurf, Version, Zeitplan</h4><p>Jede Speicherung wird archiviert, jede Fassung ist wiederherstellbar. Veröffentlichung auch mit Datum und Uhrzeit.</p></div>
+    <div class="card"><h4>Live-Vorschau</h4><p>Echte Seite neben dem Editor, umschaltbar Handy / Tablet / Desktop. Die Handy-Ansicht ist Pflichtprüfung vor jeder Veröffentlichung.</p></div>
+    <div class="card"><h4>Blocklayout per Drag</h4><p>Module hinzufügen, umsortieren, einklappen. Kein Deployment, kein Entwickler.</p></div>
+    <div class="card"><h4>Sprachumschalter je Dokument</h4><p>Ändert sich die deutsche Quelle, wird die englische Fassung als <em>veraltet</em> markiert.</p></div>
+    <div class="card"><h4>Mediathek mit Fokuspunkt</h4><p>Ein Upload, jeder Zuschnitt. Gesicht bleibt im Bild. AVIF und WebP werden automatisch erzeugt.</p></div>
+    <div class="card"><h4>SEO-Reiter je Dokument</h4><p>Titel, Beschreibung, OG-Bild, Canonical, Zeichenzähler, Vorschau der strukturierten Daten.</p></div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="rollen">
+  <p class="eyebrow">07 — Berechtigungen</p>
+  <h2>Rollenmodell</h2>
+  <div class="h2rule"></div>
+  <p>Serverseitig in den Access-Funktionen geprüft, nicht in der Oberfläche. Die Integrationstests prüfen jede Zelle dieser Matrix einzeln auf Erlaubnis oder 403.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Rolle</th><th>Inhalte</th><th>Sport</th><th>Marketing</th><th>Website</th><th>System</th><th>Veröffentlichen</th><th>KI</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Administrator</strong></td><td>RW</td><td>RW</td><td>RW</td><td>RW</td><td>RW</td><td class="yes">ja</td><td class="yes">ja</td></tr>
+      <tr><td><strong>Redakteur</strong></td><td>RW</td><td>RW</td><td>RW</td><td>R</td><td class="no">–</td><td class="yes">ja</td><td class="yes">ja</td></tr>
+      <tr><td><strong>Autor</strong></td><td>eigene Entwürfe</td><td>R</td><td class="no">–</td><td class="no">–</td><td class="no">–</td><td class="no">nein</td><td class="yes">ja</td></tr>
+      <tr><td><strong>Sportwart</strong></td><td>R</td><td>RW</td><td class="no">–</td><td class="no">–</td><td class="no">–</td><td>nur Sport</td><td class="yes">ja</td></tr>
+      <tr><td><strong>Medienwart</strong></td><td>Medien RW</td><td>R</td><td class="no">–</td><td class="no">–</td><td class="no">–</td><td>nur Medien</td><td>nur Alt-Text</td></tr>
+      <tr><td><strong>Übersetzer</strong></td><td>nur EN</td><td>nur EN</td><td class="no">–</td><td class="no">–</td><td class="no">–</td><td>nur EN</td><td>nur Übersetzen</td></tr>
+      <tr><td><strong>Betrachter</strong></td><td>R</td><td>R</td><td>R</td><td>R</td><td class="no">–</td><td class="no">nein</td><td class="no">nein</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>Website-Nutzer</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Rolle</th><th>Kann</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Anonym</strong></td><td>Alle veröffentlichten Inhalte lesen · Newsletter abonnieren · Kontaktformular senden · <code>.ics</code> laden · RSS und öffentliche JSON-Endpunkte nutzen</td></tr>
+      <tr><td><strong>Abonnent</strong></td><td>Alles davon, plus Einstellungen und Abmeldung über einen signierten Einmal-Link mit 30 Tagen Gültigkeit — <strong>ohne Konto, ohne Passwort</strong></td></tr>
+      <tr><td><strong>Mitglied</strong> <em>(Phase 2)</em></td><td>Interner Bereich: Dokumente, Trainingspläne, Mitgliederverzeichnis. Nicht in v1.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note">
+    <p class="tag">Bewusste Entscheidung</p>
+    <p>v1 hat <strong>keine öffentlichen Benutzerkonten.</strong> Konten bedeuten Passwortspeicherung, Reset-Flows, Sitzungssicherheit, DSGVO-Auskunfts- und Löschanfragen und eine dauerhafte Angriffsfläche — ohne Nutzen für eine der fünf Aufgaben. Token-Links liefern dieselbe Abonnenten-Erfahrung ohne all das.</p>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="ki">
+  <p class="eyebrow">08 — Redaktionswerkzeug</p>
+  <h2>KI-Assistent &amp; Leitplanken</h2>
+  <div class="h2rule"></div>
+  <p><strong>Claude erzeugt Text, keine Bilder.</strong> Das ist keine Konfigurationsfrage, sondern eine Eigenschaft des Modells — Bildmaterial bleibt menschlich, was bei einem Sportverband ohnehin glaubwürdiger ist als generierte Illustration.</p>
+
+  <div class="flow">
+<pre>Admin-Oberfläche ──{Aktion, Entitäts-ID, Kurzbriefing, Tonfall}──&gt; /api/ai/[action]
+                                                                       │ Sitzung + Recht ai:use
+                                                                       │ Kontingent + Budget
+                                                                       │ System-Prompt (versioniert)
+                                                                       │ Fakten-JSON aus Allowlist
+                                                                       │ Nutzertext in &lt;untrusted&gt;
+                                                                       ▼
+                                                        Anthropic Messages API (Modell gepinnt)
+                                                                       ▼
+                                                        Zod-Validierung → Sanitizing → Kappung
+                                                                       ▼
+                                              ENTWURF · Prüfung nötig · aiAssisted=true
+                                                     + Zeile im KI-Protokoll</pre>
+  </div>
+
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Aktion</th><th>Eingabe</th><th>Ausgabe</th></tr></thead>
+    <tbody>
+      <tr><td><code>draft_article</code></td><td>Titel, Stichworte, Kategorie, verknüpfte Entitäten</td><td>Artikelentwurf + Teaser</td></tr>
+      <tr><td><code>rewrite</code></td><td>Markierter Text + Modus</td><td>Ersatztext</td></tr>
+      <tr><td><code>match_report</code></td><td>Spiel-ID: Ergebnis, Aufgebot, Ort, Wettbewerb</td><td>Berichtsentwurf</td></tr>
+      <tr><td><code>translate</code></td><td>Dokument, Quell- und Zielsprache</td><td>Übersetzte Felder</td></tr>
+      <tr><td><code>seo_meta</code></td><td>Dokument</td><td>Titel ≤ 60, Beschreibung ≤ 155</td></tr>
+      <tr><td><code>alt_text</code></td><td>Medien-ID + Kontext</td><td>Alt-Text DE + EN ≤ 125</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Elf Leitplanken, serverseitig erzwungen</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Geschlossener Aktionskatalog</h4><p>Sechs Aktionen. Kein freies Prompt-Feld. Unbekannte Aktion → 400, ohne das Modell zu kontaktieren.</p></div>
+    <div class="card"><h4>Schlüssel bleibt am Server</h4><p>Nie in einer <code>NEXT_PUBLIC_*</code>-Variable. CI durchsucht das Client-Bundle als Build-Assertion.</p></div>
+    <div class="card"><h4>Nur gelieferte Fakten</h4><p>Keine erfundenen Ergebnisse, Namen, Statistiken oder Zitate. Fehlt etwas, schreibt das Modell <code>[[TBD: …]]</code>.</p></div>
+    <div class="card"><h4>Fremdtext ist Daten</h4><p>Alles aus Entwürfen und Uploads wird in Delimiter gefasst, die der System-Prompt als Daten deklariert — nie als Anweisung.</p></div>
+    <div class="card"><h4>Validierte Ausgabe</h4><p>Zod-Schema je Aktion, Längenkappung, Sanitizing, Link-Allowlist, ein Wiederholungsversuch, dann sichtbarer Fehler.</p></div>
+    <div class="card"><h4>Menschliches Veröffentlichungstor</h4><p>Ausgabe landet immer als Entwurf mit <em>Prüfung nötig</em>. In der Zugriffskontrolle erzwungen, nicht per Konvention.</p></div>
+    <div class="card"><h4>Keine personenbezogenen Daten</h4><p>Abonnenten, Formulareinsendungen und Benutzerkonten verlassen das System nie. Feld-Allowlist je Aktion, keine Blocklist.</p></div>
+    <div class="card"><h4>Kontingent, Budget, Not-Aus</h4><p>Tageslimit je Benutzer, Monatslimit je Verband, Ausgabendeckel, <code>AI_ASSIST_ENABLED=false</code> ohne Deployment.</p></div>
+    <div class="card"><h4>Vollständiges Protokoll</h4><p>Wer, wann, welche Aktion, welches Modell, welche Prompt-Version, Tokens, Kosten, angenommen oder verworfen. Zwölf Monate.</p></div>
+    <div class="card"><h4>Gepinntes Modell</h4><p>Modell-ID in der Konfiguration. Änderung nur über einen geprüften Pull Request, nie still im Hintergrund.</p></div>
+    <div class="card"><h4>Versionierte Prompts</h4><p>Prompt-Vorlagen liegen als Dateien im Repository. Jede Ausgabe ist auf die exakte Anweisung zurückführbar, die sie erzeugt hat.</p></div>
+    <div class="card"><h4>Nie blockierend</h4><p>30 Sekunden Timeout, ein Retry, Circuit Breaker. Der Editor wartet nie auf das Modell.</p></div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="stack">
+  <p class="eyebrow">09 — Technik</p>
+  <h2>Tech-Stack</h2>
+  <div class="h2rule"></div>
+  <p>Ein Repository, ein Image, ein Deployment. Payload läuft <em>innerhalb</em> der Next.js-Anwendung — kein zweiter Dienst, keine CORS-Schicht, kein zweites Anmeldesystem.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Schicht</th><th>Wahl</th><th>Begründung</th></tr></thead>
+    <tbody>
+      <tr><td>Framework</td><td>Next.js 16 · React 19 · TypeScript strict</td><td>Server Components, Tag-Revalidierung, OG-Bilder eingebaut</td></tr>
+      <tr><td>CMS</td><td>Payload 3.88+</td><td>Blöcke, Entwürfe, Versionen, Live-Vorschau, feldgenaue Zugriffskontrolle — im selben Prozess</td></tr>
+      <tr><td>Datenbank</td><td>PostgreSQL 17</td><td>Relationale Inhalte mit echten Constraints</td></tr>
+      <tr><td>Styling</td><td>Tailwind v4 + CSS-Variablen · Radix</td><td>Tokens sind gemeinsame Quelle für Design und Code</td></tr>
+      <tr><td>Medien</td><td>sharp · AVIF/WebP · Fokuspunkt</td><td>Ein Upload, jeder Zuschnitt</td></tr>
+      <tr><td>Suche</td><td>Postgres Volltext</td><td>Kein zusätzlicher Dienst bei diesem Inhaltsvolumen</td></tr>
+      <tr><td>KI</td><td>Anthropic Messages API, Modell gepinnt</td><td>Serverseitiger Proxy mit geschlossenem Aktionskatalog</td></tr>
+      <tr><td>Analytics</td><td>Plausible oder Umami, selbst gehostet</td><td>Cookielos — Ablehnen kostet den Verband nichts</td></tr>
+      <tr><td>Betrieb</td><td>Docker Compose · Caddy · restic</td><td>Ein VPS, automatisches TLS, verschlüsselte Off-Site-Backups</td></tr>
+      <tr><td>Qualität</td><td>Vitest · Playwright · axe-core · Lighthouse CI</td><td>Barrierefreiheit und Performance sind CI-Gates, keine Absichtserklärungen</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Bewusst nicht gewählt:</strong> Kubernetes (kein Skalierungsbedarf) · separater Headless-CMS-Dienst (zwei Deployments, zwei Auth-Systeme) · Redis (Postgres trägt die Last hier) · SaaS-CMS (der Verband muss Daten und Rechnung besitzen).</p>
+</section>
+
+<!-- 10 -->
+<section id="git">
+  <p class="eyebrow">10 — Auslieferung</p>
+  <h2>Git-Flow &amp; CI/CD</h2>
+  <div class="h2rule"></div>
+  <p>Trunk-basiert mit kurzlebigen Branches und getaggten Releases. Vollständiges GitFlow mit dauerhaftem <code>develop</code>-Branch ist mehr Zeremonie, als ein Team von zwei bis vier Personen bedienen kann.</p>
+
+  <div class="flow">
+<pre>feat/roster-editor ──┐
+fix/ical-timezone ───┼──&gt; main ──────────────────────&gt; tag v1.4.0 ──&gt; PRODUKTION
+chore/bump-payload ──┘   (deployt automatisch                (manuelle Freigabe)
+                          nach STAGING)
+
+hotfix/consent-banner ───────────────────────────────&gt; tag v1.4.1 ──&gt; PRODUKTION
+                       └──────&gt; zurück nach main am selben Tag</pre>
+  </div>
+
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Pipeline</th><th>Auslöser</th><th>Schritte</th></tr></thead>
+    <tbody>
+      <tr><td><code>ci.yml</code></td><td>Jeder Pull Request</td><td>Typecheck · Lint · Unit · <code>openspec validate --strict</code> · Build · Integration (RBAC-Matrix gegen echtes Postgres) · E2E · axe · Lighthouse-Budgets</td></tr>
+      <tr><td><code>deploy-staging.yml</code></td><td>Merge auf <code>main</code></td><td>Image bauen → GHCR mit SHA-Tag → SSH → <code>compose pull &amp;&amp; up</code> → <code>payload migrate</code> → Smoke-Test</td></tr>
+      <tr><td><code>deploy-production.yml</code></td><td>Tag <code>v*</code></td><td>Manuelle Freigabe → DB-Dump off-site → <strong>Retag desselben Digests, kein Rebuild</strong> → Rolling Restart → Migration → Smoke → automatischer Rollback bei Fehler</td></tr>
+      <tr><td><code>backup-verify.yml</code></td><td>Wöchentlich</td><td>Neuestes Backup in Scratch-Container wiederherstellen, Zeilenzahlen prüfen, verwerfen</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="grid g3">
+    <div class="card"><h4>Kein Rebuild vor Produktion</h4><p>Genau das Artefakt, das auf Staging getestet wurde, geht live. Getestet ≠ neu gebaut.</p></div>
+    <div class="card"><h4>Staging ist gesperrt</h4><p><code>Disallow: /</code> plus Basic Auth. Eine indexierte Staging-Umgebung kostet Monate an Sichtbarkeit.</p></div>
+    <div class="card"><h4>Specs sind Merge-Bedingung</h4><p>Ein PR, der Verhalten ändert, ohne <code>openspec/specs/</code> zu aktualisieren, fällt im Review durch — nicht erst in CI.</p></div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section id="seo">
+  <p class="eyebrow">11 — Auffindbarkeit</p>
+  <h2>SEO &amp; KI-Sichtbarkeit</h2>
+  <div class="h2rule"></div>
+  <p>Die Reihenfolge ist ehrlich: <strong>strukturierte Daten und sauberes serverseitiges HTML tragen den weitaus größten Teil.</strong> <code>llms.txt</code> ist ein billiges, unverbindliches Signal ohne Garantie — es ersetzt nichts davon.</p>
+  <div class="grid g2">
+    <div class="card"><h4>Serverseitiges HTML</h4><p>Jede Seite liefert vollständigen Inhalt ohne JavaScript. Ein Crawler ohne JS sieht Name, Nummer, Position, Biografie, Einsätze.</p></div>
+    <div class="card"><h4>JSON-LD je Entität</h4><p><code>SportsOrganization</code> · <code>SportsTeam</code> · <code>Person</code> · <code>SportsEvent</code> · <code>NewsArticle</code> · <code>ImageObject</code> mit <code>creditText</code> · <code>BreadcrumbList</code> · <code>WebSite</code>. In CI validiert.</p></div>
+    <div class="card"><h4>Kalender als Schnittstelle</h4><p><code>/spiele.ics</code> abonnierbar, pro Mannschaft und pro Spiel. Für Menschen nützlich und für Maschinen trivial zu lesen.</p></div>
+    <div class="card"><h4>Öffentliche JSON-Endpunkte</h4><p>Spielplan, Ergebnisse, Kader als saubere JSON-Ressourcen. Ein Assistent muss kein Layout parsen.</p></div>
+    <div class="card"><h4>Crawler-Steuerung im Admin</h4><p>Die Liste erlaubter Bots — GPTBot, ClaudeBot, PerplexityBot, Google-Extended und andere — ist in den Einstellungen pflegbar. Der Vorstand entscheidet ohne Release.</p></div>
+    <div class="card"><h4>Performance als CI-Gate</h4><p>LCP &lt; 2,0 s · CLS &lt; 0,05 · INP &lt; 200 ms auf simuliertem Mobil-4G. Ein PR, der ein Budget reißt, wird rot.</p></div>
+  </div>
+</section>
+
+<!-- 12 -->
+<section id="recht">
+  <p class="eyebrow">12 — Pflichten</p>
+  <h2>Recht &amp; Barrierefreiheit</h2>
+  <div class="h2rule"></div>
+  <p>Kein Rechtsrat — die Formulierungen prüft vor dem Start die Rechtsberatung des Vereins. Was hier steht, sind die Oberflächen, die dafür existieren müssen.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Pflicht</th><th>Grundlage</th><th>Umsetzung</th></tr></thead>
+    <tbody>
+      <tr><td>Impressum</td><td>§ 5 DDG <em>(seit Mai 2024, ersetzt § 5 TMG)</em></td><td>Aus jeder Seite in maximal zwei Klicks · Vereinsregister, Registergericht, Vertretungsberechtigte</td></tr>
+      <tr><td>Datenschutzerklärung</td><td>DSGVO</td><td>Jede tatsächliche Verarbeitung, inklusive der Nutzung der Anthropic-API für redaktionelle Unterstützung</td></tr>
+      <tr><td>Cookie-Einwilligung</td><td>§ 25 TDDDG <em>(vormals TTDSG)</em></td><td>Nichts Nicht-Notwendiges vor Einwilligung · „Ablehnen" optisch gleichwertig · jederzeit widerrufbar</td></tr>
+      <tr><td>Eingebettete Medien</td><td>DSGVO · § 25 TDDDG</td><td>Video und Karte laden erst nach ausdrücklichem Klick — lokaler Platzhalter statt Anbieter-Request</td></tr>
+      <tr><td>Newsletter</td><td>DSGVO · UWG</td><td>Double Opt-in · gespeicherter Einwilligungsnachweis · Ein-Klick-Abmeldung · <code>List-Unsubscribe</code></td></tr>
+      <tr><td>Bildrechte</td><td>UrhG · KUG</td><td>Fotograf und Nutzungsrecht als Pflichtfelder · Veröffentlichung ohne sie technisch blockiert</td></tr>
+      <tr><td>Barrierefreiheit</td><td>WCAG 2.2 AA</td><td>Tastaturbedienbarkeit · sichtbarer Fokus · 4,5:1 Kontrast · axe-core in CI · manuelle Prüfung je Slice</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 13 -->
+<section id="plan">
+  <p class="eyebrow">13 — Zeitplan</p>
+  <h2>Lieferplan</h2>
+  <div class="h2rule"></div>
+  <p>Vier Slices. Jeder ist eigenständig deploybar und hinterlässt eine auslieferbare Seite — es gibt keinen Zeitpunkt, an dem das Projekt „halb fertig und unbrauchbar" ist.</p>
+
+  <div class="slice">
+    <div class="no2">01</div>
+    <div><h4>Skelett</h4><span class="when">Woche 1–2</span>
+      <p>Repository, CI, Staging-Deployment, Payload mit Benutzern und Rollen, Seiten mit fünf Modulen, Header und Footer, Rechtstexte, 404, Sitemap, robots, Analytics. <strong>Ergebnis:</strong> eine echte Seite mit echten Rechtstexten, live auf Staging.</p></div>
+  </div>
+  <div class="slice">
+    <div class="no2">02</div>
+    <div><h4>Sport-Kern</h4><span class="when">Woche 3–5</span>
+      <p>Mannschaften, Saisons, Spieler, Staff, Gegner, Spielstätten, Spiele, Aufgebote, Turniere. Kaderraster, Spielerseiten, Spielplan, Spielseiten, Turnierseiten. Spielerimport aus den gelieferten Karten. JSON-LD für alle Sport-Entitäten. <strong>Ergebnis:</strong> der sportliche Inhalt des Verbands ist live.</p></div>
+  </div>
+  <div class="slice">
+    <div class="no2">03</div>
+    <div><h4>Redaktion &amp; Reichweite</h4><span class="when">Woche 6–7</span>
+      <p>Beiträge, Kategorien, Galerien, Dokumente, Suche, RSS, Kalender-Feeds, OG-Bilder, Newsletter mit Double Opt-in, Kontaktformular, restliche Module, englische Sprachfassung. <strong>Ergebnis:</strong> Ehrenamtliche können die Seite betreiben, das Publikum wächst.</p></div>
+  </div>
+  <div class="slice">
+    <div class="no2">04</div>
+    <div><h4>Assistent &amp; Härtung</h4><span class="when">Woche 8–9</span>
+      <p>KI-Assistent mit sechs Aktionen, Kontingenten, Protokoll und Not-Aus. Performance- und Barrierefreiheitsdurchgang, Weiterleitungstabelle der alten Seite, Wiederherstellungsübung, Redaktionsschulung, Produktionsumstellung. <strong>Ergebnis:</strong> Launch.</p></div>
+  </div>
+</section>
+
+<!-- 14 -->
+<section id="offen">
+  <p class="eyebrow">14 — Vor Slice 1</p>
+  <h2>Offene Punkte</h2>
+  <div class="h2rule"></div>
+  <p>Stand 23. August: Hosting ist als <strong>VPS/VDS</strong> geklärt — kein VPN-only-Admin, die Netzwerkbeschränkung bleibt eine Option in <code>delivery-infra</code>, keine Anforderung. Die Spielerdaten sind bereinigt: doppelte Rückennummern und die Zuordnung in der Herrenliste sind erledigt. Es bleiben fünf Punkte. Keiner blockiert den Start, alle blockieren den Launch.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Punkt</th><th>Warum es jetzt zählt</th></tr></thead>
+    <tbody>
+      <tr><td>Domain, DNS-Kontrolle, Umstellungsfenster</td><td>Bestimmt Slice 4 und die Weiterleitungstabelle</td></tr>
+      <tr><td>Impressumsdaten: Registernummer, Registergericht, Vorstand</td><td>Rechtstexte gehen in Slice 1 live und dürfen nicht geraten sein</td></tr>
+      <tr><td>Absenderdomain für E-Mail plus SPF, DKIM, DMARC</td><td>Ohne saubere Zustellbarkeit funktioniert Double Opt-in nicht</td></tr>
+      <tr><td>Fotografen und Nutzungsrechte der bestehenden Spielerbilder</td><td>Pflichtfelder blockieren sonst die Veröffentlichung des gesamten Kaders</td></tr>
+      <tr><td>Sichtbarer Hinweis „mit KI-Unterstützung erstellt"?</td><td>Politische Entscheidung des Vorstands, technisch trivial</td></tr>
+      <tr><td>Aktueller Vorstand und Vorsitz</td><td>Öffentliche Quellen sind womöglich veraltet — Impressum und <code>/verband</code> dürfen nicht daraus abgeschrieben werden</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 15 -->
+<section id="dateien">
+  <p class="eyebrow">15 — Lieferumfang</p>
+  <h2>Was ausgeliefert wird</h2>
+  <div class="h2rule"></div>
+  <p>Ein Archiv mit dem OpenSpec-Repository und drei eigenständigen Dokumenten. Das Repository wird als <code>openspec/</code> in das Projekt gelegt; Menschen und Coding-Agents lesen dieselbe Quelle.</p>
+  <div class="files">
+    <div class="file"><span class="dot"></span><div><b>openspec/project.md</b><span>Stack, Konventionen, Bandy-Glossar DE ⇄ EN, zu verifizierende Fakten</span></div></div>
+    <div class="file"><span class="dot"></span><div><b>openspec/AGENTS.md</b><span>Spec-Format, Delta-Konventionen, Arbeitsweise für Coding-Agents</span></div></div>
+    <div class="file"><span class="dot"></span><div><b>openspec/specs/ — 15 Capabilities</b><span>80 Anforderungen als SHALL-Sätze, belegt mit 100 GIVEN/WHEN/THEN-Szenarien</span></div></div>
+    <div class="file"><span class="dot"></span><div><b>openspec/changes/relaunch-bandy-bund/</b><span>proposal · design · tasks — 75 abhakbare Aufgaben über vier Slices</span></div></div>
+    <div class="file"><span class="dot"></span><div><b>docs/design-brief.md</b><span>Der 1-Shot-Prompt für Claude Design oder Figma Make — Tokens, Modul-Anatomie, Zustände, echte Inhalte</span></div></div>
+    <div class="file"><span class="dot"></span><div><b>docs/engineering-handbook.md</b><span>Repository-Struktur, Stack, Git-Flow, Pipelines, Umgebungen, Rollenmatrix, Betrieb</span></div></div>
+    <div class="file"><span class="dot"></span><div><b>docs/admin-manual.md</b><span>Redaktionshandbuch auf Deutsch — für Ehrenamtliche ohne technisches Vorwissen</span></div></div>
+  </div>
+</section>
+
+<footer>
+  <span>Blueprint für bandy-bund.de</span>
+  <span>Stand: 23. August 2026</span>
+  <span>Struktur nach OpenSpec</span>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
+  if(!links.length || !('IntersectionObserver' in window)) return;
+  var map = {};
+  links.forEach(function(a){ var el = document.querySelector(a.getAttribute('href')); if(el) map[el.id] = a; });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){ a.classList.remove('on'); });
+        if(map[e.target.id]) map[e.target.id].classList.add('on');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+})();
+</script>

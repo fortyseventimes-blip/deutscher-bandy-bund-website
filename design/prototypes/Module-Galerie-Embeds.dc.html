@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#07090B;color:#F4F7F9;font-family:Inter,system-ui,sans-serif;}
+a{color:#FF4D4D;text-decoration:none;}
+a:hover{color:#FFCC00;}
+::-webkit-scrollbar{height:6px;width:6px}
+::-webkit-scrollbar-thumb{background:#2A323A;border-radius:999px}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<section style="display:flex;flex-direction:column;gap:28px;padding:48px 56px 96px;background:#07090B">
+  <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;line-height:32px;text-transform:uppercase;letter-spacing:-.01em">Galerie, Lightbox &amp; Embeds</div>
+    <div style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Galerie <a href="#6a">6a</a> · Lightbox <a href="#6b">6b</a> · Video &amp; Karte mit Consent <a href="#6c">6c</a></div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:40px">
+
+    <!-- ===================== 6a GALERIE ===================== -->
+    <div id="6a" style="display:flex;flex-direction:column;gap:10px;width:1180px;flex:none">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">6a</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Gallery · Desktop-Raster, Mobile-Karussell, Leerzustand</span>
+      </div>
+
+      <div style="background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;padding:40px;display:flex;flex-direction:column;gap:40px">
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <span style="font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#FFCC00">Galerie</span>
+              <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:40px;line-height:44px;text-transform:uppercase;letter-spacing:-.01em;margin:0">Länderspiel in Ede</h2>
+            </div>
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">12 Bilder · Fotos: DBB / Jan Kowalski · 10.01.2027</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:220px 220px;gap:16px">
+            <div style="grid-column:span 2;grid-row:span 2;min-height:0;position:relative;border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+              <image-slot id="gal-lead" shape="rect" fit="cover" placeholder="Aufmacher, Querformat" style="height:100%"></image-slot>
+              <div style="position:absolute;inset:auto 0 0 0;padding:16px;background:linear-gradient(to top,rgba(11,13,15,.94),rgba(11,13,15,0))">
+                <span style="font:400 13px/20px Inter,sans-serif;color:#F4F7F9">Rieder verkürzt per Freischlag zum 1:2 — 62. Minute.</span>
+              </div>
+            </div>
+            <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="4">
+              <div style="min-height:0;position:relative;border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+                <image-slot id="{{ t.slot }}" shape="rect" fit="cover" placeholder="{{ t.ph }}" style="height:100%"></image-slot>
+                <sc-if value="{{ t.isLast }}">
+                  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(11,13,15,.72)">
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;line-height:34px;text-transform:uppercase">+ 8</span>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+            <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD;max-width:70ch">Klick öffnet die Lightbox bei dem gewählten Bild. Tastatur: Pfeiltasten blättern, Esc schließt, Tab bleibt innerhalb der Lightbox.</span>
+            <span style="border:1px solid #98A3AD;color:#F4F7F9;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Alle 12 Bilder</span>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Mobile · Karussell mit Randanschnitt</span>
+            <div style="width:390px;background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;padding:16px 0 20px;display:flex;flex-direction:column;gap:12px">
+              <div style="padding:0 16px;display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;line-height:24px;text-transform:uppercase">Bilder vom Spiel</span>
+                <span style="font:500 12px/16px Inter,sans-serif;color:#98A3AD;font-variant-numeric:tabular-nums">1 / 12</span>
+              </div>
+              <div style="display:flex;gap:12px;overflow-x:auto;padding:0 16px 4px">
+                <div style="flex:none;width:280px;height:190px;border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+                  <image-slot id="gal-m-1" shape="rect" fit="cover" placeholder="Aufmacher" style="height:100%"></image-slot>
+                </div>
+                <div style="flex:none;width:280px;height:190px;border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+                  <image-slot id="gal-m-2" shape="rect" fit="cover" placeholder="Jubel" style="height:100%"></image-slot>
+                </div>
+                <div style="flex:none;width:60px;height:190px;border-radius:12px;background:#14181C;border:1px solid #2A323A"></div>
+              </div>
+              <div style="padding:0 16px;display:flex;align-items:center;gap:6px">
+                <span style="width:20px;height:4px;border-radius:2px;background:#DD0000"></span>
+                <span style="width:8px;height:4px;border-radius:2px;background:#2A323A"></span>
+                <span style="width:8px;height:4px;border-radius:2px;background:#2A323A"></span>
+                <span style="width:8px;height:4px;border-radius:2px;background:#2A323A"></span>
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD;margin-left:auto">Wischen oder tippen</span>
+              </div>
+              <div style="padding:0 16px">
+                <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD">Rieder verkürzt per Freischlag zum 1:2 — 62. Minute.</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Noch keine Bilder</span>
+            <div style="width:520px;background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:16px">
+              <div style="border:1px dashed #2A323A;border-radius:12px;padding:40px;display:flex;flex-direction:column;align-items:flex-start;gap:12px">
+                <span style="width:10px;height:10px;border-radius:999px;background:#DD0000"></span>
+                <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:28px;line-height:32px;text-transform:uppercase;margin:0">Bilder folgen nach dem Spiel</h3>
+                <p style="font:400 16px/26px Inter,sans-serif;color:#98A3AD;margin:0;max-width:48ch">Unsere Fotografen laden die Galerie in der Regel am Abend des Spieltags hoch. Vereine können eigene Bilder einsenden.</p>
+                <span style="border:1px solid #98A3AD;color:#F4F7F9;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Bilder einsenden</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 6b LIGHTBOX ===================== -->
+    <div id="6b" style="display:flex;flex-direction:column;gap:10px;width:1180px;flex:none">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">6b</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Lightbox · Desktop offen, Mobile offen, Ladefehler</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="width:1180px;height:720px;background:rgba(7,9,11,.97);border:1px solid #2A323A;border-radius:12px;display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 24px;border-bottom:1px solid #2A323A">
+            <div style="display:flex;align-items:center;gap:14px">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;line-height:22px;text-transform:uppercase">Länderspiel in Ede</span>
+              <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD;font-variant-numeric:tabular-nums">Bild 3 von 12</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="width:44px;height:44px;border:1px solid #2A323A;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#98A3AD;font:400 16px Inter,sans-serif">↓</span>
+              <span style="width:44px;height:44px;border:1px solid #2A323A;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#98A3AD;font:400 16px Inter,sans-serif">⤢</span>
+              <span style="width:44px;height:44px;border:1px solid #98A3AD;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#F4F7F9;font:400 18px Inter,sans-serif">✕</span>
+            </div>
+          </div>
+
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:64px 1fr 64px;align-items:center;gap:16px;padding:24px">
+            <span style="width:56px;height:56px;border:1px solid #2A323A;border-radius:999px;display:flex;align-items:center;justify-content:center;color:#F4F7F9;font:400 22px Inter,sans-serif;justify-self:center">‹</span>
+            <div style="height:100%;min-height:0;border-radius:12px;overflow:hidden;background:#0B0D0F;border:1px solid #2A323A">
+              <image-slot id="lightbox-main" shape="rect" fit="contain" placeholder="Großansicht, vollständig sichtbar (contain)" style="height:100%"></image-slot>
+            </div>
+            <span style="width:56px;height:56px;border:1px solid #98A3AD;border-radius:999px;display:flex;align-items:center;justify-content:center;color:#F4F7F9;font:400 22px Inter,sans-serif;justify-self:center">›</span>
+          </div>
+
+          <div style="flex:none;padding:0 24px 20px;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap">
+              <span style="font:400 16px/26px Inter,sans-serif;max-width:80ch;text-wrap:pretty">Elias Leonhard Rieder trifft in der 62. Minute per Freischlag von der Strafraumkante zum 1:2.</span>
+              <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD;white-space:nowrap">Foto: DBB / Jan Kowalski</span>
+            </div>
+            <div style="display:flex;gap:10px;overflow-x:auto;padding-bottom:4px">
+              <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="8">
+                <div style="flex:none;width:96px;height:64px;border-radius:8px;overflow:hidden;background:#1D232A;border:2px solid;border-color:{{ t.border }}">
+                  <image-slot id="{{ t.slot }}" shape="rect" fit="cover" placeholder="{{ t.n }}" style="height:100%"></image-slot>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Mobile · Lightbox</span>
+            <div style="width:390px;height:640px;background:rgba(7,9,11,.98);border:1px solid #2A323A;border-radius:12px;display:flex;flex-direction:column;overflow:hidden">
+              <div style="height:56px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 16px;border-bottom:1px solid #2A323A">
+                <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD;font-variant-numeric:tabular-nums">3 / 12</span>
+                <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#F4F7F9;font:400 20px Inter,sans-serif">✕</span>
+              </div>
+              <div style="flex:1;min-height:0;padding:16px">
+                <div style="height:100%;min-height:0;border-radius:12px;overflow:hidden;background:#0B0D0F;border:1px solid #2A323A">
+                  <image-slot id="lightbox-m" shape="rect" fit="contain" placeholder="Großansicht" style="height:100%"></image-slot>
+                </div>
+              </div>
+              <div style="flex:none;padding:0 16px 20px;display:flex;flex-direction:column;gap:14px">
+                <span style="font:400 15px/24px Inter,sans-serif;text-wrap:pretty">Rieder trifft per Freischlag zum 1:2 — 62. Minute.</span>
+                <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">Foto: DBB / Jan Kowalski</span>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                  <span style="width:52px;height:52px;border:1px solid #2A323A;border-radius:999px;display:flex;align-items:center;justify-content:center;color:#F4F7F9;font:400 20px Inter,sans-serif">‹</span>
+                  <span style="font:400 12px/16px Inter,sans-serif;color:#98A3AD">Wischen zum Blättern</span>
+                  <span style="width:52px;height:52px;border:1px solid #98A3AD;border-radius:999px;display:flex;align-items:center;justify-content:center;color:#F4F7F9;font:400 20px Inter,sans-serif">›</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Bild lädt nicht</span>
+            <div style="width:520px;background:rgba(7,9,11,.97);border:1px solid #2A323A;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:20px">
+              <div style="height:260px;border:1px dashed #2A323A;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center">
+                <span style="width:10px;height:10px;border-radius:999px;background:#DD0000"></span>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;line-height:28px;text-transform:uppercase">Bild konnte nicht geladen werden</span>
+                <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD;max-width:40ch">Verbindung prüfen oder erneut versuchen. Die übrigen Bilder der Galerie sind weiter verfügbar.</span>
+              </div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <span style="border:1px solid #98A3AD;color:#F4F7F9;font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:13px 20px;border-radius:8px">Erneut versuchen</span>
+                <span style="border:1px solid #2A323A;color:#98A3AD;font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:13px 20px;border-radius:8px">Nächstes Bild</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 6c EMBEDS MIT CONSENT ===================== -->
+    <div id="6c" style="display:flex;flex-direction:column;gap:10px;width:1180px;flex:none">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">6c</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">VideoEmbed &amp; MapBlock · gesperrt, freigegeben, dauerhaft erlaubt</span>
+      </div>
+
+      <div style="background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;padding:40px;display:flex;flex-direction:column;gap:40px">
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">VideoEmbed · gesperrt (Standard)</span>
+            <div style="border:1px dashed #2A323A;border-radius:12px;background:#14181C;padding:40px 32px;display:flex;flex-direction:column;gap:16px;align-items:flex-start;min-height:280px;justify-content:center">
+              <span style="border-radius:999px;border:1px solid #2A323A;background:#1D232A;color:#C9E4F0;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:6px 12px">Externes Video · YouTube</span>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;line-height:30px;text-transform:uppercase">Highlights: Deutschland — Niederlande</span>
+              <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD;max-width:46ch;text-wrap:pretty">Beim Abspielen lädt YouTube Daten von Google-Servern und setzt Cookies. Ihre IP-Adresse wird dabei übertragen.</span>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <span style="background:#DD0000;color:#FFFFFF;font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:13px 20px;border-radius:8px">Video laden</span>
+                <span style="border:1px solid #98A3AD;color:#F4F7F9;font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:13px 20px;border-radius:8px">Immer erlauben</span>
+              </div>
+              <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD"><a href="#6c">Datenschutzerklärung</a> · Dauer 4:12 · Ohne Ton startbar</span>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">VideoEmbed · freigegeben</span>
+            <div style="border:1px solid #2A323A;border-radius:12px;overflow:hidden;background:#0B0D0F;display:flex;flex-direction:column;min-height:280px">
+              <div style="position:relative;flex:1;min-height:0;background:#1D232A">
+                <image-slot id="video-poster" shape="rect" fit="cover" placeholder="Videoposter 16:9" style="height:100%"></image-slot>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+                  <span style="width:72px;height:72px;border-radius:999px;background:rgba(221,0,0,.92);display:flex;align-items:center;justify-content:center;color:#FFFFFF;font:400 24px Inter,sans-serif">▶</span>
+                </div>
+                <div style="position:absolute;inset:auto 0 0 0;padding:14px 16px;background:linear-gradient(to top,rgba(11,13,15,.94),rgba(11,13,15,0));display:flex;align-items:center;justify-content:space-between;gap:12px">
+                  <span style="font:500 13px/18px Inter,sans-serif;font-variant-numeric:tabular-nums">0:00 / 4:12</span>
+                  <span style="font:500 12px/16px Inter,sans-serif;color:#98A3AD">Untertitel DE verfügbar</span>
+                </div>
+              </div>
+              <div style="flex:none;padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #2A323A">
+                <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD">Freigabe gilt für diese Seite.</span>
+                <span style="font:600 13px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#FF4D4D">Freigabe widerrufen</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">MapBlock · gesperrt mit Textfallback</span>
+            <div style="border:1px solid #2A323A;border-radius:12px;background:#14181C;overflow:hidden;display:flex;flex-direction:column">
+              <div style="border-bottom:1px dashed #2A323A;padding:32px 24px;display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+                <span style="border-radius:999px;border:1px solid #2A323A;background:#1D232A;color:#C9E4F0;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:6px 12px">Karte · OpenStreetMap</span>
+                <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD;max-width:44ch;text-wrap:pretty">Die Karte lädt Kartenkacheln von OpenStreetMap. Ohne Zustimmung zeigen wir die Anfahrt als Text.</span>
+                <div style="display:flex;gap:10px;flex-wrap:wrap">
+                  <span style="background:#DD0000;color:#FFFFFF;font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:13px 20px;border-radius:8px">Karte laden</span>
+                  <span style="border:1px solid #98A3AD;color:#F4F7F9;font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:13px 20px;border-radius:8px">In Karten-App öffnen</span>
+                </div>
+              </div>
+              <div style="padding:20px 24px;display:flex;flex-direction:column;gap:10px">
+                <span style="font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#98A3AD">Anfahrt als Text</span>
+                <span style="font:500 15px/24px Inter,sans-serif">Eisstadion Frankfurt · Am Bornheimer Hang 4 · 60385 Frankfurt am Main</span>
+                <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD;text-wrap:pretty">U7 bis Eissporthalle/Festplatz, 3 Minuten Fußweg. Parkplätze am Ratsweg, 8 € pro Spieltag.</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">MapBlock · geladen</span>
+            <div style="border:1px solid #2A323A;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+              <div style="position:relative;height:240px;background:#1D232A">
+                <image-slot id="map-tiles" shape="rect" fit="cover" placeholder="Kartenausschnitt Frankfurt" style="height:100%"></image-slot>
+                <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;gap:4px">
+                  <span style="background:#DD0000;color:#FFFFFF;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:6px 10px;border-radius:6px;white-space:nowrap">Eisstadion</span>
+                  <span style="width:2px;height:14px;background:#DD0000"></span>
+                </div>
+                <div style="position:absolute;right:12px;top:12px;display:flex;flex-direction:column;border:1px solid #2A323A;border-radius:8px;overflow:hidden;background:rgba(11,13,15,.88)">
+                  <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:#F4F7F9;font:400 18px Inter,sans-serif;border-bottom:1px solid #2A323A">+</span>
+                  <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:#F4F7F9;font:400 18px Inter,sans-serif">−</span>
+                </div>
+              </div>
+              <div style="padding:16px 20px;background:#14181C;border-top:1px solid #2A323A;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+                <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD">Kartendaten © OpenStreetMap-Mitwirkende</span>
+                <span style="font:600 13px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#FF4D4D">Route planen →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">Consent-Verwaltung · Zeile pro Dienst</span>
+          <div style="border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+            <sc-for list="{{ services }}" as="s" hint-placeholder-count="4">
+              <div style="display:grid;grid-template-columns:1fr 200px 120px;align-items:center;gap:24px;padding:18px 24px;border-bottom:1px solid #2A323A;background:{{ s.bg }}">
+                <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;line-height:22px;text-transform:uppercase">{{ s.name }}</span>
+                  <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD;text-wrap:pretty">{{ s.desc }}</span>
+                </div>
+                <span style="font:500 13px/18px Inter,sans-serif;color:{{ s.stateColor }}">{{ s.state }}</span>
+                <span style="justify-self:end;width:52px;height:30px;border-radius:999px;background:{{ s.trackBg }};border:1px solid {{ s.trackBorder }};display:flex;align-items:center;padding:3px;justify-content:{{ s.knobSide }}">
+                  <span style="width:22px;height:22px;border-radius:999px;background:{{ s.knobBg }}"></span>
+                </span>
+              </div>
+            </sc-for>
+            <div style="padding:20px 24px;background:#14181C;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+              <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD">Änderungen gelten sofort und sind jederzeit über „Cookie-Einstellungen" im Fuß widerrufbar.</span>
+              <span style="background:#DD0000;color:#FFFFFF;font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:13px 20px;border-radius:8px;white-space:nowrap">Auswahl speichern</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;allowAll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Consent&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const on = this.props.allowAll ?? false;
+    const svc = (name, desc, allowed, locked) => ({
+      name, desc,
+      state: locked ? "Immer aktiv · technisch notwendig" : allowed ? "Erlaubt · lädt automatisch" : "Gesperrt · Nachfrage pro Einbettung",
+      stateColor: locked ? "#98A3AD" : allowed ? "#2FBF71" : "#FFCC00",
+      bg: allowed || locked ? "#1D232A" : "transparent",
+      trackBg: locked ? "#2A323A" : allowed ? "#2FBF71" : "#14181C",
+      trackBorder: locked ? "#2A323A" : allowed ? "#2FBF71" : "#2A323A",
+      knobBg: locked ? "#98A3AD" : allowed ? "#0B0D0F" : "#98A3AD",
+      knobSide: locked || allowed ? "flex-end" : "flex-start"
+    });
+
+    return {
+      tiles: [
+        { slot: "gal-2", ph: "Jubel", isLast: false },
+        { slot: "gal-3", ph: "Zweikampf", isLast: false },
+        { slot: "gal-4", ph: "Trainerbank", isLast: false },
+        { slot: "gal-5", ph: "Publikum", isLast: true }
+      ],
+      thumbs: [1, 2, 3, 4, 5, 6, 7, 8].map(n => ({
+        n: String(n), slot: "lb-thumb-" + n, border: n === 3 ? "#FFCC00" : "#2A323A"
+      })),
+      services: [
+        svc("Notwendig", "Sitzung, Spracheinstellung, Cookie-Entscheidung.", true, true),
+        svc("Karten (OpenStreetMap)", "Kartenkacheln für Spielorte und Anfahrt.", on, false),
+        svc("Video (YouTube)", "Highlight-Videos und Interviews.", on, false),
+        svc("Statistik (selbst gehostet)", "Anonyme Seitenaufrufe ohne Cookies.", true, false)
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>
