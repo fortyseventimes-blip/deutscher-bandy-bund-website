@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#07090B;color:#F4F7F9;font-family:Inter,system-ui,sans-serif;}
+a{color:#FF4D4D;text-decoration:none;}
+a:hover{color:#FFCC00;}
+::-webkit-scrollbar{height:6px;width:6px}
+::-webkit-scrollbar-thumb{background:#2A323A;border-radius:999px}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<section style="display:flex;flex-direction:column;gap:28px;padding:48px 56px 96px;background:#07090B">
+  <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;line-height:32px;text-transform:uppercase;letter-spacing:-.01em">Spiel-Detailseite &amp; MatchRoster</div>
+    <div style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Desktop <a href="#4a">4a</a> · Mobile <a href="#4b">4b</a> · Scoreboard-Zustände <a href="#4c">4c</a></div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:40px">
+
+    <!-- ===================== 4a DESKTOP ===================== -->
+    <div id="4a" style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">4a</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Spiel-Detailseite · Desktop 1440 · Zustand: {{ stateLabel }}</span>
+      </div>
+
+      <div style="width:1440px;background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+
+        <div style="height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 80px;background:rgba(20,24,28,.92);border-bottom:1px solid #2A323A">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:36px;height:36px;border-radius:999px;background:#14181C;border:2px solid #C9E4F0;display:flex;align-items:center;justify-content:center;position:relative">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;color:#FFCC00">DBB</span>
+              <span style="position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:999px;background:#DD0000"></span>
+            </div>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;line-height:22px;text-transform:uppercase;letter-spacing:.02em">Bandy-Bund</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:28px">
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD">Aktuelles</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD">Mannschaften</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#F4F7F9;padding-bottom:2px;border-bottom:2px solid #DD0000">Spielplan</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD">Turniere</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD">Verband</span>
+            <span style="font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#98A3AD">Kontakt</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:44px;height:44px;border-radius:8px;border:1px solid #2A323A;display:flex;align-items:center;justify-content:center;font:500 14px Inter,sans-serif;color:#98A3AD">⌕</div>
+            <div style="display:flex;border:1px solid #2A323A;border-radius:999px;overflow:hidden">
+              <span style="font:600 13px/16px Inter,sans-serif;letter-spacing:.06em;padding:8px 12px;background:#1D232A;color:#F4F7F9">DE</span>
+              <span style="font:600 13px/16px Inter,sans-serif;letter-spacing:.06em;padding:8px 12px;color:#98A3AD">EN</span>
+            </div>
+            <div style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px;border-radius:8px">Newsletter</div>
+          </div>
+        </div>
+
+        <!-- Scoreboard -->
+        <div style="position:relative;background:#14181C;border-bottom:1px solid #2A323A;overflow:hidden">
+          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 80% at 50% 0%, rgba(221,0,0,.14), rgba(221,0,0,0) 72%)"></div>
+          <div style="position:relative;max-width:1280px;margin:0 auto;padding:32px 80px 48px;display:flex;flex-direction:column;gap:28px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+              <div style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#98A3AD">
+                <span>Start</span><span style="color:#DD0000">·</span><span>Spielplan</span><span style="color:#DD0000">·</span><span style="color:#F4F7F9">Deutschland — Niederlande</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="border-radius:999px;border:1px solid #2A323A;background:#1D232A;color:#C9E4F0;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:6px 12px">Länderspiel · Herren</span>
+                <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD;font-variant-numeric:tabular-nums">So 10.01.2027 · 13:00 · Ede (NED)</span>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 320px 1fr;align-items:center;gap:32px">
+              <div style="display:flex;align-items:center;gap:20px;justify-content:flex-end">
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:44px;line-height:46px;text-transform:uppercase;letter-spacing:-.01em">Deutschland</span>
+                  <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Heim · FIB-Rang 11</span>
+                </div>
+                <div style="width:72px;height:72px;border-radius:999px;background:#0B0D0F;border:2px solid #FFCC00;display:flex;align-items:center;justify-content:center;flex:none">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#FFCC00">GER</span>
+                </div>
+              </div>
+
+              <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+                <sc-if value="{{ isLive }}">
+                  <span style="display:flex;align-items:center;gap:8px;border-radius:999px;background:#DD0000;color:#FFFFFF;font:600 12px/15px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;padding:7px 14px">
+                    <span style="width:7px;height:7px;border-radius:999px;background:#FFFFFF"></span>Live · {{ minute }}
+                  </span>
+                </sc-if>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:{{ scoreSize }};line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:{{ scoreColor }};text-align:center">{{ scoreBig }}</span>
+                <span style="font:600 13px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:{{ statusColor }};text-align:center">{{ statusText }}</span>
+                <span style="font:400 13px/18px Inter,sans-serif;color:#98A3AD;font-variant-numeric:tabular-nums">{{ halftime }}</span>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:20px">
+                <div style="width:72px;height:72px;border-radius:999px;background:#0B0D0F;border:2px solid #C9E4F0;display:flex;align-items:center;justify-content:center;flex:none">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#C9E4F0">NED</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:44px;line-height:46px;text-transform:uppercase;letter-spacing:-.01em">Niederlande</span>
+                  <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Gast · FIB-Rang 9</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
+              <sc-if value="{{ showTickets }}">
+                <span style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Tickets ab 14 €</span>
+              </sc-if>
+              <span style="border:1px solid #98A3AD;color:#F4F7F9;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">{{ secondaryCta }}</span>
+              <span style="border:1px solid #2A323A;color:#98A3AD;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Zum Kalender hinzufügen</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div style="background:#0B0D0F;border-bottom:1px solid #2A323A">
+          <div style="max-width:1280px;margin:0 auto;padding:0 80px;display:flex;gap:32px">
+            <span style="font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#F4F7F9;padding:20px 0;border-bottom:2px solid #DD0000">Übersicht</span>
+            <span style="font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#98A3AD;padding:20px 0">Aufstellung</span>
+            <span style="font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#98A3AD;padding:20px 0">Ticker</span>
+            <span style="font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#98A3AD;padding:20px 0">Statistik</span>
+            <span style="font:600 14px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#98A3AD;padding:20px 0">Galerie</span>
+          </div>
+        </div>
+
+        <!-- Torfolge + Statistik -->
+        <div style="padding:64px 80px;background:#0B0D0F">
+          <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:start">
+            <div style="display:flex;flex-direction:column;gap:24px">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <span style="font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#FFCC00">{{ timelineKicker }}</span>
+                <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:40px;line-height:44px;text-transform:uppercase;letter-spacing:-.01em;margin:0">{{ timelineTitle }}</h2>
+              </div>
+              <div style="display:flex;flex-direction:column">
+                <sc-for list="{{ events }}" as="e" hint-placeholder-count="6">
+                  <div style="display:grid;grid-template-columns:64px 20px 1fr;gap:20px;align-items:start;padding:16px 0;border-bottom:1px solid #2A323A">
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;line-height:24px;font-variant-numeric:tabular-nums;color:{{ e.minColor }};text-align:right">{{ e.min }}</span>
+                    <span style="display:flex;justify-content:center;padding-top:4px">
+                      <span style="width:12px;height:12px;border-radius:3px;background:{{ e.dot }}"></span>
+                    </span>
+                    <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+                      <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+                        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;line-height:26px;text-transform:uppercase;color:{{ e.titleColor }}">{{ e.title }}</span>
+                        <span style="font:600 13px/18px Inter,sans-serif;font-variant-numeric:tabular-nums;color:#98A3AD">{{ e.running }}</span>
+                      </div>
+                      <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD;text-wrap:pretty">{{ e.detail }}</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:14px;padding-top:8px">
+                <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:28px;line-height:32px;text-transform:uppercase;margin:0">Spielbericht</h3>
+                <p style="font:400 18px/30px Inter,sans-serif;margin:0;max-width:66ch;text-wrap:pretty">{{ reportLead }}</p>
+                <p style="font:400 18px/30px Inter,sans-serif;color:#98A3AD;margin:0;max-width:66ch;text-wrap:pretty">Auf dem Naturbahn-Feld in Ede fand die deutsche Mannschaft erst nach der Pause Zugriff. Kapitän Rieder verkürzte per Freischlag, den Ausgleich erzielte Fichter drei Minuten vor Schluss nach Vorarbeit von Framgard.</p>
+                <div style="border-left:3px solid #DD0000;padding:4px 0 4px 20px;max-width:66ch">
+                  <span style="font:400 18px/30px Inter,sans-serif">„Wir haben 25 Minuten gebraucht, um das Feld zu lesen. Danach war es unser Spiel." — Franz von Schoultz, Cheftrainer</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:32px">
+              <div style="background:#14181C;border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+                <div style="padding:18px 24px;border-bottom:1px solid #2A323A;display:flex;align-items:center;justify-content:space-between;gap:12px">
+                  <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#98A3AD">Statistik</span>
+                  <span style="font:500 12px/16px Inter,sans-serif;color:#98A3AD">GER · NED</span>
+                </div>
+                <div style="padding:24px;display:flex;flex-direction:column;gap:20px">
+                  <sc-for list="{{ stats }}" as="s" hint-placeholder-count="5">
+                    <div style="display:flex;flex-direction:column;gap:8px">
+                      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+                        <span style="font:600 15px/20px Inter,sans-serif;font-variant-numeric:tabular-nums;color:#FFCC00">{{ s.home }}</span>
+                        <span style="font:500 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#98A3AD">{{ s.label }}</span>
+                        <span style="font:600 15px/20px Inter,sans-serif;font-variant-numeric:tabular-nums;color:#C9E4F0">{{ s.away }}</span>
+                      </div>
+                      <div style="display:flex;gap:3px;height:6px">
+                        <span style="flex:{{ s.homeFlex }};background:#FFCC00;border-radius:3px"></span>
+                        <span style="flex:{{ s.awayFlex }};background:#2A323A;border-radius:3px"></span>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+
+              <div style="background:#14181C;border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+                <div style="padding:18px 24px;border-bottom:1px solid #2A323A">
+                  <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#98A3AD">Spielinfo</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;border-bottom:1px solid #2A323A">
+                  <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD">Spielort</span>
+                  <span style="font:500 15px/24px Inter,sans-serif;text-align:right">De Zandkuil, Ede</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;border-bottom:1px solid #2A323A;background:#1D232A">
+                  <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD">Schiedsrichter</span>
+                  <span style="font:500 15px/24px Inter,sans-serif;text-align:right">M. Lindqvist (SWE)</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;border-bottom:1px solid #2A323A">
+                  <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD">Zuschauer</span>
+                  <span style="font:500 15px/24px Inter,sans-serif;font-variant-numeric:tabular-nums">{{ attendance }}</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;background:#1D232A">
+                  <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD">Eis / Wetter</span>
+                  <span style="font:500 15px/24px Inter,sans-serif;text-align:right">−4 °C, Naturbahn</span>
+                </div>
+                <div style="padding:20px 24px;border-top:1px solid #2A323A;display:flex;flex-direction:column;gap:12px">
+                  <div style="height:120px;border:1px dashed #2A323A;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:12px">
+                    <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#C9E4F0">Karte deaktiviert</span>
+                    <span style="font:400 13px/18px Inter,sans-serif;color:#98A3AD">Die Anfahrtskarte lädt Daten von OpenStreetMap. Erst nach Zustimmung.</span>
+                  </div>
+                  <div style="border:1px solid #98A3AD;color:#F4F7F9;font:600 13px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px;border-radius:8px;text-align:center">Karte laden</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MatchRoster -->
+        <div style="padding:80px;background:#14181C;border-top:1px solid #2A323A">
+          <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:32px">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <span style="font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#FFCC00">MatchRoster</span>
+                <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:40px;line-height:44px;text-transform:uppercase;letter-spacing:-.01em;margin:0">{{ rosterTitle }}</h2>
+              </div>
+              <div style="display:flex;gap:20px;flex-wrap:wrap">
+                <span style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#98A3AD"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:#FFCC00">C</span>Kapitän</span>
+                <span style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#98A3AD"><span style="width:10px;height:10px;border-radius:2px;background:#2FBF71"></span>Tor</span>
+                <span style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#98A3AD"><span style="width:10px;height:10px;border-radius:2px;background:#C9E4F0"></span>Vorlage</span>
+                <span style="display:flex;align-items:center;gap:8px;font:500 13px/18px Inter,sans-serif;color:#98A3AD"><span style="width:10px;height:10px;border-radius:2px;background:#FFCC00"></span>Strafzeit</span>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+              <sc-for list="{{ rosters }}" as="t" hint-placeholder-count="2">
+                <div style="background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+                  <div style="display:flex;align-items:center;gap:14px;padding:20px 24px;border-bottom:1px solid #2A323A;border-top:3px solid;border-top-color:{{ t.accent }};background:#1D232A">
+                    <div style="width:44px;height:44px;border-radius:999px;background:#0B0D0F;border:2px solid;border-color:{{ t.accent }};display:flex;align-items:center;justify-content:center;flex:none">
+                      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;color:{{ t.accent }}">{{ t.code }}</span>
+                    </div>
+                    <div style="display:flex;flex-direction:column;min-width:0">
+                      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;line-height:28px;text-transform:uppercase">{{ t.name }}</span>
+                      <span style="font:500 12px/16px Inter,sans-serif;color:#98A3AD">{{ t.coach }}</span>
+                    </div>
+                    <span style="margin-left:auto;font:500 12px/16px Inter,sans-serif;color:#98A3AD;text-align:right;white-space:nowrap">{{ t.formation }}</span>
+                  </div>
+                  <sc-for list="{{ t.groups }}" as="g" hint-placeholder-count="4">
+                    <div style="display:flex;flex-direction:column">
+                      <div style="padding:10px 24px;background:#14181C;border-bottom:1px solid #2A323A">
+                        <span style="font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">{{ g.label }}</span>
+                      </div>
+                      <sc-for list="{{ g.players }}" as="p" hint-placeholder-count="3">
+                        <div style="display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:14px;padding:12px 24px;border-bottom:1px solid #2A323A;background:{{ p.bg }}">
+                          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;line-height:24px;font-variant-numeric:tabular-nums;color:{{ p.noColor }};text-align:right">{{ p.no }}</span>
+                          <span style="display:flex;align-items:baseline;gap:8px;min-width:0">
+                            <span style="font:400 13px/18px Inter,sans-serif;color:#98A3AD;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:96px">{{ p.first }}</span>
+                            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;line-height:22px;text-transform:uppercase;overflow-wrap:anywhere">{{ p.last }}</span>
+                            <sc-if value="{{ p.isCaptain }}">
+                              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;line-height:18px;color:#FFCC00">C</span>
+                            </sc-if>
+                          </span>
+                          <span style="display:flex;align-items:center;gap:6px;justify-self:end">
+                            <sc-for list="{{ p.marks }}" as="m" hint-placeholder-count="0">
+                              <span style="border-radius:4px;background:{{ m.bg }};color:{{ m.fg }};font:600 10px/13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:4px 7px;white-space:nowrap">{{ m.text }}</span>
+                            </sc-for>
+                          </span>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-for>
+                  <div style="padding:16px 24px;display:flex;flex-direction:column;gap:8px">
+                    <span style="font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#98A3AD">Bank</span>
+                    <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD;text-wrap:pretty">{{ t.bench }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <!-- Galerie -->
+        <div style="padding:80px;background:#0B0D0F;border-top:1px solid #2A323A">
+          <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
+              <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:40px;line-height:44px;text-transform:uppercase;letter-spacing:-.01em;margin:0">Bilder vom Spiel</h2>
+              <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Fotos: DBB / Jan Kowalski · 12 Bilder</span>
+            </div>
+            <div style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:340px;gap:16px">
+              <div style="height:340px;min-height:0;border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+                <image-slot id="match-gal-1" shape="rect" fit="cover" placeholder="Schlüsselmoment, Querformat" style="height:100%"></image-slot>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:16px;height:340px;min-height:0">
+                <div style="height:162px;min-height:0;border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+                  <image-slot id="match-gal-2" shape="rect" fit="cover" placeholder="Jubel" style="height:100%"></image-slot>
+                </div>
+                <div style="height:162px;min-height:0;border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+                  <image-slot id="match-gal-3" shape="rect" fit="cover" placeholder="Zweikampf" style="height:100%"></image-slot>
+                </div>
+              </div>
+              <div style="position:relative;height:340px;min-height:0;border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+                <image-slot id="match-gal-4" shape="rect" fit="cover" placeholder="Publikum" style="height:100%"></image-slot>
+                <div style="position:absolute;inset:auto 0 0 0;padding:16px;background:linear-gradient(to top,rgba(11,13,15,.92),rgba(11,13,15,0));display:flex;justify-content:flex-end">
+                  <span style="border-radius:8px;background:rgba(11,13,15,.8);border:1px solid #2A323A;color:#F4F7F9;font:600 13px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:10px 14px">+ 8 Bilder</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nächstes Spiel -->
+        <div style="padding:64px 80px;background:#14181C;border-top:1px solid #2A323A">
+          <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#FFCC00">Nächstes Spiel</span>
+              <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:36px;line-height:40px;text-transform:uppercase;letter-spacing:-.01em;margin:0">Deutschland — Finnland</h2>
+              <span style="font:400 17px/28px Inter,sans-serif;color:#98A3AD;font-variant-numeric:tabular-nums">Sa 16.01.2027 · 14:00 · Eisstadion Frankfurt · WM-Qualifikation</span>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <div style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px;white-space:nowrap">Tickets sichern</div>
+              <div style="border:1px solid #98A3AD;color:#F4F7F9;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px;white-space:nowrap">Zum Spielplan</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:28px 80px;background:#0B0D0F;border-top:1px solid #2A323A;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+          <span style="font:400 13px/18px Inter,sans-serif;color:#98A3AD">© 2027 Deutscher Bandy-Bund e.V.</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 16px">
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Impressum</span>
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Datenschutz</span>
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Barrierefreiheitserklärung</span>
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Cookie-Einstellungen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 4b MOBILE ===================== -->
+    <div id="4b" style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">4b</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Spiel-Detail · Mobile 390</span>
+      </div>
+
+      <div style="width:390px;background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;overflow:hidden">
+        <div style="height:56px;display:flex;align-items:center;gap:12px;padding:0 8px 0 16px;background:rgba(20,24,28,.92);border-bottom:1px solid #2A323A">
+          <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#F4F7F9;font:400 20px Inter,sans-serif">‹</div>
+          <span style="font:600 13px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#98A3AD">Spielplan</span>
+        </div>
+
+        <div style="position:relative;background:#14181C;border-bottom:1px solid #2A323A;overflow:hidden">
+          <div style="position:absolute;inset:0;background:radial-gradient(80% 70% at 50% 0%, rgba(221,0,0,.16), rgba(221,0,0,0) 72%)"></div>
+          <div style="position:relative;padding:20px 16px 24px;display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+              <span style="border-radius:999px;border:1px solid #2A323A;background:#1D232A;color:#C9E4F0;font:600 10px/13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:5px 10px">Länderspiel · Herren</span>
+              <span style="font:500 12px/16px Inter,sans-serif;color:#98A3AD;font-variant-numeric:tabular-nums">So 10.01.27 · 13:00</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+                <div style="width:52px;height:52px;border-radius:999px;background:#0B0D0F;border:2px solid #FFCC00;display:flex;align-items:center;justify-content:center">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:#FFCC00">GER</span>
+                </div>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;line-height:20px;text-transform:uppercase;text-align:center">Deutschland</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+                <sc-if value="{{ isLive }}">
+                  <span style="display:flex;align-items:center;gap:6px;border-radius:999px;background:#DD0000;color:#FFFFFF;font:600 10px/13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;padding:5px 10px">
+                    <span style="width:5px;height:5px;border-radius:999px;background:#FFFFFF"></span>{{ minute }}
+                  </span>
+                </sc-if>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:{{ scoreSizeM }};line-height:1;font-variant-numeric:tabular-nums;color:{{ scoreColor }};text-align:center">{{ scoreBig }}</span>
+                <span style="font:600 11px/15px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:{{ statusColor }};text-align:center">{{ statusText }}</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+                <div style="width:52px;height:52px;border-radius:999px;background:#0B0D0F;border:2px solid #C9E4F0;display:flex;align-items:center;justify-content:center">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:#C9E4F0">NED</span>
+                </div>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;line-height:20px;text-transform:uppercase;text-align:center">Niederlande</span>
+              </div>
+            </div>
+            <span style="font:400 13px/18px Inter,sans-serif;color:#98A3AD;text-align:center">De Zandkuil, Ede (NED) · {{ halftime }}</span>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-if value="{{ showTickets }}">
+                <div style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px;border-radius:8px;text-align:center">Tickets ab 14 €</div>
+              </sc-if>
+              <div style="border:1px solid #98A3AD;color:#F4F7F9;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px;border-radius:8px;text-align:center">{{ secondaryCta }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:8px;overflow-x:auto;padding:14px 16px;border-bottom:1px solid #2A323A">
+          <span style="flex:none;border-radius:999px;background:#F4F7F9;color:#0B0D0F;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px">Übersicht</span>
+          <span style="flex:none;border-radius:999px;border:1px solid #2A323A;color:#98A3AD;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px">Aufstellung</span>
+          <span style="flex:none;border-radius:999px;border:1px solid #2A323A;color:#98A3AD;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px">Ticker</span>
+          <span style="flex:none;border-radius:999px;border:1px solid #2A323A;color:#98A3AD;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px">Statistik</span>
+        </div>
+
+        <div style="padding:24px 16px;display:flex;flex-direction:column;gap:14px">
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;line-height:30px;text-transform:uppercase;margin:0">{{ timelineTitle }}</h2>
+          <sc-for list="{{ events }}" as="e" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:44px 12px 1fr;gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid #2A323A">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;line-height:20px;font-variant-numeric:tabular-nums;color:{{ e.minColor }};text-align:right">{{ e.min }}</span>
+              <span style="width:10px;height:10px;border-radius:3px;background:{{ e.dot }};margin-top:5px"></span>
+              <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                <span style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;line-height:22px;text-transform:uppercase;color:{{ e.titleColor }}">{{ e.title }}</span>
+                  <span style="font:600 12px/16px Inter,sans-serif;font-variant-numeric:tabular-nums;color:#98A3AD">{{ e.running }}</span>
+                </span>
+                <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD;text-wrap:pretty">{{ e.detail }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:8px 16px 28px;display:flex;flex-direction:column;gap:12px">
+          <p style="font:400 17px/27px Inter,sans-serif;margin:0;text-wrap:pretty">{{ reportLead }}</p>
+          <span style="font:600 13px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#FF4D4D">Ganzen Bericht lesen →</span>
+        </div>
+
+        <!-- MatchRoster mobil -->
+        <div style="background:#14181C;border-top:1px solid #2A323A;padding:28px 16px 32px;display:flex;flex-direction:column;gap:16px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#FFCC00">MatchRoster</span>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;line-height:30px;text-transform:uppercase;margin:0">{{ rosterTitle }}</h2>
+          <div style="display:flex;gap:8px">
+            <span style="flex:1;border-radius:999px;background:#F4F7F9;color:#0B0D0F;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:13px;text-align:center">Deutschland</span>
+            <span style="flex:1;border-radius:999px;border:1px solid #2A323A;color:#98A3AD;font:600 13px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:13px;text-align:center">Niederlande</span>
+          </div>
+          <div style="background:#0B0D0F;border:1px solid #2A323A;border-top:3px solid #FFCC00;border-radius:0 0 12px 12px;overflow:hidden">
+            <sc-for list="{{ homeGroups }}" as="g" hint-placeholder-count="4">
+              <div style="display:flex;flex-direction:column">
+                <div style="padding:9px 14px;background:#14181C;border-bottom:1px solid #2A323A">
+                  <span style="font:600 10px/13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">{{ g.label }}</span>
+                </div>
+                <sc-for list="{{ g.players }}" as="p" hint-placeholder-count="3">
+                  <div style="display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #2A323A;background:{{ p.bg }}">
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:19px;line-height:20px;font-variant-numeric:tabular-nums;color:{{ p.noColor }};text-align:right">{{ p.no }}</span>
+                    <span style="display:flex;align-items:baseline;gap:6px;min-width:0">
+                      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;line-height:20px;text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.last }}</span>
+                      <sc-if value="{{ p.isCaptain }}">
+                        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;color:#FFCC00">C</span>
+                      </sc-if>
+                    </span>
+                    <span style="display:flex;gap:4px;justify-self:end">
+                      <sc-for list="{{ p.marks }}" as="m" hint-placeholder-count="0">
+                        <span style="border-radius:4px;background:{{ m.bg }};color:{{ m.fg }};font:600 9px/12px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:4px 6px;white-space:nowrap">{{ m.text }}</span>
+                      </sc-for>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
+            <div style="padding:14px;display:flex;flex-direction:column;gap:6px">
+              <span style="font:600 10px/13px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#98A3AD">Bank</span>
+              <span style="font:400 13px/20px Inter,sans-serif;color:#98A3AD">{{ homeBench }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:28px 16px;border-top:1px solid #2A323A;display:flex;flex-direction:column;gap:16px">
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;line-height:30px;text-transform:uppercase;margin:0">Statistik</h2>
+          <sc-for list="{{ stats }}" as="s" hint-placeholder-count="5">
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+                <span style="font:600 14px/18px Inter,sans-serif;font-variant-numeric:tabular-nums;color:#FFCC00">{{ s.home }}</span>
+                <span style="font:500 11px/15px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#98A3AD">{{ s.label }}</span>
+                <span style="font:600 14px/18px Inter,sans-serif;font-variant-numeric:tabular-nums;color:#C9E4F0">{{ s.away }}</span>
+              </div>
+              <div style="display:flex;gap:3px;height:6px">
+                <span style="flex:{{ s.homeFlex }};background:#FFCC00;border-radius:3px"></span>
+                <span style="flex:{{ s.awayFlex }};background:#2A323A;border-radius:3px"></span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:24px 16px;background:#14181C;border-top:1px solid #2A323A;display:flex;flex-direction:column;gap:12px">
+          <div style="height:180px;border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+            <image-slot id="match-gal-m-1" shape="rect" fit="cover" placeholder="Schlüsselmoment"></image-slot>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;height:110px">
+            <div style="border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+              <image-slot id="match-gal-m-2" shape="rect" fit="cover" placeholder="Jubel"></image-slot>
+            </div>
+            <div style="position:relative;border-radius:12px;overflow:hidden;background:#1D232A;border:1px solid #2A323A">
+              <image-slot id="match-gal-m-3" shape="rect" fit="cover" placeholder="Publikum"></image-slot>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(11,13,15,.7)">
+                <span style="font:600 13px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em">+ 10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:24px 16px;background:#0B0D0F;border-top:1px solid #2A323A;display:flex;flex-direction:column;gap:10px">
+          <span style="font:400 13px/18px Inter,sans-serif;color:#98A3AD">© 2027 Deutscher Bandy-Bund e.V.</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 14px">
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Impressum</span>
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Datenschutz</span>
+            <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Barrierefreiheitserklärung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 4c SCOREBOARD-ZUSTÄNDE ===================== -->
+    <div id="4c" style="display:flex;flex-direction:column;gap:10px;width:900px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font:600 12px/16px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0F;background:#FFCC00;padding:4px 8px;border-radius:4px">4c</span>
+        <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD">Scoreboard-Zustände · Vorbericht / Live / Verlegt / Aufstellung offen</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <sc-for list="{{ boards }}" as="b" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">{{ b.caption }}</span>
+            <div style="background:#14181C;border:1px solid #2A323A;border-top:3px solid;border-top-color:{{ b.accent }};border-radius:0 0 12px 12px;padding:28px 32px;display:flex;flex-direction:column;gap:20px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+                <span style="border-radius:999px;border:1px solid #2A323A;background:#1D232A;color:#C9E4F0;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:6px 12px">{{ b.comp }}</span>
+                <span style="font:500 13px/18px Inter,sans-serif;color:#98A3AD;font-variant-numeric:tabular-nums">{{ b.when }}</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 220px 1fr;align-items:center;gap:24px">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:32px;line-height:34px;text-transform:uppercase;text-align:right;color:{{ b.homeColor }}">{{ b.home }}</span>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+                  <sc-if value="{{ b.isLive }}">
+                    <span style="display:flex;align-items:center;gap:7px;border-radius:999px;background:#DD0000;color:#FFFFFF;font:600 11px/14px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;padding:6px 12px">
+                      <span style="width:6px;height:6px;border-radius:999px;background:#FFFFFF"></span>Live · {{ b.minute }}
+                    </span>
+                  </sc-if>
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:{{ b.size }};line-height:1;font-variant-numeric:tabular-nums;color:{{ b.scoreColor }};text-align:center">{{ b.score }}</span>
+                  <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:{{ b.statusColor }};text-align:center">{{ b.status }}</span>
+                </div>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:32px;line-height:34px;text-transform:uppercase;color:{{ b.awayColor }}">{{ b.away }}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-top:4px;border-top:1px solid #2A323A">
+                <span style="font:400 15px/24px Inter,sans-serif;color:#98A3AD;flex:1;min-width:280px;text-wrap:pretty">{{ b.note }}</span>
+                <span style="border:1px solid #98A3AD;color:#F4F7F9;font:600 13px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 18px;border-radius:8px;white-space:nowrap">{{ b.cta }}</span>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font:600 12px/16px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#C9E4F0">MatchRoster: Aufstellung noch nicht gemeldet</span>
+          <div style="background:#0B0D0F;border:1px solid #2A323A;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:16px">
+            <div style="border:1px dashed #2A323A;border-radius:12px;padding:32px;display:flex;flex-direction:column;align-items:flex-start;gap:12px">
+              <span style="width:10px;height:10px;border-radius:999px;background:#DD0000"></span>
+              <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:28px;line-height:32px;text-transform:uppercase;margin:0">Aufstellung folgt 60 Minuten vor Anpfiff</h3>
+              <p style="font:400 17px/28px Inter,sans-serif;color:#98A3AD;margin:0;max-width:56ch">Bis zur Meldung zeigen wir den vorläufigen Turnierkader mit 16 Namen. Änderungen sind bis zum Anpfiff möglich.</p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap">
+                <div style="border:1px solid #98A3AD;color:#F4F7F9;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Turnierkader ansehen</div>
+                <div style="background:#DD0000;color:#FFFFFF;font:600 15px/20px Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:8px">Bei Meldung benachrichtigen</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;matchState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Ergebnis&quot;,&quot;Live&quot;,&quot;Vorbericht&quot;],&quot;default&quot;:&quot;Ergebnis&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Spielzustand&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const state = this.props.matchState ?? "Ergebnis";
+    const isLive = state === "Live";
+    const isPreview = state === "Vorbericht";
+    const gold = "#FFCC00", ice = "#C9E4F0", red = "#DD0000", grey = "#98A3AD", green = "#2FBF71";
+
+    const mark = (text, kind) => ({
+      text,
+      bg: kind === "goal" ? "#2FBF71" : kind === "assist" ? "#C9E4F0" : kind === "pen" ? "#FFCC00" : "#1D232A",
+      fg: kind === "sub" ? "#98A3AD" : "#0B0D0F"
+    });
+
+    const P = (no, first, last, opts) => ({
+      no: String(no), first, last, isCaptain: !!(opts && opts.c),
+      marks: (opts && opts.marks) || [],
+      bg: (opts && opts.marks && opts.marks.length) ? "#1D232A" : "transparent",
+      noColor: (opts && opts.away) ? "#C9E4F0" : "#FF4D4D"
+    });
+
+    const homeGroups = [
+      { label: "Torwart", players: [P(1, "Eric", "Arakaza von Hof")] },
+      { label: "Verteidigung", players: [
+        P(3, "Theo Simon", "Houck"), P(4, "Julian", "Cordes", { marks: [mark("Strafe 5'", "pen")] }),
+        P(13, "Konstantin", "Karmilin"), P(16, "Elias", "Hjortenhed")
+      ] },
+      { label: "Mittelfeld", players: [
+        P(5, "Nilas Leander", "Houck"), P(7, "Franz", "von Schoultz"),
+        P(14, "Simon", "Framgard", { marks: [mark("Vorlage", "assist")] }), P(22, "Johan", "Koch")
+      ] },
+      { label: "Sturm", players: [
+        P(8, "Maximilian", "Fichter", { marks: [mark("Tor 87'", "goal")] }),
+        P(10, "Elias Leonhard", "Rieder", { c: true, marks: [mark("Tor 62'", "goal"), mark("Vorlage", "assist")] })
+      ] }
+    ];
+
+    const awayGroups = [
+      { label: "Torwart", players: [P(30, "Bram", "de Vries", { away: true })] },
+      { label: "Verteidigung", players: [
+        P(2, "Sven", "Bakker", { away: true }), P(6, "Ruben", "Visser", { away: true }),
+        P(11, "Joost", "van Dijk", { away: true }), P(17, "Lars", "Peeters", { away: true, marks: [mark("Strafe 10'", "pen")] })
+      ] },
+      { label: "Mittelfeld", players: [
+        P(4, "Thijs", "Mulder", { away: true }), P(8, "Daan", "Hoekstra", { away: true, marks: [mark("Vorlage", "assist")] }),
+        P(15, "Niels", "Kramer", { away: true }), P(21, "Bas", "Willems", { away: true })
+      ] },
+      { label: "Sturm", players: [
+        P(9, "Tim", "Jansen", { away: true, c: true, marks: [mark("Tor 18'", "goal")] }),
+        P(19, "Milan", "Smit", { away: true, marks: [mark("Tor 44'", "goal")] })
+      ] }
+    ];
+
+    const events = isPreview ? [
+      { min: "—", dot: ice, minColor: grey, title: "Anpfiff 13:00", titleColor: "#F4F7F9", running: "", detail: "Der Ticker startet 15 Minuten vor Spielbeginn. Aufstellungen erscheinen um 12:00." },
+      { min: "H2H", dot: "#2A323A", minColor: grey, title: "Letzte Begegnung", titleColor: "#F4F7F9", running: "3:4", detail: "12.01.2026 in Frankfurt · Niederlande gewann nach zwei späten Toren." },
+      { min: "Form", dot: "#2A323A", minColor: grey, title: "Deutschland", titleColor: "#F4F7F9", running: "S · N · N · S", detail: "Zwei Siege aus den letzten vier Länderspielen." }
+    ] : [
+      { min: "18.", dot: "#FF4D4D", minColor: grey, title: "Tor Niederlande", titleColor: "#FF4D4D", running: "0:1", detail: "Tim Jansen trifft aus dem Halbfeld, Vorlage Hoekstra." },
+      { min: "27.", dot: gold, minColor: grey, title: "Strafzeit Cordes", titleColor: gold, running: "", detail: "5 Minuten für Beinstellen. Deutschland übersteht die Unterzahl." },
+      { min: "44.", dot: "#FF4D4D", minColor: grey, title: "Tor Niederlande", titleColor: "#FF4D4D", running: "0:2", detail: "Milan Smit verwertet einen Eckschlag kurz vor der Pause." },
+      { min: "45.", dot: "#2A323A", minColor: grey, title: "Halbzeit", titleColor: grey, running: "0:2", detail: "" },
+      { min: "62.", dot: green, minColor: grey, title: "Tor Deutschland", titleColor: green, running: "1:2", detail: "Elias Leonhard Rieder trifft per Freischlag von der Strafraumkante." },
+      { min: "87.", dot: green, minColor: grey, title: "Tor Deutschland", titleColor: green, running: "2:2", detail: "Maximilian Fichter schließt einen Konter über Framgard ab." },
+      isLive
+        ? { min: "88.", dot: red, minColor: "#FF4D4D", title: "Läuft noch", titleColor: "#FF4D4D", running: "2:2", detail: "Deutschland drückt auf den Siegtreffer, zwei Minuten plus Nachspielzeit." }
+        : { min: "90.", dot: "#2A323A", minColor: grey, title: "Abpfiff", titleColor: grey, running: "2:2", detail: "Punkteteilung in Ede." }
+    ];
+
+    return {
+      stateLabel: state,
+      isLive,
+      showTickets: isPreview,
+      minute: "88.",
+      scoreBig: isPreview ? "13:00" : "2 : 2",
+      scoreSize: isPreview ? "64px" : "88px",
+      scoreSizeM: isPreview ? "34px" : "44px",
+      scoreColor: isPreview ? ice : "#F4F7F9",
+      statusText: isPreview ? "Anpfiff Ortszeit" : isLive ? "2. Halbzeit" : "Endstand",
+      statusColor: isPreview ? ice : isLive ? "#FF4D4D" : grey,
+      halftime: isPreview ? "Ticker ab 12:45" : "Halbzeit 0:2",
+      secondaryCta: isPreview ? "Live-Ticker vormerken" : isLive ? "Ticker aktualisieren" : "Spielbericht lesen",
+      attendance: isPreview ? "—" : "1.240",
+      timelineKicker: isPreview ? "Vorbericht" : "Spielverlauf",
+      timelineTitle: isPreview ? "Was vor dem Spiel zählt" : "Torfolge und Ticker",
+      reportLead: isPreview
+        ? "Vor dem Rückspiel in Ede steht Deutschland unter Druck: Aus den letzten vier Länderspielen sprangen nur zwei Siege heraus, gegen die Niederlande wartet die Mannschaft seit 2024 auf einen Erfolg."
+        : "Zwei Tore in den letzten 30 Minuten retten der deutschen Herren-Nationalmannschaft ein 2:2 in Ede — nach einer ersten Halbzeit, in der die Niederlande alles bestimmte.",
+      rosterTitle: isPreview ? "Vorläufiger Kader" : "Aufstellungen",
+      stats: [
+        { label: "Torschüsse", home: "14", away: "19", homeFlex: 14, awayFlex: 19 },
+        { label: "Ecken", home: "6", away: "9", homeFlex: 6, awayFlex: 9 },
+        { label: "Freischläge", home: "11", away: "8", homeFlex: 11, awayFlex: 8 },
+        { label: "Strafminuten", home: "5", away: "10", homeFlex: 5, awayFlex: 10 },
+        { label: "Ballbesitz", home: "43 %", away: "57 %", homeFlex: 43, awayFlex: 57 }
+      ],
+      events,
+      rosters: [
+        { code: "GER", name: "Deutschland", accent: gold, coach: "Franz von Schoultz", formation: "1–4–4–2", groups: homeGroups,
+          bench: "2 Fichter K. · 9 Billington · 15 Freiberger · 44 Epifanov · 35 Fichter K. (TW)" },
+        { code: "NED", name: "Niederlande", accent: ice, coach: "Pieter Groenewold", formation: "1–4–4–2", groups: awayGroups,
+          bench: "1 Meijer (TW) · 7 de Boer · 14 Vermeer · 23 Postma · 27 Bosman" }
+      ],
+      homeGroups,
+      homeBench: "2 Fichter K. · 9 Billington · 15 Freiberger · 44 Epifanov",
+      boards: [
+        { caption: "Vorbericht · angesetzt", accent: ice, comp: "WM-Quali", when: "Sa 16.01.2027 · 14:00 · Frankfurt",
+          home: "Deutschland", away: "Finnland", homeColor: "#F4F7F9", awayColor: "#F4F7F9",
+          score: "14:00", size: "48px", scoreColor: ice, status: "Anpfiff in 4 Tagen", statusColor: ice, isLive: false,
+          note: "Aufstellungen erscheinen 60 Minuten vor Anpfiff. Tickets im Vorverkauf ab 14 €.", cta: "Tickets" },
+        { caption: "Live · 2. Halbzeit", accent: red, comp: "Testspiel", when: "Di 12.01.2027 · 19:00 · Frankfurt",
+          home: "Deutschland", away: "Polen", homeColor: "#F4F7F9", awayColor: "#F4F7F9",
+          score: "1 : 0", size: "56px", scoreColor: "#F4F7F9", status: "Läuft", statusColor: "#FF4D4D", isLive: true, minute: "38.",
+          note: "Der Ticker aktualisiert automatisch alle 30 Sekunden. Letztes Ereignis: Tor Fichter, 34.", cta: "Zum Ticker" },
+        { caption: "Verlegt", accent: gold, comp: "Testspiel", when: "ursprünglich Sa 14.11.2026 · 15:00 · Berlin",
+          home: "Deutschland", away: "Tschechien", homeColor: grey, awayColor: grey,
+          score: "—", size: "56px", scoreColor: gold, status: "Verlegt auf 07.02.2027", statusColor: gold, isLive: false,
+          note: "Das Spiel wurde wegen Tauwetter verlegt. Gekaufte Tickets behalten ihre Gültigkeit.", cta: "Neuer Termin" }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

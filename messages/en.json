@@ -1,0 +1,58 @@
+{
+  "common": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "search": "Search",
+    "language": "Language",
+    "german": "Deutsch",
+    "english": "English",
+    "loadMore": "Show more",
+    "backToHome": "Back to home"
+  },
+  "nav": {
+    "home": "Home",
+    "fixtures": "Fixtures & Results",
+    "teams": "Teams",
+    "squad": "Squad",
+    "news": "News",
+    "tournaments": "Tournaments",
+    "federation": "Federation",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "press": "Press",
+    "membership": "Membership",
+    "newsletterCta": "Subscribe to newsletter"
+  },
+  "footer": {
+    "tagline": "Deutscher Bandy-Bund e. V. — the national governing body for bandy and rink bandy in Germany.",
+    "sport": "Sport",
+    "federation": "Federation",
+    "service": "Service",
+    "legal": "Legal",
+    "imprint": "Imprint",
+    "privacy": "Privacy",
+    "accessibility": "Accessibility",
+    "cookieSettings": "Cookie settings",
+    "newsletter": "Newsletter",
+    "copyright": "Deutscher Bandy-Bund e. V.",
+    "brandLine": "Deutscher Bandy-Bund — Home"
+  },
+  "home": {
+    "kicker": "German Bandy Federation",
+    "title": "Bandy in Germany",
+    "lead": "National teams, fixtures, results and news of the German Bandy Federation — in one place.",
+    "foundationNote": "This page is the technical foundation of the new website. Content and modules follow in the next build slices."
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Page not found",
+    "lead": "The requested page does not exist or has moved.",
+    "cta": "Back to home"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "lead": "A technical error occurred. Please try again later.",
+    "retry": "Try again"
+  }
+}

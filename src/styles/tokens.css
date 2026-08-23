@@ -1,0 +1,116 @@
+/*
+ * Design tokens — the single source of truth for both design and code.
+ * Values transcribed verbatim from the design handoff (design/README.md
+ * "Design Tokens"). Dark theme is the default; the light theme is an override.
+ *
+ * Rules baked in here:
+ *  - No box shadows anywhere. Elevation = surface colour + a 1px `--line` border.
+ *  - #DD0000 (red) is identical across themes.
+ *  - Yellow is fill-only on light; its text equivalent is #8A6A00.
+ *  - The footer stays dark in the light theme.
+ */
+
+:root {
+  /* ---- Colours: dark theme (default) ---- */
+  --canvas: #07090b;
+  --surface: #0b0d0f;
+  --surface-raised: #14181c;
+  --surface-card: #1d232a;
+  --line: #2a323a;
+  --text: #f4f7f9;
+  --text-muted: #98a3ad;
+  --accent-ice: #c9e4f0;
+
+  --red: #dd0000;
+  --red-light: #ff4d4d;
+  --yellow: #ffcc00;
+  --green: #2fbf71;
+
+  --live-row-bg: rgba(221, 0, 0, 0.1);
+  --header-bg: rgba(20, 24, 28, 0.92);
+
+  /* Status colours (fixture rows, timelines, tables) */
+  --status-win: var(--green);
+  --status-draw: var(--text-muted);
+  --status-loss: var(--red-light);
+  --status-scheduled: var(--accent-ice);
+  --status-live: var(--red);
+  --status-postponed: var(--yellow);
+
+  /* Kicker / label text colour that stays legible on the current surface */
+  --label-yellow-text: var(--yellow);
+
+  /* ---- Typography ---- */
+  --font-heading: var(--font-barlow-condensed), 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: var(--font-inter), 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* ---- Spacing scale ---- */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 40px;
+  --space-5: 64px;
+  --space-6: 80px;
+
+  /* Page gutters and content cap */
+  --gutter: 16px; /* mobile */
+  --gutter-desktop: 80px;
+  --content-max: 1280px;
+
+  /* ---- Radii ---- */
+  --radius-tag: 4px;
+  --radius-button: 8px;
+  --radius-card: 12px;
+  --radius-pill: 999px;
+
+  /* ---- Borders & focus ---- */
+  --border-width: 1px;
+  --accent-bar: 3px;
+  --focus-ring: var(--yellow);
+  --focus-offset: 3px;
+
+  /* Minimum interactive target */
+  --hit: 44px;
+
+  color-scheme: dark;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: var(--gutter-desktop);
+  }
+}
+
+/* ---- Light theme override (see handoff "Colors — light theme variant") ----
+ * Applied when the page opts in via [data-theme="light"]. Green/loss/ice are
+ * darkened to clear 4.5:1 on white; yellow becomes fill-only. */
+[data-theme='light'] {
+  --canvas: #ffffff;
+  --surface: #ffffff;
+  --surface-raised: #edf2f5;
+  --surface-card: #edf2f5;
+  --line: #d3dce3;
+  --text: #0b0d0f;
+  --text-muted: #5a6670;
+  --accent-ice: #1f5f7d;
+
+  --red: #dd0000; /* unchanged across themes */
+  --red-light: #c42b2b; /* loss on white */
+  --yellow: #e0b400; /* fill only */
+  --green: #1e8f52;
+
+  --live-row-bg: #fdecec;
+  --header-bg: rgba(255, 255, 255, 0.92);
+
+  --status-win: var(--green);
+  --status-draw: var(--text-muted);
+  --status-loss: var(--red-light);
+  --status-scheduled: var(--accent-ice);
+  --status-live: var(--red);
+  --status-postponed: var(--yellow);
+
+  /* Yellow is NEVER text on white — use the darkened equivalent. */
+  --label-yellow-text: #8a6a00;
+
+  color-scheme: light;
+}
