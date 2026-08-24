@@ -54,5 +54,185 @@
     "title": "Something went wrong",
     "lead": "A technical error occurred. Please try again later.",
     "retry": "Try again"
+  },
+  "sport": {
+    "status": {
+      "scheduled": "Scheduled",
+      "live": "Live",
+      "finished": "Finished",
+      "postponed": "Postponed",
+      "cancelled": "Cancelled",
+      "win": "Win",
+      "draw": "Draw",
+      "loss": "Loss"
+    },
+    "position": {
+      "TW": "Goalkeeper",
+      "VER": "Defence",
+      "MF": "Midfield",
+      "ST": "Forward",
+      "all": "All"
+    },
+    "event": { "goal": "Goal", "assist": "Assist", "penalty": "Penalty", "captain": "C" },
+    "scoreboard": {
+      "endstand": "Final score",
+      "secondHalf": "2nd half",
+      "kickoffLocal": "Kick-off local time",
+      "halftime": "Half-time",
+      "kickoffIn": "Kick-off in {days, plural, one {# day} other {# days}}",
+      "minute": "{min}′",
+      "postponedTo": "New date",
+      "cancelled": "Match cancelled"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "lineup": "Line-up",
+      "ticker": "Ticker",
+      "stats": "Statistics",
+      "gallery": "Gallery"
+    },
+    "roster": {
+      "notSubmitted": "Line-up not yet submitted",
+      "notSubmittedHint": "The matchday roster is published shortly before kick-off.",
+      "bench": "Bench",
+      "coach": "Coach",
+      "formation": "Formation",
+      "legend": "Legend"
+    },
+    "countdown": {
+      "days": "days",
+      "hours": "hrs",
+      "minutes": "min",
+      "seconds": "sec",
+      "running": "live",
+      "until": "to kick-off"
+    },
+    "consent": {
+      "mapBlockedTitle": "Map hidden",
+      "mapBlockedBody": "To protect your data, the map loads only after your consent.",
+      "loadMap": "Load map",
+      "alwaysAllow": "Always allow",
+      "openInMaps": "Open in maps app",
+      "address": "Address"
+    },
+    "info": {
+      "venue": "Venue",
+      "competition": "Competition",
+      "referee": "Referee",
+      "attendance": "Attendance",
+      "kickoff": "Kick-off",
+      "spielinfo": "Match info"
+    }
+  },
+  "screens": {
+    "fixtures": {
+      "title": "Fixtures & Results",
+      "kicker": "Season 2026/27",
+      "nextMatch": "Next match",
+      "filtersTeam": "Team",
+      "filtersCompetition": "Competition",
+      "allTeams": "All teams",
+      "allCompetitions": "All competitions",
+      "onlyResults": "Results only",
+      "onlyUpcoming": "Upcoming only",
+      "subscribeIcal": "Subscribe (iCal)",
+      "legend": "Legend",
+      "noResultsTitle": "No matches found",
+      "noResultsBody": "There are no matches for this filter combination.",
+      "reset": "Reset filters",
+      "seasonEnded": "The season has ended. Showing past results.",
+      "standingsTitle": "Standings",
+      "th": {
+        "rank": "Pos",
+        "team": "Team",
+        "played": "P",
+        "win": "W",
+        "draw": "D",
+        "loss": "L",
+        "goals": "Goals",
+        "diff": "Diff.",
+        "points": "Points"
+      },
+      "zoneQualify": "Qualification",
+      "zoneRelegate": "Relegation",
+      "preseasonNote": "Pre-season — no matches played yet."
+    },
+    "match": {
+      "backToFixtures": "Back to fixtures",
+      "report": "Match report",
+      "lineupTitle": "Line-ups",
+      "galleryTitle": "Gallery",
+      "galleryEmpty": "Photos follow after the match.",
+      "nextMatchCta": "Next match",
+      "buyTickets": "Tickets"
+    },
+    "teams": {
+      "title": "Teams",
+      "kicker": "German Bandy Federation",
+      "squadOf": "Squad",
+      "season": "Season 2026/27",
+      "coach": "Coach",
+      "players": "{count, plural, one {# player} other {# players}}",
+      "staff": "Staff",
+      "searchPlaceholder": "Name or number",
+      "sortNote": "Sorted by shirt number",
+      "loadMore": "Show {count} more",
+      "zeroTitle": "No players found",
+      "zeroBody": "There are no players for this selection.",
+      "reset": "Reset",
+      "ctaTitle": "Want to play?",
+      "ctaBody": "The German Bandy Federation is looking for new talent. Get in touch and come to a trial.",
+      "ctaButton": "Get in touch"
+    },
+    "player": {
+      "backToSquad": "Back to squad",
+      "captain": "Captain",
+      "number": "Shirt number",
+      "position": "Position",
+      "caps": "Caps",
+      "goals": "Goals",
+      "assists": "Assists",
+      "steckbrief": "Profile",
+      "birthYear": "Year of birth",
+      "nationality": "Nationality",
+      "joined": "In the squad since",
+      "height": "Height",
+      "weight": "Weight",
+      "club": "Club",
+      "status": "Status",
+      "lastGames": "Recent games",
+      "morePlayers": "More players",
+      "noBioTitle": "No biography yet",
+      "noBioBody": "There is no profile text for {name} yet.",
+      "former": "former"
+    },
+    "tournament": {
+      "backToTournaments": "Back to tournaments",
+      "format": "Format",
+      "participants": "Participants",
+      "openParticipant": "Participant TBD",
+      "onSite": "On site",
+      "schedule": "Schedule",
+      "host": "Host",
+      "weather": "Weather note",
+      "buyTickets": "Tickets"
+    },
+    "home": {
+      "newsTitle": "Latest",
+      "newsAll": "All news",
+      "squadTitle": "The squad",
+      "squadBody": "The players of the national team.",
+      "squadCta": "View squad",
+      "tournamentTitle": "Tournaments",
+      "statsTitle": "The federation in numbers",
+      "statTeams": "National teams",
+      "statPlayers": "Squad players",
+      "statFounded": "Founded",
+      "newsletterTitle": "Stay in the loop",
+      "newsletterBody": "The German Bandy Federation newsletter: match announcements, results and news straight to your inbox.",
+      "newsletterPlaceholder": "Email address",
+      "newsletterCta": "Subscribe",
+      "newsletterNote": "Double opt-in. Unsubscribe anytime."
+    }
   }
 }

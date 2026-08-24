@@ -54,5 +54,185 @@
     "title": "Etwas ist schiefgelaufen",
     "lead": "Es ist ein technischer Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
     "retry": "Erneut versuchen"
+  },
+  "sport": {
+    "status": {
+      "scheduled": "Angesetzt",
+      "live": "Live",
+      "finished": "Beendet",
+      "postponed": "Verlegt",
+      "cancelled": "Abgesagt",
+      "win": "Sieg",
+      "draw": "Unentschieden",
+      "loss": "Niederlage"
+    },
+    "position": {
+      "TW": "Torwart",
+      "VER": "Verteidigung",
+      "MF": "Mittelfeld",
+      "ST": "Sturm",
+      "all": "Alle"
+    },
+    "event": { "goal": "Tor", "assist": "Vorlage", "penalty": "Strafzeit", "captain": "C" },
+    "scoreboard": {
+      "endstand": "Endstand",
+      "secondHalf": "2. Halbzeit",
+      "kickoffLocal": "Anpfiff Ortszeit",
+      "halftime": "Halbzeit",
+      "kickoffIn": "Anpfiff in {days, plural, one {# Tag} other {# Tagen}}",
+      "minute": "{min}. Minute",
+      "postponedTo": "Neuer Termin",
+      "cancelled": "Spiel abgesagt"
+    },
+    "tabs": {
+      "overview": "Übersicht",
+      "lineup": "Aufstellung",
+      "ticker": "Ticker",
+      "stats": "Statistik",
+      "gallery": "Galerie"
+    },
+    "roster": {
+      "notSubmitted": "Aufstellung noch nicht gemeldet",
+      "notSubmittedHint": "Die Mannschaftsaufstellung wird kurz vor dem Anpfiff veröffentlicht.",
+      "bench": "Bank",
+      "coach": "Trainer",
+      "formation": "Formation",
+      "legend": "Legende"
+    },
+    "countdown": {
+      "days": "Tage",
+      "hours": "Std",
+      "minutes": "Min",
+      "seconds": "Sek",
+      "running": "läuft",
+      "until": "bis Anpfiff"
+    },
+    "consent": {
+      "mapBlockedTitle": "Karte ausgeblendet",
+      "mapBlockedBody": "Zum Schutz Ihrer Daten wird die Karte erst nach Ihrer Zustimmung geladen.",
+      "loadMap": "Karte laden",
+      "alwaysAllow": "Immer erlauben",
+      "openInMaps": "In Karten-App öffnen",
+      "address": "Adresse"
+    },
+    "info": {
+      "venue": "Spielstätte",
+      "competition": "Wettbewerb",
+      "referee": "Schiedsrichter",
+      "attendance": "Zuschauer",
+      "kickoff": "Anpfiff",
+      "spielinfo": "Spielinfo"
+    }
+  },
+  "screens": {
+    "fixtures": {
+      "title": "Spielplan & Ergebnisse",
+      "kicker": "Saison 2026/27",
+      "nextMatch": "Nächstes Spiel",
+      "filtersTeam": "Team",
+      "filtersCompetition": "Wettbewerb",
+      "allTeams": "Alle Teams",
+      "allCompetitions": "Alle Wettbewerbe",
+      "onlyResults": "Nur Ergebnisse",
+      "onlyUpcoming": "Nur kommende",
+      "subscribeIcal": "iCal abonnieren",
+      "legend": "Legende",
+      "noResultsTitle": "Keine Spiele gefunden",
+      "noResultsBody": "Für diese Filterkombination gibt es keine Spiele.",
+      "reset": "Filter zurücksetzen",
+      "seasonEnded": "Die Saison ist beendet. Es werden vergangene Ergebnisse angezeigt.",
+      "standingsTitle": "Tabelle",
+      "th": {
+        "rank": "Pl.",
+        "team": "Mannschaft",
+        "played": "Sp",
+        "win": "S",
+        "draw": "U",
+        "loss": "N",
+        "goals": "Tore",
+        "diff": "Diff.",
+        "points": "Punkte"
+      },
+      "zoneQualify": "Qualifikation",
+      "zoneRelegate": "Abstieg",
+      "preseasonNote": "Vorsaison — noch keine Spiele ausgetragen."
+    },
+    "match": {
+      "backToFixtures": "Zum Spielplan",
+      "report": "Spielbericht",
+      "lineupTitle": "Aufstellungen",
+      "galleryTitle": "Galerie",
+      "galleryEmpty": "Bilder folgen nach dem Spiel.",
+      "nextMatchCta": "Nächstes Spiel",
+      "buyTickets": "Tickets"
+    },
+    "teams": {
+      "title": "Teams",
+      "kicker": "Deutscher Bandy-Bund",
+      "squadOf": "Kader",
+      "season": "Saison 2026/27",
+      "coach": "Trainer",
+      "players": "{count, plural, one {# Spieler} other {# Spieler}}",
+      "staff": "Betreuerstab",
+      "searchPlaceholder": "Name oder Nummer",
+      "sortNote": "Sortiert nach Rückennummer",
+      "loadMore": "Weitere {count} anzeigen",
+      "zeroTitle": "Keine Spieler gefunden",
+      "zeroBody": "Für diese Auswahl gibt es keine Spieler.",
+      "reset": "Zurücksetzen",
+      "ctaTitle": "Mitspielen?",
+      "ctaBody": "Der Deutsche Bandy-Bund sucht Nachwuchs. Schreib uns und komm zum Probetraining.",
+      "ctaButton": "Kontakt aufnehmen"
+    },
+    "player": {
+      "backToSquad": "Zum Kader",
+      "captain": "Kapitän",
+      "number": "Rückennummer",
+      "position": "Position",
+      "caps": "Länderspiele",
+      "goals": "Tore",
+      "assists": "Vorlagen",
+      "steckbrief": "Steckbrief",
+      "birthYear": "Geburtsjahr",
+      "nationality": "Nationalität",
+      "joined": "Im Kader seit",
+      "height": "Größe",
+      "weight": "Gewicht",
+      "club": "Verein",
+      "status": "Status",
+      "lastGames": "Letzte Spiele",
+      "morePlayers": "Weitere Spieler",
+      "noBioTitle": "Noch keine Biografie",
+      "noBioBody": "Für {name} liegt noch kein Porträttext vor.",
+      "former": "ehemalig"
+    },
+    "tournament": {
+      "backToTournaments": "Zu den Turnieren",
+      "format": "Format",
+      "participants": "Teilnehmer",
+      "openParticipant": "Teilnehmer offen",
+      "onSite": "Vor Ort",
+      "schedule": "Spielplan",
+      "host": "Gastgeber",
+      "weather": "Wetter-Hinweis",
+      "buyTickets": "Tickets"
+    },
+    "home": {
+      "newsTitle": "Aktuelles",
+      "newsAll": "Alle News",
+      "squadTitle": "Der Kader",
+      "squadBody": "Die Spielerinnen und Spieler der Nationalmannschaft.",
+      "squadCta": "Zum Kader",
+      "tournamentTitle": "Turniere",
+      "statsTitle": "Der Verband in Zahlen",
+      "statTeams": "Nationalteams",
+      "statPlayers": "Kaderspieler",
+      "statFounded": "Gegründet",
+      "newsletterTitle": "Bleib am Ball",
+      "newsletterBody": "Der Newsletter des Deutschen Bandy-Bundes: Spielankündigungen, Ergebnisse und Neuigkeiten direkt ins Postfach.",
+      "newsletterPlaceholder": "E-Mail-Adresse",
+      "newsletterCta": "Abonnieren",
+      "newsletterNote": "Double-Opt-in. Abmeldung jederzeit möglich."
+    }
   }
 }
