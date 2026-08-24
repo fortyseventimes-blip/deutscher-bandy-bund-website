@@ -13,6 +13,8 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "seed": "tsx src/seed/run.ts",
     "generate:types": "payload generate:types",
     "generate:importmap": "payload generate:importmap",
@@ -43,7 +45,8 @@
     "dotenv": "^17.4.2",
     "tailwindcss": "4.3.3",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^4.1.11"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
