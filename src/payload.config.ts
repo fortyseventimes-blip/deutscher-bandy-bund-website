@@ -9,6 +9,7 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Pages } from './collections/Pages'
+import { AuditLog } from './collections/AuditLog'
 import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
 import { SiteSettings } from './globals/SiteSettings'
@@ -40,7 +41,7 @@ export default buildConfig({
     supportedLanguages: { de, en },
     fallbackLanguage: 'de',
   },
-  collections: [Pages, Users],
+  collections: [Pages, Users, AuditLog],
   globals: [Header, Footer, SiteSettings, SeoDefaults],
   editor: lexicalEditor(),
   db: postgresAdapter({

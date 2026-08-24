@@ -25,7 +25,7 @@ async function run() {
   if (existingUsers.docs.length === 0) {
     await payload.create({
       collection: 'users',
-      data: { email, password, name: 'Administrator', role: 'superadmin' },
+      data: { email, password, name: 'Administrator', roles: ['superadmin'] },
     })
     payload.logger.info(`Created admin user ${email}`)
   } else {

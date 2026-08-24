@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     pages: Page;
     users: User;
+    'audit-log': AuditLog;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    'audit-log': AuditLogSelect<false> | AuditLogSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -139,6 +141,7 @@ export interface Page {
    */
   slug: string;
   blocks?: (HeroCompactBlock | RichTextBlock | CTABannerBlock | DividerBlock)[] | null;
+  createdBy?: (number | null) | User;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -252,7 +255,14 @@ export interface DividerBlock {
 export interface User {
   id: number;
   name: string;
-  role?: ('superadmin' | 'editor' | 'viewer') | null;
+  /**
+   * Permissions are the union of all assigned roles.
+   */
+  roles: ('superadmin' | 'editor' | 'author' | 'sports_manager' | 'media_manager' | 'translator' | 'viewer')[];
+  /**
+   * Mandatory for superadmin and editor. TOTP enrolment is pending; this field tracks status.
+   */
+  twoFactorEnabled?: boolean | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -271,6 +281,31 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "audit-log".
+ */
+export interface AuditLog {
+  id: number;
+  action: 'create' | 'update' | 'publish' | 'unpublish' | 'delete' | 'role_change' | 'settings_change' | 'login_failed';
+  /**
+   * Responsible user
+   */
+  actor?: (number | null) | User;
+  actorEmail?: string | null;
+  collectionSlug: string;
+  documentId?: string | null;
+  documentLabel?: string | null;
+  changedFields?:
+    | {
+        name?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  locale?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -303,6 +338,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: number | User;
+      } | null)
+    | ({
+        relationTo: 'audit-log';
+        value: number | AuditLog;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -361,6 +400,7 @@ export interface PagesSelect<T extends boolean = true> {
         ctaBanner?: T | CTABannerBlockSelect<T>;
         divider?: T | DividerBlockSelect<T>;
       };
+  createdBy?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -445,7 +485,8 @@ export interface DividerBlockSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
-  role?: T;
+  roles?: T;
+  twoFactorEnabled?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -462,6 +503,27 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "audit-log_select".
+ */
+export interface AuditLogSelect<T extends boolean = true> {
+  action?: T;
+  actor?: T;
+  actorEmail?: T;
+  collectionSlug?: T;
+  documentId?: T;
+  documentLabel?: T;
+  changedFields?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
+  locale?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

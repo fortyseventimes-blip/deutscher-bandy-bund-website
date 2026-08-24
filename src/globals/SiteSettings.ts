@@ -1,10 +1,13 @@
 import type { GlobalConfig } from 'payload'
+import { superadminOnly } from '../access'
+import { auditGlobalChange } from '../audit/hooks'
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: { de: 'Website-Einstellungen', en: 'Site settings' },
   admin: { group: { de: 'System', en: 'System' } },
-  access: { read: () => true },
+  access: { read: () => true, update: superadminOnly },
+  hooks: { afterChange: [auditGlobalChange('site-settings')] },
   fields: [
     {
       name: 'organizationName',
