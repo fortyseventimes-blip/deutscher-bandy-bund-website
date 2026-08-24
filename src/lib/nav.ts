@@ -31,13 +31,15 @@ const routes: Record<Locale, Record<keyof Omit<Labels, 'newsletterCta'>, string>
     contact: '/kontakt',
   },
   en: {
-    fixtures: '/en/games',
+    // This pass serves both locales on the German path segments; fully
+    // localized EN slugs are deferred to the i18n slug work.
+    fixtures: '/en/spiele',
     teams: '/en/teams',
     news: '/en/news',
-    tournaments: '/en/tournaments',
-    federation: '/en/federation',
-    gallery: '/en/gallery',
-    contact: '/en/contact',
+    tournaments: '/en/turniere',
+    federation: '/en/verband',
+    gallery: '/en/galerie',
+    contact: '/en/kontakt',
   },
 }
 

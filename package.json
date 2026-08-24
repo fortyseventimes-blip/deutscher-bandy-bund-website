@@ -10,6 +10,10 @@
   "packageManager": "pnpm@10.33.0",
   "scripts": {
     "dev": "next dev",
+    "dev:up": "node scripts/dev-up.mjs",
+    "dev:db": "docker compose -f infra/compose.dev.yml up -d",
+    "dev:db:down": "docker compose -f infra/compose.dev.yml down",
+    "setup": "node scripts/init-env.mjs && pnpm migrate && pnpm seed",
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",

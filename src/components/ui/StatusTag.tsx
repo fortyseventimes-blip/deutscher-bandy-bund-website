@@ -8,6 +8,7 @@ export type MatchStatus =
   | 'scheduled'
   | 'live'
   | 'postponed'
+  | 'cancelled'
 
 /*
  * StatusTag — the shared status vocabulary for fixture rows, timelines and
@@ -22,6 +23,7 @@ const statusVar: Record<MatchStatus, string> = {
   scheduled: 'var(--status-scheduled)',
   live: 'var(--status-live)',
   postponed: 'var(--status-postponed)',
+  cancelled: 'var(--status-postponed)',
 }
 
 export function StatusTag({

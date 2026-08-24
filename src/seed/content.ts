@@ -16,11 +16,11 @@ export const headerNav = {
     { label: 'Verband', href: '/verband' },
   ],
   en: [
-    { label: 'Fixtures & Results', href: '/en/games' },
+    { label: 'Fixtures & Results', href: '/en/spiele' },
     { label: 'Teams', href: '/en/teams' },
     { label: 'News', href: '/en/news' },
-    { label: 'Tournaments', href: '/en/tournaments' },
-    { label: 'Federation', href: '/en/federation' },
+    { label: 'Tournaments', href: '/en/turniere' },
+    { label: 'Federation', href: '/en/verband' },
   ],
 }
 

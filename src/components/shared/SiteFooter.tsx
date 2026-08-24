@@ -22,7 +22,7 @@ function defaultColumns(locale: Locale, t: (k: string) => string): Column[] {
   const r =
     locale === 'de'
       ? { fixtures: '/spiele', teams: '/teams', tournaments: '/turniere', federation: '/verband', contact: '/kontakt', news: '/news', gallery: '/galerie', newsletter: '/newsletter' }
-      : { fixtures: '/en/games', teams: '/en/teams', tournaments: '/en/tournaments', federation: '/en/federation', contact: '/en/contact', news: '/en/news', gallery: '/en/gallery', newsletter: '/en/newsletter' }
+      : { fixtures: '/en/spiele', teams: '/en/teams', tournaments: '/en/turniere', federation: '/en/verband', contact: '/en/kontakt', news: '/en/news', gallery: '/en/galerie', newsletter: '/en/newsletter' }
 
   return [
     {

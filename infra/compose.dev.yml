@@ -1,0 +1,23 @@
+# Local development database only — the Next.js app runs on the host via
+# `pnpm dev`. One command brings this up: `pnpm dev:up` (see package.json).
+# The full app+caddy production stack lands with the deploy infra (Slice 1).
+services:
+  db:
+    image: postgres:17
+    container_name: bandy-dev-db
+    environment:
+      POSTGRES_USER: bandy
+      POSTGRES_PASSWORD: bandy
+      POSTGRES_DB: bandy
+    ports:
+      - '5432:5432'
+    volumes:
+      - bandy-dev-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U bandy -d bandy']
+      interval: 3s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  bandy-dev-pgdata:
