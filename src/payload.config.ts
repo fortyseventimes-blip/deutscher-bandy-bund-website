@@ -10,6 +10,15 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Pages } from './collections/Pages'
 import { AuditLog } from './collections/AuditLog'
+import { Media } from './collections/Media'
+import { Seasons } from './collections/Seasons'
+import { Venues } from './collections/Venues'
+import { Opponents } from './collections/Opponents'
+import { Teams } from './collections/Teams'
+import { Staff } from './collections/Staff'
+import { Players } from './collections/Players'
+import { Games } from './collections/Games'
+import { Tournaments } from './collections/Tournaments'
 import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
 import { SiteSettings } from './globals/SiteSettings'
@@ -41,7 +50,20 @@ export default buildConfig({
     supportedLanguages: { de, en },
     fallbackLanguage: 'de',
   },
-  collections: [Pages, Users, AuditLog],
+  collections: [
+    Pages,
+    Users,
+    AuditLog,
+    Media,
+    Seasons,
+    Venues,
+    Opponents,
+    Teams,
+    Staff,
+    Players,
+    Games,
+    Tournaments,
+  ],
   globals: [Header, Footer, SiteSettings, SeoDefaults],
   editor: lexicalEditor(),
   db: postgresAdapter({
