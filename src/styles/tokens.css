@@ -10,7 +10,11 @@
  *  - The footer stays dark in the light theme.
  */
 
-:root {
+/* The dark palette is the default on :root, and is also available as an
+ * explicit scope so an always-dark island (the footer) can opt into it inside a
+ * light page: `<footer data-theme="dark">`. */
+:root,
+[data-theme='dark'] {
   /* ---- Colours: dark theme (default) ---- */
   --canvas: #07090b;
   --surface: #0b0d0f;
@@ -28,6 +32,11 @@
 
   --live-row-bg: rgba(221, 0, 0, 0.1);
   --header-bg: rgba(20, 24, 28, 0.92);
+
+  /* Oversized jersey number behind a portrait, and the glow that stands in for
+   * a missing one. Must stay readable in both themes, so it is a token. */
+  --ghost-number: rgba(244, 247, 249, 0.08);
+  --ghost-glow: rgba(201, 228, 240, 0.18);
 
   /* Status colours (fixture rows, timelines, tables) */
   --status-win: var(--green);
@@ -81,9 +90,14 @@
   }
 }
 
-/* ---- Light theme override (see handoff "Colors — light theme variant") ----
- * Applied when the page opts in via [data-theme="light"]. Green/loss/ice are
- * darkened to clear 4.5:1 on white; yellow becomes fill-only. */
+/* ---- Light theme (see handoff "Colors — light theme variant") ---------------
+ * Two ways in:
+ *   1. an explicit choice — [data-theme="light"], stamped server-side from the
+ *      `theme` cookie so there is no flash on load;
+ *   2. the visitor's system preference, when they have made no explicit choice.
+ * The palette is repeated for the system case because a media condition cannot
+ * be expressed as a selector — keep the two blocks in sync.
+ * Green/loss/ice are darkened to clear 4.5:1 on white; yellow becomes fill-only. */
 [data-theme='light'] {
   --canvas: #ffffff;
   --surface: #ffffff;
@@ -102,6 +116,10 @@
   --live-row-bg: #fdecec;
   --header-bg: rgba(255, 255, 255, 0.92);
 
+  /* Inverted for light surfaces so the no-portrait fallback stays visible. */
+  --ghost-number: rgba(11, 13, 15, 0.1);
+  --ghost-glow: rgba(31, 95, 125, 0.12);
+
   --status-win: var(--green);
   --status-draw: var(--text-muted);
   --status-loss: var(--red-light);
@@ -113,4 +131,41 @@
   --label-yellow-text: #8a6a00;
 
   color-scheme: light;
+}
+
+/* System preference, only when the visitor has made no explicit choice.
+ * Mirror of the block above — keep both in sync. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --canvas: #ffffff;
+    --surface: #ffffff;
+    --surface-raised: #edf2f5;
+    --surface-card: #edf2f5;
+    --line: #d3dce3;
+    --text: #0b0d0f;
+    --text-muted: #5a6670;
+    --accent-ice: #1f5f7d;
+
+    --red: #dd0000;
+    --red-light: #c42b2b;
+    --yellow: #e0b400;
+    --green: #1e8f52;
+
+    --live-row-bg: #fdecec;
+    --header-bg: rgba(255, 255, 255, 0.92);
+
+    --ghost-number: rgba(11, 13, 15, 0.1);
+    --ghost-glow: rgba(31, 95, 125, 0.12);
+
+    --status-win: var(--green);
+    --status-draw: var(--text-muted);
+    --status-loss: var(--red-light);
+    --status-scheduled: var(--accent-ice);
+    --status-live: var(--red);
+    --status-postponed: var(--yellow);
+
+    --label-yellow-text: #8a6a00;
+
+    color-scheme: light;
+  }
 }

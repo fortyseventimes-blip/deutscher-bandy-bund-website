@@ -8,7 +8,9 @@
     "german": "Deutsch",
     "english": "English",
     "loadMore": "Show more",
-    "backToHome": "Back to home"
+    "backToHome": "Back to home",
+    "themeToLight": "Switch to light appearance",
+    "themeToDark": "Switch to dark appearance"
   },
   "nav": {
     "home": "Home",
