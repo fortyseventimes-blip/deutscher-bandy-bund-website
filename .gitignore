@@ -18,6 +18,10 @@ build/
 # env
 .env
 .env*.local
+.env.production
+
+# local backups (infra/backup.ps1)
+/backups
 
 # testing
 /coverage

@@ -1,0 +1,77 @@
+# Interim production stack for hosting on a single machine (currently: the
+# operator's Windows PC) behind a Cloudflare Tunnel, until real VPS hosting is
+# bought. See docs/deploy-local-tunnel.md for the full setup walkthrough.
+#
+# This is NOT the staged/registry-promoted deployment described in
+# openspec/specs/delivery-infra — there is no CI pipeline, no staging
+# environment and no off-site backup here. It is a pragmatic stopgap: one
+# `docker compose up -d` keeps the site running and restarts itself after a
+# reboot or crash. Replace it when the association has real hosting.
+#
+# Run from the repo root:
+#   docker compose -f infra/compose.prod.yml --env-file .env.production up -d --build
+name: bandy-prod
+services:
+  db:
+    image: postgres:17
+    container_name: bandy-prod-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-bandy}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env.production}
+      POSTGRES_DB: ${POSTGRES_DB:-bandy}
+    volumes:
+      - bandy-prod-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-bandy} -d ${POSTGRES_DB:-bandy}']
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:?set NEXT_PUBLIC_SERVER_URL in .env.production}
+    container_name: bandy-prod-app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      DATABASE_URI: postgres://${POSTGRES_USER:-bandy}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-bandy}
+      PAYLOAD_SECRET: ${PAYLOAD_SECRET:?set PAYLOAD_SECRET in .env.production}
+      NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL}
+      SEED_ADMIN_EMAIL: ${SEED_ADMIN_EMAIL:?set SEED_ADMIN_EMAIL in .env.production}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:?set SEED_ADMIN_PASSWORD in .env.production}
+    volumes:
+      - bandy-prod-media:/app/media
+    ports:
+      # Bound to loopback only, and only for your own convenience (checking
+      # http://localhost:3000 directly). Nothing needs this published at all
+      # — cloudflared reaches the app over the internal Docker network by its
+      # service name ("app"), never through this port, and it is never
+      # reachable from the LAN or the router either way.
+      - '127.0.0.1:3000:3000'
+    # Applies any pending Payload migrations before every start. Does NOT run
+    # the sample-data seed (pnpm seed) — that script fills the CMS with
+    # fictional players/games for local development and must never touch a
+    # site real visitors can see. Run it manually and deliberately if you
+    # want the sample content as a placeholder; see the deploy guide.
+    command: sh -c "pnpm migrate && pnpm start"
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: bandy-prod-tunnel
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:?set CLOUDFLARE_TUNNEL_TOKEN in .env.production}
+    depends_on:
+      - app
+
+volumes:
+  bandy-prod-pgdata:
+  bandy-prod-media:
