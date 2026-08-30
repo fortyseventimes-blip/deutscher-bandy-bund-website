@@ -2,7 +2,7 @@ import 'dotenv/config'
 import { getPayload } from 'payload'
 import config from '../payload.config'
 import type { Page } from '../payload-types'
-import { headerNav, headerCta, legalPages } from './content'
+import { headerNav, headerCta, staticPages } from './content'
 import { seedSport } from './sport'
 
 type PageBlocks = Page['blocks']
@@ -69,8 +69,8 @@ async function run() {
     data: { organizationName: 'Deutscher Bandy-Bund e. V.', contactEmail: 'info@bandy-bund.de' },
   })
 
-  // --- Legal pages ----------------------------------------------------------
-  for (const page of legalPages) {
+  // --- Static pages (legal + info) ------------------------------------------
+  for (const page of staticPages) {
     const heroDe = {
       blockType: 'heroCompact' as const,
       kicker: page.kicker.de,
@@ -136,7 +136,7 @@ async function run() {
       },
     })
 
-    payload.logger.info(`Seeded legal page /${page.slug.de} (/en/${page.slug.en})`)
+    payload.logger.info(`Seeded page /${page.slug.de} (/en/${page.slug.en})`)
   }
 
   // --- Sport data (teams, players, staff, games, tournaments) --------------

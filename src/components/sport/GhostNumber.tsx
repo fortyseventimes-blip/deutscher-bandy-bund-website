@@ -27,11 +27,12 @@ export function GhostNumber({
       style={
         {
           fontSize: size,
-          color: 'rgba(244,247,249,0.08)',
+          color: 'var(--ghost-number)',
           fontVariantNumeric: 'tabular-nums',
           ...(glow
             ? {
-                background: 'radial-gradient(circle at 50% 45%, rgba(201,228,240,0.18), transparent 60%)',
+                background:
+                  'radial-gradient(circle at 50% 45%, var(--ghost-glow), transparent 60%)',
               }
             : {}),
         } as CSSProperties

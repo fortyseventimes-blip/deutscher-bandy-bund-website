@@ -5,6 +5,7 @@ import { defaultHeaderNav, homeHref, type NavItem } from '@/lib/nav'
 import { Wordmark } from './Wordmark'
 import { LanguageSwitch } from './LanguageSwitch'
 import { DrawerNav } from './DrawerNav'
+import { ThemeToggle } from './ThemeToggle'
 
 type HeaderGlobal = {
   nav?: { label?: string; href?: string; children?: { label?: string; href?: string }[] }[]
@@ -92,6 +93,7 @@ export async function SiteHeader({ locale }: { locale: Locale }) {
               ⌕
             </span>
           </a>
+          <ThemeToggle />
           <div className="hidden lg:block">
             <LanguageSwitch locale={locale} />
           </div>
