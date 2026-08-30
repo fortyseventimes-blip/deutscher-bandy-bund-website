@@ -8,7 +8,9 @@
     "german": "Deutsch",
     "english": "English",
     "loadMore": "Weitere anzeigen",
-    "backToHome": "Zur Startseite"
+    "backToHome": "Zur Startseite",
+    "themeToLight": "Zur hellen Ansicht wechseln",
+    "themeToDark": "Zur dunklen Ansicht wechseln"
   },
   "nav": {
     "home": "Startseite",

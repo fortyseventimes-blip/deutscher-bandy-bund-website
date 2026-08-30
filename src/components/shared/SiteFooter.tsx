@@ -82,8 +82,11 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
 
   return (
     <footer
-      className="mt-auto"
-      style={{ background: '#0b0d0f', color: '#f4f7f9', borderTop: '1px solid #2a323a' }}
+      // The footer stays dark in both themes (handoff). Scoping it to the dark
+      // palette means every token inside resolves to its dark value, so nothing
+      // here has to hardcode a colour.
+      data-theme="dark"
+      className="mt-auto bg-surface text-text border-t border-line"
     >
       <div className="container-page py-12">
         <div className="grid gap-8 md:grid-cols-[1.4fr_repeat(4,1fr)]">
@@ -91,7 +94,7 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
             <a href={homeHref(locale)} aria-label={t('footer.brandLine')} className="inline-flex">
               <Wordmark />
             </a>
-            <p className="mt-4 text-[15px] leading-6" style={{ color: '#98a3ad' }}>
+            <p className="mt-4 text-[15px] leading-6 text-text-muted">
               {tagline}
             </p>
           </div>
@@ -106,8 +109,7 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="inline-flex min-h-[36px] items-center text-[15px] hover:underline"
-                      style={{ color: '#98a3ad' }}
+                      className="inline-flex min-h-[36px] items-center text-[15px] text-text-muted hover:text-text hover:underline"
                     >
                       {link.label}
                     </a>
@@ -119,17 +121,15 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
         </div>
 
         <div
-          className="mt-10 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-          style={{ borderTop: '1px solid #2a323a' }}
+          className="mt-10 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-line"
         >
-          <p className="text-[13px]" style={{ color: '#98a3ad' }}>
+          <p className="text-[13px] text-text-muted">
             © {year} {t('footer.copyright')}
           </p>
           <button
             type="button"
             data-consent-open
-            className="text-[13px] font-semibold uppercase tracking-[0.04em] min-h-[44px] inline-flex items-center hover:underline"
-            style={{ color: '#98a3ad' }}
+            className="text-[13px] font-semibold uppercase tracking-[0.04em] min-h-[44px] inline-flex items-center text-text-muted hover:text-text hover:underline"
           >
             {t('footer.cookieSettings')}
           </button>
