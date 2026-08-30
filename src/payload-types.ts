@@ -70,6 +70,15 @@ export interface Config {
     pages: Page;
     users: User;
     'audit-log': AuditLog;
+    media: Media;
+    seasons: Season;
+    venues: Venue;
+    opponents: Opponent;
+    teams: Team;
+    staff: Staff;
+    players: Player;
+    games: Game;
+    tournaments: Tournament;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +89,15 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'audit-log': AuditLogSelect<false> | AuditLogSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    seasons: SeasonsSelect<false> | SeasonsSelect<true>;
+    venues: VenuesSelect<false> | VenuesSelect<true>;
+    opponents: OpponentsSelect<false> | OpponentsSelect<true>;
+    teams: TeamsSelect<false> | TeamsSelect<true>;
+    staff: StaffSelect<false> | StaffSelect<true>;
+    players: PlayersSelect<false> | PlayersSelect<true>;
+    games: GamesSelect<false> | GamesSelect<true>;
+    tournaments: TournamentsSelect<false> | TournamentsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -309,6 +327,405 @@ export interface AuditLog {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  /**
+   * Photographer or source. Mandatory before publishing player photos.
+   */
+  credit?: string | null;
+  license?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seasons".
+ */
+export interface Season {
+  id: number;
+  /**
+   * e.g. "2026/27"
+   */
+  name: string;
+  startDate?: string | null;
+  endDate?: string | null;
+  isCurrent?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "venues".
+ */
+export interface Venue {
+  id: number;
+  name: string;
+  city: string;
+  address?: string | null;
+  /**
+   * Search text for the "open in maps app" link, if different from name + city.
+   */
+  mapQuery?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "opponents".
+ */
+export interface Opponent {
+  id: number;
+  name: string;
+  /**
+   * e.g. "Norway"
+   */
+  shortName: string;
+  /**
+   * 3-letter placeholder crest code, e.g. "NOR".
+   */
+  crestCode: string;
+  country?: string | null;
+  /**
+   * Hex value for the crest ring.
+   */
+  accent?: string | null;
+  website?: string | null;
+  crest?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teams".
+ */
+export interface Team {
+  id: number;
+  name: string;
+  /**
+   * URL path, e.g. "herren". Localized per language.
+   */
+  slug: string;
+  gender: 'herren' | 'damen' | 'nachwuchs';
+  ageGroup?: string | null;
+  crestCode: string;
+  shortName: string;
+  /**
+   * Hex value.
+   */
+  accent?: string | null;
+  crest?: (number | null) | Media;
+  coach?: string | null;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "staff".
+ */
+export interface Staff {
+  id: number;
+  name: string;
+  /**
+   * e.g. "Head coach"
+   */
+  role: string;
+  team: number | Team;
+  portrait?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "players".
+ */
+export interface Player {
+  id: number;
+  firstName: string;
+  lastName: string;
+  /**
+   * URL path, e.g. "jan-kowalski". SHOULD be identical in both locales.
+   */
+  slug: string;
+  team: number | Team;
+  number: number;
+  position: 'TW' | 'VER' | 'MF' | 'ST';
+  /**
+   * Season-by-season squad history. The current assignment is the "Team" field above.
+   */
+  memberships?:
+    | {
+        season: number | Season;
+        team: number | Team;
+        id?: string | null;
+      }[]
+    | null;
+  playerStatus: 'active' | 'injured' | 'inactive' | 'alumni';
+  captain?: boolean | null;
+  nationality?: string | null;
+  birthYear?: number | null;
+  joinedYear?: number | null;
+  heightCm?: number | null;
+  weightKg?: number | null;
+  club?: string | null;
+  /**
+   * Cut-out portrait, transparent, 3:4. Without an image the jersey number is shown instead.
+   */
+  portrait?: (number | null) | Media;
+  /**
+   * Leave empty if no profile text exists yet — the section is then omitted.
+   */
+  bio?: string | null;
+  stats?: {
+    caps?: number | null;
+    goals?: number | null;
+    assists?: number | null;
+  };
+  /**
+   * Set when the biography text was drafted with the editorial assistant.
+   */
+  aiAssisted?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "games".
+ */
+export interface Game {
+  id: number;
+  /**
+   * e.g. "2027-01-16-deutschland-finnland".
+   */
+  slug: string;
+  kickoff: string;
+  gameStatus: 'scheduled' | 'live' | 'finished' | 'postponed' | 'cancelled';
+  competition: {
+    name: string;
+    kind: 'friendly' | 'tournament' | 'qualifier' | 'league';
+  };
+  round?: string | null;
+  home:
+    | {
+        relationTo: 'teams';
+        value: number | Team;
+      }
+    | {
+        relationTo: 'opponents';
+        value: number | Opponent;
+      };
+  away:
+    | {
+        relationTo: 'teams';
+        value: number | Team;
+      }
+    | {
+        relationTo: 'opponents';
+        value: number | Opponent;
+      };
+  homeScore?: number | null;
+  awayScore?: number | null;
+  halftime?: {
+    home?: number | null;
+    away?: number | null;
+  };
+  venue: number | Venue;
+  isTournamentGame?: boolean | null;
+  tournament?: (number | null) | Tournament;
+  /**
+   * Tournament games only, e.g. "Saturday · Semi-finals".
+   */
+  tournamentDayLabel?: string | null;
+  liveMinute?: number | null;
+  postponedTo?: string | null;
+  cancellationReason?: string | null;
+  ticketUrl?: string | null;
+  roster?: {
+    submitted?: boolean | null;
+    home?: {
+      coach?: string | null;
+      formation?: string | null;
+      players?:
+        | {
+            player?: (number | null) | Player;
+            firstName: string;
+            lastName: string;
+            number: number;
+            position: 'TW' | 'VER' | 'MF' | 'ST';
+            starter?: boolean | null;
+            captain?: boolean | null;
+            events?:
+              | {
+                  type: 'goal' | 'assist' | 'penalty';
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+          }[]
+        | null;
+      bench?: string[] | null;
+    };
+    away?: {
+      coach?: string | null;
+      formation?: string | null;
+      players?:
+        | {
+            player?: (number | null) | Player;
+            firstName: string;
+            lastName: string;
+            number: number;
+            position: 'TW' | 'VER' | 'MF' | 'ST';
+            starter?: boolean | null;
+            captain?: boolean | null;
+            events?:
+              | {
+                  type: 'goal' | 'assist' | 'penalty';
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+          }[]
+        | null;
+      bench?: string[] | null;
+    };
+  };
+  report?: {
+    paragraphs?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    pullQuote?: string | null;
+  };
+  events?:
+    | {
+        minute: number;
+        type: 'goal' | 'penalty' | 'card' | 'info';
+        side: 'home' | 'away';
+        title: string;
+        runningHome?: number | null;
+        runningAway?: number | null;
+        detail?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  stats?:
+    | {
+        label: string;
+        home: number;
+        away: number;
+        id?: string | null;
+      }[]
+    | null;
+  referee?: string | null;
+  attendance?: number | null;
+  weatherNote?: string | null;
+  gallery?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tournaments".
+ */
+export interface Tournament {
+  id: number;
+  name: string;
+  slug: string;
+  type: 'weltmeisterschaft' | 'pokal' | 'liga' | 'qualifikation' | 'turnier' | 'sonstiges';
+  format: string;
+  startDate: string;
+  endDate: string;
+  venue: number | Venue;
+  hero?: (number | null) | Media;
+  participants?:
+    | {
+        name: string;
+        host?: boolean | null;
+        /**
+         * Disable while the participant is still open (e.g. "Winner SF1").
+         */
+        resolved?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  rules?: string[] | null;
+  weatherNote?: string | null;
+  /**
+   * For the tournament archive and the timeline on /federation.
+   */
+  placement?: string | null;
+  /**
+   * Exactly one tournament can show its table on the fixtures page.
+   */
+  featuredStandings?: boolean | null;
+  /**
+   * Leave empty when this tournament has no table (e.g. a knockout cup).
+   */
+  standings?: {
+    preseason?: boolean | null;
+    note?: string | null;
+    rows?:
+      | {
+          rank: number;
+          teamName: string;
+          isGermany?: boolean | null;
+          played: number;
+          win: number;
+          draw: number;
+          loss: number;
+          goalsFor: number;
+          goalsAgainst: number;
+          points: number;
+          zone?: ('qualify' | 'relegate') | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -342,6 +759,42 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'audit-log';
         value: number | AuditLog;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'seasons';
+        value: number | Season;
+      } | null)
+    | ({
+        relationTo: 'venues';
+        value: number | Venue;
+      } | null)
+    | ({
+        relationTo: 'opponents';
+        value: number | Opponent;
+      } | null)
+    | ({
+        relationTo: 'teams';
+        value: number | Team;
+      } | null)
+    | ({
+        relationTo: 'staff';
+        value: number | Staff;
+      } | null)
+    | ({
+        relationTo: 'players';
+        value: number | Player;
+      } | null)
+    | ({
+        relationTo: 'games';
+        value: number | Game;
+      } | null)
+    | ({
+        relationTo: 'tournaments';
+        value: number | Tournament;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -524,6 +977,342 @@ export interface AuditLogSelect<T extends boolean = true> {
   locale?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  credit?: T;
+  license?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seasons_select".
+ */
+export interface SeasonsSelect<T extends boolean = true> {
+  name?: T;
+  startDate?: T;
+  endDate?: T;
+  isCurrent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "venues_select".
+ */
+export interface VenuesSelect<T extends boolean = true> {
+  name?: T;
+  city?: T;
+  address?: T;
+  mapQuery?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "opponents_select".
+ */
+export interface OpponentsSelect<T extends boolean = true> {
+  name?: T;
+  shortName?: T;
+  crestCode?: T;
+  country?: T;
+  accent?: T;
+  website?: T;
+  crest?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teams_select".
+ */
+export interface TeamsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  gender?: T;
+  ageGroup?: T;
+  crestCode?: T;
+  shortName?: T;
+  accent?: T;
+  crest?: T;
+  coach?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "staff_select".
+ */
+export interface StaffSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
+  team?: T;
+  portrait?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "players_select".
+ */
+export interface PlayersSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  slug?: T;
+  team?: T;
+  number?: T;
+  position?: T;
+  memberships?:
+    | T
+    | {
+        season?: T;
+        team?: T;
+        id?: T;
+      };
+  playerStatus?: T;
+  captain?: T;
+  nationality?: T;
+  birthYear?: T;
+  joinedYear?: T;
+  heightCm?: T;
+  weightKg?: T;
+  club?: T;
+  portrait?: T;
+  bio?: T;
+  stats?:
+    | T
+    | {
+        caps?: T;
+        goals?: T;
+        assists?: T;
+      };
+  aiAssisted?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "games_select".
+ */
+export interface GamesSelect<T extends boolean = true> {
+  slug?: T;
+  kickoff?: T;
+  gameStatus?: T;
+  competition?:
+    | T
+    | {
+        name?: T;
+        kind?: T;
+      };
+  round?: T;
+  home?: T;
+  away?: T;
+  homeScore?: T;
+  awayScore?: T;
+  halftime?:
+    | T
+    | {
+        home?: T;
+        away?: T;
+      };
+  venue?: T;
+  isTournamentGame?: T;
+  tournament?: T;
+  tournamentDayLabel?: T;
+  liveMinute?: T;
+  postponedTo?: T;
+  cancellationReason?: T;
+  ticketUrl?: T;
+  roster?:
+    | T
+    | {
+        submitted?: T;
+        home?:
+          | T
+          | {
+              coach?: T;
+              formation?: T;
+              players?:
+                | T
+                | {
+                    player?: T;
+                    firstName?: T;
+                    lastName?: T;
+                    number?: T;
+                    position?: T;
+                    starter?: T;
+                    captain?: T;
+                    events?:
+                      | T
+                      | {
+                          type?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              bench?: T;
+            };
+        away?:
+          | T
+          | {
+              coach?: T;
+              formation?: T;
+              players?:
+                | T
+                | {
+                    player?: T;
+                    firstName?: T;
+                    lastName?: T;
+                    number?: T;
+                    position?: T;
+                    starter?: T;
+                    captain?: T;
+                    events?:
+                      | T
+                      | {
+                          type?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              bench?: T;
+            };
+      };
+  report?:
+    | T
+    | {
+        paragraphs?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        pullQuote?: T;
+      };
+  events?:
+    | T
+    | {
+        minute?: T;
+        type?: T;
+        side?: T;
+        title?: T;
+        runningHome?: T;
+        runningAway?: T;
+        detail?: T;
+        id?: T;
+      };
+  stats?:
+    | T
+    | {
+        label?: T;
+        home?: T;
+        away?: T;
+        id?: T;
+      };
+  referee?: T;
+  attendance?: T;
+  weatherNote?: T;
+  gallery?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tournaments_select".
+ */
+export interface TournamentsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  type?: T;
+  format?: T;
+  startDate?: T;
+  endDate?: T;
+  venue?: T;
+  hero?: T;
+  participants?:
+    | T
+    | {
+        name?: T;
+        host?: T;
+        resolved?: T;
+        id?: T;
+      };
+  rules?: T;
+  weatherNote?: T;
+  placement?: T;
+  featuredStandings?: T;
+  standings?:
+    | T
+    | {
+        preseason?: T;
+        note?: T;
+        rows?:
+          | T
+          | {
+              rank?: T;
+              teamName?: T;
+              isGermany?: T;
+              played?: T;
+              win?: T;
+              draw?: T;
+              loss?: T;
+              goalsFor?: T;
+              goalsAgainst?: T;
+              points?: T;
+              zone?: T;
+              id?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

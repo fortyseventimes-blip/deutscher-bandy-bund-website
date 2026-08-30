@@ -3,6 +3,7 @@ import { getPayload } from 'payload'
 import config from '../payload.config'
 import type { Page } from '../payload-types'
 import { headerNav, headerCta, staticPages } from './content'
+import { seedSport } from './sport'
 
 type PageBlocks = Page['blocks']
 
@@ -137,6 +138,10 @@ async function run() {
 
     payload.logger.info(`Seeded page /${page.slug.de} (/en/${page.slug.en})`)
   }
+
+  // --- Sport data (teams, players, staff, games, tournaments) --------------
+  await seedSport(payload)
+  payload.logger.info('Seeded sport data (teams, players, staff, venues, opponents, games, tournaments).')
 
   payload.logger.info('Seed complete.')
   process.exit(0)

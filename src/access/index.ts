@@ -4,7 +4,9 @@ import {
   canAuthor,
   canManageSystem,
   canPublishContent,
+  canPublishSport,
   canWriteContent,
+  canWriteSport,
   isStaff,
   isSuperadmin,
 } from './predicates'
@@ -23,11 +25,17 @@ export const superadminOnly: Access = ({ req }) => canManageSystem(userOf(req))
 
 export const staffOnly: Access = ({ req }) => isStaff(userOf(req))
 
-/** Published to everyone; drafts only to staff. */
+/** Published to everyone; drafts only to staff. For collections with a
+ * draft/publish lifecycle (versions.drafts enabled). */
 export const publicReadPublished: Access = ({ req }) => {
   if (isStaff(userOf(req))) return true
   return { _status: { equals: 'published' } }
 }
+
+/** Unconditionally public. For reference/structural collections with no
+ * draft/publish lifecycle of their own (teams, staff, venues, opponents,
+ * seasons, media) — everything in them is immediately live. */
+export const publicRead: Access = () => true
 
 /** Users may read themselves; superadmin reads everyone. */
 export const readSelfOrSuperadmin: Access = ({ req }) => {
@@ -58,8 +66,14 @@ export const updateContent: Access = ({ req }) => {
 
 export const deleteContent: Access = ({ req }) => canWriteContent(userOf(req))
 
+// --- Sport (teams, players, staff, games, tournaments, venues, opponents,
+// seasons, media) --------------------------------------------------------
+export const createSport: Access = ({ req }) => canWriteSport(userOf(req))
+export const updateSport: Access = ({ req }) => canWriteSport(userOf(req))
+export const deleteSport: Access = ({ req }) => canWriteSport(userOf(req))
+
 // --- Field-level -----------------------------------------------------------
 /** Only a superadmin may change a user's roles (blocks privilege escalation). */
 export const rolesFieldAccess: FieldAccess = ({ req }) => isSuperadmin(userOf(req))
 
-export { canPublishContent }
+export { canPublishContent, canPublishSport }
