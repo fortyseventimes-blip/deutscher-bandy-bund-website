@@ -144,7 +144,9 @@ export async function importPlayers(payload: Payload, dir: string): Promise<Impo
     const slug = slugifyName(`${firstName}-${lastName}`)
     parsed.push({ file, gender: p.gender, number })
 
-    const notes = [...p.review]
+    // A name given in players.json replaces the filename reading, so the
+    // parser's "how did I split this name" notes no longer apply.
+    const notes = o.firstName || o.lastName ? [] : [...p.review]
     if (o.position && !POSITIONS.includes(o.position)) {
       report.add('error', file, `position "${o.position}" is not one of ${POSITIONS.join(', ')}`)
       continue

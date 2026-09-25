@@ -30,6 +30,20 @@ describe('parsePlayerFilename', () => {
     expect(r.ok && r.value.review).toHaveLength(1)
   })
 
+  it('accepts male/female markers and title-cases lower-case names', () => {
+    const r = parsePlayerFilename('male-35-konstantin-fichter.jpg')
+    expect(r.ok && r.value).toMatchObject({ gender: 'herren', number: 35, firstName: 'Konstantin', lastName: 'Fichter' })
+    const f = parsePlayerFilename('female-9-jeanette-roos.jpg')
+    expect(f.ok && f.value.gender).toBe('damen')
+  })
+
+  it('keeps name particles lower-case', () => {
+    const r = parsePlayerFilename('m-7-Frans-von_Schoultz.jpg')
+    expect(r.ok && r.value.lastName).toBe('von Schoultz')
+    const l = parsePlayerFilename('male-7-frans-von_schoultz.jpg')
+    expect(l.ok && l.value.lastName).toBe('von Schoultz')
+  })
+
   it('ignores the directory part of a path', () => {
     const r = parsePlayerFilename('C:\\bandy-players\\m-1-Lukas-Brandt.jpg')
     expect(r.ok && r.value.firstName).toBe('Lukas')
