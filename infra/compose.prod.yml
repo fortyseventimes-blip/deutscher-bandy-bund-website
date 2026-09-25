@@ -48,6 +48,9 @@ services:
       SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:?set SEED_ADMIN_PASSWORD in .env.production}
     volumes:
       - bandy-prod-media:/app/media
+      # Player portraits + games.json for the one-off imports, read-only
+      # (pnpm import:players / import:games — see import/README.md).
+      - ../import:/app/import:ro
     ports:
       # Bound to loopback only, and only for your own convenience (checking
       # http://localhost:3000 directly). Nothing needs this published at all

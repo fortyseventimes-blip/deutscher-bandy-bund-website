@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { CrestCircle } from './CrestCircle'
 import { Countdown } from './Countdown'
+import { StreamButton } from './StreamButton'
 import { scorePair } from '@/lib/gameDisplay'
 import { formatDateTime, formatDate } from '@/lib/format'
 import { routes } from '@/lib/routes'
@@ -37,6 +38,7 @@ export async function MatchdayHero({
   const t = await getTranslations({ locale, namespace: 'sport' })
   const th = await getTranslations({ locale, namespace: 'screens.home' })
   const tf = await getTranslations({ locale, namespace: 'screens.fixtures' })
+  const tm = await getTranslations({ locale, namespace: 'screens.match' })
   const accent = accentByState[state]
   const score = game ? scorePair(game) : null
 
@@ -115,8 +117,16 @@ export async function MatchdayHero({
               <Button href={routes.game(locale, game.slug)}>
                 {state === 'finished' ? t('scoreboard.endstand') : state === 'live' ? t('status.live') : tf('nextMatch')}
               </Button>
+              {(state === 'upcoming' || state === 'live') && (
+                <StreamButton
+                  url={game.streamUrl}
+                  provider={game.streamProvider}
+                  label={tm('watchLive')}
+                  variant="secondary"
+                />
+              )}
               {game.ticketUrl && state === 'upcoming' && (
-                <Button href={game.ticketUrl} variant="secondary">{th('newsletterCta')}</Button>
+                <Button href={game.ticketUrl} external variant="secondary">{tm('buyTickets')}</Button>
               )}
             </div>
           </div>

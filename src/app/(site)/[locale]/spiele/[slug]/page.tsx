@@ -11,6 +11,8 @@ import { StatBars } from '@/components/sport/StatBars'
 import { KeyValuePanel } from '@/components/sport/KeyValuePanel'
 import { ConsentPlaceholder } from '@/components/sport/ConsentPlaceholder'
 import { ImageSlot } from '@/components/sport/ImageSlot'
+import { StreamButton } from '@/components/sport/StreamButton'
+import { SourceLink } from '@/components/sport/SourceLink'
 import { Button } from '@/components/ui/Button'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { formatDateTime } from '@/lib/format'
@@ -36,6 +38,11 @@ export default async function MatchPage({ params }: { params: Promise<{ locale: 
   const tt = await getTranslations({ locale, namespace: 'sport.tabs' })
   const tf = await getTranslations({ locale, namespace: 'screens.fixtures' })
   const nextMatch = await getNextMatch()
+
+  // A stream link stays useful before kick-off and while live; afterwards the
+  // replay usually lives on the same page, so it is kept for finished games too.
+  const showStream = Boolean(game.streamUrl) && game.status !== 'cancelled' && game.status !== 'postponed'
+  const showTickets = game.status === 'scheduled' && Boolean(game.ticketUrl)
 
   const hasEvents = (game.events?.length ?? 0) > 0
   const hasStats = (game.stats?.length ?? 0) > 0
@@ -67,11 +74,21 @@ export default async function MatchPage({ params }: { params: Promise<{ locale: 
 
       <div className="container-page mt-4">
         <Scoreboard game={game} locale={locale} />
-        {game.status === 'scheduled' && game.ticketUrl && (
-          <div className="mt-4 flex justify-center">
-            <Button href={game.ticketUrl}>{t('buyTickets')}</Button>
+        {(showStream || showTickets) && (
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
+            {showStream && (
+              <StreamButton url={game.streamUrl} provider={game.streamProvider} label={t('watchLive')} />
+            )}
+            {showTickets && (
+              <Button href={game.ticketUrl!} external variant={showStream ? 'secondary' : 'primary'}>
+                {t('buyTickets')}
+              </Button>
+            )}
           </div>
         )}
+        <div className="mt-3 flex justify-center">
+          <SourceLink url={game.sourceUrl} label={t('source')} />
+        </div>
       </div>
 
       <div className="container-page mt-6">

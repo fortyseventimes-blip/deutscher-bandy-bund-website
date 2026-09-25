@@ -8,6 +8,7 @@ import type {
   NewsTeaser,
   Side,
 } from './types'
+import { slugifyName } from '../slug'
 
 /**
  * Sample data matching the design prototypes. German copy is real; names, scores
@@ -68,18 +69,7 @@ type P = Partial<Player> & {
   position: Player['position']
 }
 
-export function slugifyName(input: string): string {
-  return input
-    .toLowerCase()
-    .replace(/ä/g, 'ae')
-    .replace(/ö/g, 'oe')
-    .replace(/ü/g, 'ue')
-    .replace(/ß/g, 'ss')
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-}
+export { slugifyName }
 
 function player(p: P): Player {
   const slug = slugifyName(`${p.first}-${p.last}`)

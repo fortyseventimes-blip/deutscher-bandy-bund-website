@@ -4,6 +4,8 @@ import { publicReadPublished, createSport, updateSport, deleteSport } from '../a
 import { canPublishSport } from '../access/predicates'
 import { publishGuard } from '../access/publishGuard'
 import { auditAfterChange, auditAfterDelete } from '../audit/hooks'
+import { validateHttpUrl } from '../lib/url'
+import { STREAM_PROVIDERS } from '../lib/streams'
 
 const EVENT_TAGS = [
   { label: { de: 'Tor', en: 'Goal' }, value: 'goal' },
@@ -292,6 +294,41 @@ export const Games: CollectionConfig = {
       admin: { condition: (data) => data?.gameStatus === 'cancelled' },
     },
     { name: 'ticketUrl', type: 'text', label: { de: 'Ticket-Link', en: 'Ticket link' } },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'streamUrl',
+          type: 'text',
+          validate: validateHttpUrl,
+          label: { de: 'Livestream-Link', en: 'Livestream link' },
+          admin: {
+            description: {
+              de: 'z. B. die Spielseite auf FIB TV (fib-tv.com) oder Bandyplay.',
+              en: 'e.g. the game page on FIB TV (fib-tv.com) or Bandyplay.',
+            },
+          },
+        },
+        {
+          name: 'streamProvider',
+          type: 'select',
+          label: { de: 'Anbieter', en: 'Provider' },
+          options: STREAM_PROVIDERS,
+        },
+      ],
+    },
+    {
+      name: 'sourceUrl',
+      type: 'text',
+      validate: validateHttpUrl,
+      label: { de: 'Quelle (Link)', en: 'Source (link)' },
+      admin: {
+        description: {
+          de: 'Offizielle Quelle für Termin und Ergebnis, z. B. die Seite auf worldbandy.com.',
+          en: 'Official source for date and result, e.g. the page on worldbandy.com.',
+        },
+      },
+    },
     {
       name: 'roster',
       type: 'group',

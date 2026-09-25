@@ -571,6 +571,15 @@ export interface Game {
   postponedTo?: string | null;
   cancellationReason?: string | null;
   ticketUrl?: string | null;
+  /**
+   * e.g. the game page on FIB TV (fib-tv.com) or Bandyplay.
+   */
+  streamUrl?: string | null;
+  streamProvider?: ('fib-tv' | 'bandyplay' | 'youtube' | 'other') | null;
+  /**
+   * Official source for date and result, e.g. the page on worldbandy.com.
+   */
+  sourceUrl?: string | null;
   roster?: {
     submitted?: boolean | null;
     home?: {
@@ -693,6 +702,10 @@ export interface Tournament {
    * For the tournament archive and the timeline on /federation.
    */
   placement?: string | null;
+  /**
+   * Official tournament page, e.g. on worldbandy.com.
+   */
+  sourceUrl?: string | null;
   /**
    * Exactly one tournament can show its table on the fixtures page.
    */
@@ -1164,6 +1177,9 @@ export interface GamesSelect<T extends boolean = true> {
   postponedTo?: T;
   cancellationReason?: T;
   ticketUrl?: T;
+  streamUrl?: T;
+  streamProvider?: T;
+  sourceUrl?: T;
   roster?:
     | T
     | {
@@ -1287,6 +1303,7 @@ export interface TournamentsSelect<T extends boolean = true> {
   rules?: T;
   weatherNote?: T;
   placement?: T;
+  sourceUrl?: T;
   featuredStandings?: T;
   standings?:
     | T

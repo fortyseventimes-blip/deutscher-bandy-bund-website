@@ -9,9 +9,15 @@ type PageBlocks = Page['blocks']
 
 /**
  * Idempotent seed for the foundation: an initial admin user, the header/footer
- * globals in both locales, and the three legal pages with localized slugs.
- * Safe to re-run — it upserts by slug. Run with `pnpm seed`.
+ * globals in both locales, and the static pages with localized slugs. Safe to
+ * re-run — it upserts by slug.
+ *
+ *   pnpm seed       foundation + the fictional sport demo data (local dev)
+ *   pnpm seed:base  foundation only — use this on any site real visitors see;
+ *                   the demo players and results are invented.
  */
+const baseOnly = process.argv.includes('--base')
+
 async function run() {
   const payload = await getPayload({ config })
 
@@ -139,9 +145,13 @@ async function run() {
     payload.logger.info(`Seeded page /${page.slug.de} (/en/${page.slug.en})`)
   }
 
-  // --- Sport data (teams, players, staff, games, tournaments) --------------
-  await seedSport(payload)
-  payload.logger.info('Seeded sport data (teams, players, staff, venues, opponents, games, tournaments).')
+  // --- Sport demo data (teams, players, staff, games, tournaments) ---------
+  if (baseOnly) {
+    payload.logger.info('Skipped the sport demo data (--base).')
+  } else {
+    await seedSport(payload)
+    payload.logger.info('Seeded sport demo data (teams, players, staff, venues, opponents, games, tournaments).')
+  }
 
   payload.logger.info('Seed complete.')
   process.exit(0)

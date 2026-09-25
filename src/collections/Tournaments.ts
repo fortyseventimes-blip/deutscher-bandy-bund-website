@@ -3,6 +3,7 @@ import { publicReadPublished, createSport, updateSport, deleteSport } from '../a
 import { canPublishSport } from '../access/predicates'
 import { publishGuard } from '../access/publishGuard'
 import { auditAfterChange, auditAfterDelete } from '../audit/hooks'
+import { validateHttpUrl } from '../lib/url'
 
 /**
  * A tournament or grouped competition (openspec/specs/tournaments). Games
@@ -121,6 +122,18 @@ export const Tournaments: CollectionConfig = {
         description: {
           de: 'Für die Turnier-Historie und die Zeitleiste auf /verband.',
           en: 'For the tournament archive and the timeline on /federation.',
+        },
+      },
+    },
+    {
+      name: 'sourceUrl',
+      type: 'text',
+      validate: validateHttpUrl,
+      label: { de: 'Quelle (Link)', en: 'Source (link)' },
+      admin: {
+        description: {
+          de: 'Offizielle Turnierseite, z. B. auf worldbandy.com.',
+          en: 'Official tournament page, e.g. on worldbandy.com.',
         },
       },
     },
