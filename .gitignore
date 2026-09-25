@@ -23,6 +23,10 @@ build/
 # local backups (infra/backup.ps1)
 /backups
 
+# import material (player photos, games.json) — never committed
+/import/*
+!/import/README.md
+
 # testing
 /coverage
 

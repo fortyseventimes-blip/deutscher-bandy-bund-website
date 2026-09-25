@@ -187,6 +187,9 @@ export function mapGame(doc: PayloadGame): Game {
     postponedTo: doc.postponedTo ?? undefined,
     cancellationReason: doc.cancellationReason ?? undefined,
     ticketUrl: doc.ticketUrl ?? undefined,
+    streamUrl: doc.streamUrl ?? undefined,
+    streamProvider: doc.streamProvider ?? undefined,
+    sourceUrl: doc.sourceUrl ?? undefined,
     roster: roster
       ? {
           submitted: roster.submitted ?? false,
@@ -262,5 +265,6 @@ export function mapTournament(doc: PayloadTournament): Omit<Tournament, 'days'> 
     standings: mapStandings(doc) ?? undefined,
     rules: doc.rules ?? undefined,
     weatherNote: doc.weatherNote ?? undefined,
+    sourceUrl: doc.sourceUrl ?? undefined,
   }
 }

@@ -8,6 +8,7 @@
  * roster yet, no standings for a competition, participants not yet known. Every
  * such case has a designed fallback (handoff: "absence is the normal case").
  */
+import type { StreamProvider } from '../streams'
 
 /** A labelled image drop-slot. No real photography is supplied yet; components
  * render a placeholder that names what belongs there. `src` arrives with media. */
@@ -145,6 +146,9 @@ export type Game = {
   postponedTo?: string // ISO
   cancellationReason?: string
   ticketUrl?: string
+  streamUrl?: string
+  streamProvider?: StreamProvider
+  sourceUrl?: string
   roster?: MatchRoster
   report?: MatchReport
   events?: TimelineEvent[]
@@ -196,6 +200,7 @@ export type Tournament = {
   standings?: Standings // may be absent — tournament pages must render without it
   rules?: string[]
   weatherNote?: string
+  sourceUrl?: string
 }
 
 export type NewsTeaser = {

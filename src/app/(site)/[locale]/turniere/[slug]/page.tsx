@@ -8,6 +8,7 @@ import { HeroMedia } from '@/components/sport/HeroMedia'
 import { CrestCircle } from '@/components/sport/CrestCircle'
 import { KeyValuePanel } from '@/components/sport/KeyValuePanel'
 import { ConsentPlaceholder } from '@/components/sport/ConsentPlaceholder'
+import { SourceLink } from '@/components/sport/SourceLink'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { formatDate, formatTime } from '@/lib/format'
 import { routes } from '@/lib/routes'
@@ -105,6 +106,8 @@ export default async function TournamentPage({ params }: { params: Promise<{ loc
               <p className="mt-1 text-[14px] text-text-muted">{trn.weatherNote}</p>
             </div>
           )}
+
+          <SourceLink url={trn.sourceUrl} label={t('source')} />
         </aside>
       </div>
     </div>

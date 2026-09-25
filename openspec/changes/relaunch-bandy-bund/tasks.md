@@ -64,7 +64,7 @@ box unticked or a spec stale is a defect.
 
 ### Data
 - [ ] 2.14 Media collection with required alt/credit/license, focal point, AVIF/WebP derivatives
-- [ ] 2.15 Player import from `{gender}-{number}-{first}-{last}` card assets → drafts + report
+- [x] 2.15 Player import from `{gender}-{number}-{first}-{last}` card assets → drafts + report
 - [ ] 2.16 Review the import report against the corrected source lists; confirm any remaining
       ambiguity with the board before publishing a player record
 - [ ] 2.17 Seed seasons, teams, venues; enter the historic tournament record

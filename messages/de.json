@@ -166,7 +166,9 @@
       "galleryTitle": "Galerie",
       "galleryEmpty": "Bilder folgen nach dem Spiel.",
       "nextMatchCta": "Nächstes Spiel",
-      "buyTickets": "Tickets"
+      "buyTickets": "Tickets",
+      "watchLive": "Livestream ansehen",
+      "source": "Quelle"
     },
     "teams": {
       "title": "Teams",
@@ -217,7 +219,8 @@
       "schedule": "Spielplan",
       "host": "Gastgeber",
       "weather": "Wetter-Hinweis",
-      "buyTickets": "Tickets"
+      "buyTickets": "Tickets",
+      "source": "Quelle"
     },
     "home": {
       "newsTitle": "Aktuelles",
