@@ -1,8 +1,14 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { parsePlayerFilename } from '@/import/filename'
 import { findNumberCollisions } from '@/import/players'
+import { ImportReport } from '@/import/report'
+import { toImageRef } from '@/lib/data/payloadMappers'
+import type { Media } from '@/payload-types'
 import { safeHttpUrl, validateHttpUrl } from '@/lib/url'
 import { slugifyName } from '@/lib/slug'
+
+// payloadMappers is server-only in the app; the guard package is not needed here.
+vi.mock('server-only', () => ({}))
 
 describe('parsePlayerFilename', () => {
   it('reads {gender}-{number}-{first}-{last}', () => {
@@ -91,5 +97,31 @@ describe('slugifyName', () => {
   it('transliterates German characters', () => {
     expect(slugifyName('Paul Nyström')).toBe('paul-nystroem')
     expect(slugifyName('Jörg Weiß')).toBe('joerg-weiss')
+  })
+})
+
+describe('ImportReport', () => {
+  it('lets an import rename its sections', () => {
+    const report = new ImportReport({ updated: 'Photo replaced (live immediately)' })
+    report.add('updated', 'Julian Cordes (#4, herren)', 'male-4-julian-cordes.jpg')
+    report.add('review', 'Elias Rieder (#10, herren)', 'has no portrait yet')
+    const md = report.toMarkdown('Portrait update')
+    expect(md).toContain('## Photo replaced (live immediately) (1)')
+    expect(md).toContain('## Imported — please check (1)')
+  })
+})
+
+describe('toImageRef', () => {
+  const media = (sizes: Media['sizes']) =>
+    ({ id: 1, alt: 'Julian Cordes, Nr. 4', url: '/api/media/file/p.jpg', sizes }) as Media
+
+  it('uses the requested derivative when the upload has one', () => {
+    const ref = toImageRef(media({ card: { url: '/api/media/file/p-800x1000.jpg' } }), { size: 'card' })
+    expect(ref?.src).toBe('/api/media/file/p-800x1000.jpg')
+  })
+
+  it('falls back to the original for an image too small for that derivative', () => {
+    expect(toImageRef(media({ card: { url: null } }), { size: 'card' })?.src).toBe('/api/media/file/p.jpg')
+    expect(toImageRef(media({}), { size: 'card' })?.src).toBe('/api/media/file/p.jpg')
   })
 })
