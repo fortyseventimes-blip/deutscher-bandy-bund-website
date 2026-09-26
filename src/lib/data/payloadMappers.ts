@@ -36,16 +36,22 @@ function populated<T>(value: number | T | null | undefined): T | null {
   return value
 }
 
+/**
+ * `size` picks one of the Media collection's generated derivatives (e.g. the
+ * 800px `card` for portraits, which are otherwise full-size uploads); an image
+ * too small to have that derivative falls back to the original.
+ */
 export function toImageRef(
   media: number | PayloadMedia | null | undefined,
-  opts: { ratio?: ImageRef['ratio'] } = {},
+  opts: { ratio?: ImageRef['ratio']; size?: keyof NonNullable<PayloadMedia['sizes']> } = {},
 ): ImageRef | null {
   const doc = populated(media)
   if (!doc) return null
+  const sized = opts.size ? doc.sizes?.[opts.size]?.url : undefined
   return {
     label: doc.alt,
     alt: doc.alt,
-    src: doc.url ?? undefined,
+    src: sized ?? doc.url ?? undefined,
     ratio: opts.ratio,
   }
 }
@@ -121,7 +127,7 @@ export function mapPlayer(doc: PayloadPlayer, teamSlugOverride?: string): Player
     captain: doc.captain ?? undefined,
     club: doc.club ?? undefined,
     // No upload → the designed ghost-number fallback, not a placeholder slot.
-    portrait: toImageRef(doc.portrait, { ratio: '3/4' }),
+    portrait: toImageRef(doc.portrait, { ratio: '3/4', size: 'card' }),
     bio: doc.bio ?? null,
     stats: {
       caps: doc.stats?.caps ?? 0,
@@ -138,7 +144,7 @@ export function mapStaff(doc: PayloadStaff): Staff {
     name: doc.name,
     role: doc.role,
     teamSlug: team?.slug ?? '',
-    portrait: toImageRef(doc.portrait, { ratio: '3/4' }),
+    portrait: toImageRef(doc.portrait, { ratio: '3/4', size: 'card' }),
   }
 }
 

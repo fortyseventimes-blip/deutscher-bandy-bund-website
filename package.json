@@ -22,6 +22,7 @@
     "seed": "tsx src/seed/run.ts",
     "seed:base": "tsx src/seed/run.ts --base",
     "import:players": "tsx src/import/cli.ts players",
+    "import:portraits": "tsx src/import/cli.ts portraits",
     "import:games": "tsx src/import/cli.ts games",
     "generate:types": "payload generate:types",
     "generate:importmap": "payload generate:importmap",

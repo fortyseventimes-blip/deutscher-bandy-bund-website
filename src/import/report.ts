@@ -17,6 +17,12 @@ const HEADINGS: Record<ReportLevel, string> = {
 
 export class ImportReport {
   private entries: Entry[] = []
+  private headings: Record<ReportLevel, string>
+
+  /** `headings` renames sections for imports that e.g. never create drafts. */
+  constructor(headings: Partial<Record<ReportLevel, string>> = {}) {
+    this.headings = { ...HEADINGS, ...headings }
+  }
 
   add(level: ReportLevel, subject: string, message = '') {
     this.entries.push({ level, subject, message })
@@ -28,10 +34,10 @@ export class ImportReport {
 
   toMarkdown(title: string): string {
     const lines = [`# ${title}`, '']
-    for (const level of Object.keys(HEADINGS) as ReportLevel[]) {
+    for (const level of Object.keys(this.headings) as ReportLevel[]) {
       const rows = this.entries.filter((e) => e.level === level)
       if (rows.length === 0) continue
-      lines.push(`## ${HEADINGS[level]} (${rows.length})`, '')
+      lines.push(`## ${this.headings[level]} (${rows.length})`, '')
       for (const r of rows) lines.push(`- **${r.subject}**${r.message ? ` — ${r.message}` : ''}`)
       lines.push('')
     }
